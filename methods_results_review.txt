@@ -1,0 +1,22 @@
+Hi Vicken, 
+
+Introduction & theory section are still a work in progress so you can skip that part for now. I will have a draft of that for you next week!
+
+High-level questions: 
+
+1. I chose to narrow in on Washington and Idaho because I was able to find comparable data on flood risk in each state. See table 1 in the report. Unfortunately, I could not find this information on Oregon. Is that okay to just focus on the two states? Or do you feel like we are missing out?
+2. Thoughts on overall structure of manuscript?
+
+Methods: 
+1. Survey analysis section: is it helpful to include these equations? should I include the bayesian probability equation?
+2. Anything else I should include here on methods? Maybe the case study section would be more fit for the methods section in the report? Right now, I have it in theory because it talks about how I am applying the theory to our project. Also, the case study is ready to be reviewed as well if you have time.
+
+Results: 
+1. Table 3: I probably need to report 95% CI instead of the 10/90 values? Are there other values I should report on here?
+2. This section is basically broken down into three parts: predictors with significant effect, moderate effect, no effect. Does this seem like a good approach for discussing the results?
+3. Also might add a section in about barriers and include that bargraph that I made for the webinar. Do you think this would be a good addition?
+
+Additional comment-- I wrote a lot of notes/questions in (parentheses) that I need some direction on. 
+
+Thanks so much!
+Tara

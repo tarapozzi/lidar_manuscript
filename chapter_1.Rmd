@@ -1,0 +1,1178 @@
+---
+title: "Chapter 1 Manuscript"
+output: pdf_document
+runhead: "XXXX"
+thanks: "....."
+author:
+  - name: Tara Pozzi
+affiliation: Boise State University
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+geometry: margin=1in
+#fontfamily: timesnewroman
+fontsize: 12pt
+csl: crm.csl
+bibliography: references.bib
+#biblio-style: apsr
+indent: yes
+colorlinks: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(citr)
+library(tidyr)
+library(ggplot2)
+library(ggplotgui)
+library(ggrepel)
+library(plotly)
+library(RColorBrewer)
+library(here)
+library(tinytex)
+library(psych)
+library(pastecs)
+library(rstanarm)
+library(loo) 
+library(tidybayes)
+library(tidyverse)  # ggplot, dplyr, %>%, and friends
+library(ggdag)  # Make DAGs with ggplot
+library(dagitty)  # Do basic DAG math
+library(broom)  # For converting model output to data frames
+library(caret) # model comparison
+library(plyr) # helps with model comparison computation
+library(performance)
+library(rworldmap)
+library(hrbrthemes)
+library(ggplotAssist)
+library(clusterSim)
+library(dplyr)
+library(purrr)
+library(forcats)
+library(modelr)
+library(ggdist)
+library(tidybayes)
+library(cowplot)
+library(rstan)
+library(bookdown) # for cross-referencing
+library(knitr) #for global options
+library(formatR) 
+```
+
+\begin{document}
+
+Example articles: 
+1. survey analysis write up: https://www.sciencedirect.com/science/article/pii/S2212096316301061
+2. 
+
+```{r, global options, include=FALSE}
+# Setup options for code decoration
+opts_chunk$set(tidy = TRUE, tidy.opts = list(blank = FALSE, width.cutoff = 60),
+highlight = TRUE)
+
+# Setup options for code cache
+opts_chunk$set(cache = 2, cache.path = "cache/")
+
+# Setup options for plots
+opts_chunk$set(fig.path = "Figures_MS/", dev = c("pdf", "png"),
+dpi = 300)
+
+## Locate figures as close as possible to requested position
+## (=code)
+opts_chunk$set(fig.pos = "H")
+
+```
+
+Abstract
+========================
+**"A concise and factual abstract is required. The abstract should state briefly the purpose of the research, the principal results and major conclusions. An abstract is often presented separately from the article, so it must be able to stand alone. For this reason, References should be avoided, but if essential, then cite the author(s) and year(s). Also, non-standard or uncommon abbreviations should be avoided, but if essential they must be defined at their first mention in the abstract itself."**
+
+# HIGHLIGHTS
+1. 
+2. 
+3. 
+4. 
+
+
+# 1 INTRODUCTION (~500 to 1000 words)
+**"State the objectives of the work and provide an adequate background, avoiding a detailed literature survey or a summary of the results."**
+
+Almost all human decisions are made while considering risk. Risk, broadly speaking, refers to the chance or probability that an individual will be harmed. Risk perception is a basic way to characterize a person's intuitive risk judgement and allows for the identification, characterization, and quantification of risk. For that reason, risk perception has been well studied in the past especially in terms of its role in decision-making under risk due to hazardous activities and technologies (Slovic, 1987; Hung et al., 2003). Interestingly, there has been research that identified an unexpected relationship between risk perception and lack of risk mitigating behavior named the "Risk Perception Paradox" (Bubeck et al., 2012; Wachinger et al., 2013). This paper examines why this phenomena may occur and proposes alternative predictors that may affect an individual's risk sensitivity such as cultural and contextual factors that moderate risk perception's effect size on decision-making and behavior (van Valkengoed & Steg, 2019; Wachinger et al., 2013). 
+
+Flooding is the most frequent and destructive natural disaster due to human's proximity to water sources, increasing population and urbanization rates, and climate change (Pralle, 2019; Schanze, 2006). Many communities have adopted new technology and management practices to adapt to the increased number and intensity of floods in order to improve flood risk management (e.g. Webster, 2010). One of those practices is adopting a better mapping system in order to accurately predict where flooding will occur. Accurate floodplain maps are essential for communicating flood risk to vulnerable populations, helping mitigate and adapt to floods, and the functioning of insurance programs, such as the National Flood Insurance Program (Pralle, 2019). However, floodplains maps can be an expensive and time-consuming process because it requires the collection of new survey data, engineering, and administration support through governing institutions (e.g. Federal Emergency Management Agency (FEMA)). 
+
+This paper will examine the phenomena of decision-making with long-term risk mitigation through a behavioral ecology lens. Specifically, it tries to understand the factors that influence technology adoption in flood risk management. Light Detection and Ranging (lidar) is a laser-based remote sensing technology that uses light to measure elevation and features on the ground, providing high-quality and detailed topographic data. Lidar provides a good case study because it has proven to be an effective technology for predicting floodplains and flood risk with higher accuracy than previous topographic data. However, the benefits of this technology have a variable reward and time delay, two key factors that can feel risky in adopting this technology. This novel application of behavioral ecology and risk-sensitivity theory addresses the current gap of a theoretically-backed examination of flood risk (Kellens et al., 2013). In addition, this approach offers insight into the "Risk Perception Paradox" and will help illuminate cultural and contextual factors affecting decision-making under risk. 
+ 
+## **Risk**
+Risk has a variety of definitions based on the disciplinary domain in which the concept is being examined. In an everyday sense, risk can be considered the chance of a negative outcome occurring (Mishra, 2014). While from an ecologist's perspective risk is an unpredictable variation in the outcome of a behavior, with consequences for an organism's fitness or utility (Winterhalder et al., 1999). However, risk is inherently interdisciplinary and therefore needs to span both social and environmental contexts. For the purposes of this paper, risk refers to the quantifiable consequence of a decision given the known, context-specific social and environmental factors.   
+
+### *Risk versus uncertainty*
+It is important to state the distinction of risk and uncertainty. With uncertainty, the outcome probability is unknown due to lack of knowledge, however this can be overcome with acquiring information about the environment (Henrich & McElreath, 2002). With this information, an individual is now able to discern and quantify varying levels of risk. This is an important distinction to make because uncertainty can alter how an individual makes decisions under risk and therefore, can potentially be a confounding factor in data analyses (Winterhalder et al., 1999).  
+
+### *Risk-taking attitude*
+Inextricably linked to risk and risk mitigation behavior is risk-taking attitude (Viglione et al., 2014). Risk-taking attitude, also known as risk preferences, encompasses a range beliefs from risk averse to risk prone. Several studies have looked at what factors influence an individual's risk-taking attitude. For example, economists have thought that wealth and demographic variables, such as age and sex, would be highly correlated with risk prone behavior, however the results have not supported this (Henrich & McElreath, 2002). Rather, it has been found that risk preferences can be driven by emotional reactions to a risky situation, individual versus group consideration, and the instability of the environment in which an individual is making a decision (Eckel et al., 2009; Liu, 2012; Nolin & Ziker, 2016; Shupp & Williams, 2008). Therefore, risk-taking attitude is the product of social and environmental cues and has important implications for risk mitigating behavior.  
+
+## **Risk over time**
+Previous anthropological research has examined the relationship of time and risk and found that the scale of rewards and delays are critical in the decision-making process (Winterhalder et al., 1999; Tucker, 2011). This is due to the future discounting model that illustrates the tradeoff between reward and delay. It essentially suggests that a reward, if delayed, offers less utility in the moment than an immediate option would offer. Long-term risk mitigation behavior is a particularly interesting example for examining this phenomena because it has a delayed reward and therefore may have variable reward value for the individual or community investing in the mitigation behavior. 
+
+### *Shortfall minimization*
+Research has found that individuals (human and nonhuman) make decisions to minimize their chances of falling below subsistence minimum, shortfall minimization (Henrich & McElreath, 2002). Most of the previous work in this field has been with empirical observations of nonhuman animals in an experimental or laboratory setting. The findings from these studies have shown consistent risk-sensitive behavior. Risk prone resource selection, variable reward versus constant reward with same overall reward value, is more common under negative energy balance for solitary species (Winterhalder et al., 1999). Interestingly, when risk prone animals reach a stable weight they then reverted back to risk averse. However for larger animals, where there are alternative behavioral tactics to minimize shortfalls, risk-prone behavior is more rare. 
+
+## **Risk mitigation behavior**
+There are several behaviors that individuals have adapted over time to minimize shortfalls including group foraging, resource pooling, and social learning. 
+
+### *Group foraging*
+Group foraging provides a way for individuals to be part of a collective of shared risk. For example, social insects use pooling of resources for variance reduction. Honeybees are indifferent to constant or varying rewards because there are so many bees working together (Banschbach & Waddington, 1994). There are also studies on human populations following a similar group foraging behavior to mitigate the risk of stochastic events. In some hunter-gatherer societies, it is common to group forage and pool food to be dispersed evenly among participating foragers. This mitigates temporal fluctuations in food intake and therefore limits risk of starvation and ultimately loss of fitness (Winterhalder, 1990)..
+
+### *Resource pooling*
+Resource pooling opens up opportunities for trying new technology and techniques that one individual may not have been able to afford or know how to do on their own. For example, farming cooperatives in France have become popular because it allows individuals to pool wealth, tools, and knowledge. Consequently, these farmers see greater returns on investment due to economies of scale from pooled resources (Agarwal & Dorin, 2019). In addition, resource pooling can instill social capital in a community over a united purpose. This is because social capital can create trust, norms of reciprocity, and social networks that can be instrumental in successful group collaboration and cooperation (Wagner & Fernandez-Gimenez, 2008). 
+
+### *Social learning*
+Additionally, social learning is an important component of risk minimization. Social learning is an individual's ability to transmit information to another person. Culture forms as a result of this process, creating a shared set of beliefs and norms among a group of individuals. Culture evolves through the process of natural selection, creating between-group variation of adaptive behavior and cooperation (Richerson et al., 2016). Consequently, some groups evolve to have more successful risk mitigation behavior than others. Institutions are an example of a group that has formed due to collective decision-making. Often times, there is competition between institutions in a similar market. The institution that wins typically has been able to suit the needs of their environment better than their competition (Richerson et al., 2016). This is true for risk mitigation behavior as well and therefore social learning makes working as a group advantageous for minimizing risk.  
+
+# 2 THEORY (~2,500)
+**"A Theory section should extend, not repeat, the background to the article already dealt with in the Introduction and lay the foundation for further work. In contrast, a Calculation section represents a practical development from a theoretical basis."**
+
+Behavioral ecology is the study of adaptive behavior in relation to social and environmental circumstances (Bird & O'Connell, 2006). As a sub-field of evolutionary ecology, behavioral ecology applies natural selection theory to explain variation in adaptive behavior and consequently differential fitness outcomes (Winterhalder & Smith, 1992).  While traditional theories of decision-making lack consideration of evolutionary processes, research in recent years has begun to incorporate behavioral ecology theory into decision-making under risk. This is because humans are the products of evolution by natural selection, therefore human decision-making is a product of evolutionary process as well (Mishra, 2014). This paper uses an integrated, comprehensive general theory of decision-making under risk in order to account for both levels of behavior causation, as well as incorporate important normative and descriptive rationales that play a significant role in decision-making (Mishra, 2014). In addition, this theory keeps in mind Tinbergen's work regarding proximate and ultimate levels of behavior causation, in which both these levels of explanation can be used together to explain decision-making under risk. 
+
+This paper uses an integrated, comprehensive general theory of decision-making under risk in order to account for both levels of behavior causation, as well as incorporate important normative and descriptive rationales that play a significant role in decision-making (Mishra, 2014). In addition, this theory keeps in mind Tinbergen's work regarding proximate and ultimate levels of behavior causation, in which both these levels of explanation can be used together to explain decision-making under risk.
+
+### *Normative Rationale*
+Risk-sensitivity theory is a normative theory traditionally used by behavioral ecologists to explain food acquisition decisions and overall foraging behavior. This theory has been widely-applied in studies of nonhuman animals (Mishra, 2014; Winterhalder, 1999). Researchers have found that the energy state of an individual significantly influences their risk preference. Therefore, risk-sensitivity theory predicts that the decision-maker will shift from risk-averse to risk-prone behavior in situations of need where there is a discrepancy between an individual's present state and desired state (Mishra, 2014). Furthermore, previous research has examined risk-sensitivity theory with respect to the human decision-making model. For example, it has been shown that animals do not follow the predicted risk-sensitivity theory pattern when there is reward variance (Mishra, 2014). This could be due to heuristics that an individual uses to perceive their environment.
+
+### *Descriptive Rationale*
+Heuristics and biases are a part of the human cognition system and affect how an individual interprets useful knowledge, practices, beliefs, and behaviors (Henrich & McElreath, 2003). Within this, there are content and context biases. Content biases are direct, exploitive cues of information resulting in imitation of, typically, fitness-enhancing behavior. Context biases, on the other hand, exploit potential alternative behaviors or strategies.  Context biases are of particular interest because they have the ability to lead to evolution and natural selection of information within a population (Henrich & McElreath, 2003). In addition, heuristics allows humans to make quick decisions and can be understood as the result of adaptive evolutionary processes to solve recurrent problems (Mishra, 2014). Sometimes these quick decisions are made with incomplete information, which is often true when making decisions under risk, making these decisions bounded by limited information (Mishra, 2014). Therefore, it is important to consider descriptive rationale when understanding the consequential decisions of risk. 
+
+### *Risk-sensitivity theory*
+Risk sensitivity is important to consider if the value of interest (e.g. utility, fitness) is nonlinear and one or more of the behavioral alternatives is characterized by unpredictable outcomes.
+
+!["Figure 1. This graph displays a sigmoid value function to represent the basic logic of risk sensitivity. The concave portion represents decreasing marginal returns. A constant outcome, denoted by k, represents the point where constant equals the probabilities of variable outcome (k+c, k-c). The convex portion represents increasing marginal returns  (Winterhalder et al., 1999)." ](C:/Users/tarapozzi/Documents/Manuscript/images/value_function.png) 
+
+Traditionally, risk-sensitivity theory has been used to predict foraging patterns. As seen in Figure 1, when the resource is scarce, value rises at an accelerating rate (convex) until it hits an inflection point where the resource is abundant there is a decelerating rate of value (concave). There are essentially two options for the individual to choose: a fixed reward, k, or an unpredictable reward with equal probability of being either k-c or k+c. An individual who chooses the fixed reward is typically risk averse, whereas the individual who is in poor condition will likely choose the variable reward making them risk prone. This is because the individual is making decisions based on decreasing marginal utility. If they are risk averse, they will remain on the concave shape of the utility function because it is more conservative. If they are risk-neutral, they would have a straight line utility curve at value k. If they are risk-prone, they would remain on the convex portion of the utility curve where they would prefer options with more variation (Henrich & McElreath, 2002). In addition, the risk decision depends on time frame, urgency, and consequence of the decision as discussed previously. Research has found that animals are commonly risk averse when quantity is variable, however they are risk prone when the time to reward is variable (Winterhalder et al., 1999). 
+
+### *Case study*
+Technology adoption in flood risk management provides an interesting case study to understand the predictors that affect long-term risk mitigation behavior because it often has variable reward and delay in its implementation. This example specifically looks at the adoption of lidar in communities throughout Washington and Idaho. Lidar provides highly detailed and accurate topographic data that flood risk managers use to model floodplains and assess their flood risk. The technology is expensive (~ $125/km2), requires a lot of storage, and can be slow. In addition, it takes additional training to learn how to process the raw lidar data and integrate the data points into programs such as ArcGIS to create useful products for flood risk management. 
+
+ ![Figure 2. The image on the left is a traditional 30-meter digital elevation model and the image on the right is a 1-meter digital elevation model derived from lidar data.](C:/Users/tarapozzi/Documents/Manuscript/images/dem_comp.png) 
+
+The United State Geological Survey 3D Elevation Program (3DEP) was created to coordinate nationwide acquisition of lidar by 2023. While this technology has been backed by federal agencies, it has had variable adoption rates across the U.S.
+One reason for this could be due to local governments having variable risk sensitivity to flooding and consequently varying action in adopting lidar. The two states of comparison in this example are Washington and Idaho. Flooding in Washington typically occurs on a seasonal basis due to rainfall from atmospheric rivers, rainfall on snow, flash foods from storms, and winter storms causing storm surges and high tide (WEMD, 2020). Idaho is prone to flooding from rivers, flash floods, ice/debris jams, sheet or areal flooding, and mudflows (IOEM, 2018). Overall, the two states see different amounts of damage and risk as shown in \autoref{tab:tab_statecomp} . 
+
+```{r comparison table, echo=FALSE, fig.cap="\\label{tab_statecomp}"}
+
+state.comp <- matrix(c("1.8%", "3.7%", "$180 million (1950-2017)", "5.0%", "8.8%", "$2 billion (1960-2016)", "3.2%", "5.1%", "$1.2 billion"), ncol=3, byrow=TRUE)
+colnames(state.comp) <- c("Portion of land in 100-year floodplain", "Portion of population in 100-year floodplain", "Cumulative property loss")
+rownames(state.comp) <- c("Idaho", "Washington", "Difference")
+knitr::kable(state.comp, caption="Summary information about environmental and social differences between Idaho and Washington.")
+```
+
+### *Examining predictors of lidar adoption in further detail*
+Risk-sensitivity theory suggests that decision-makers should prefer high-risk options in situations of high need, when lower risk options are unlikely to meet those needs (Mishra et al., 2012). For this example, the value represents the adoption of lidar and the outcome is flood risk mitigation. Given this, as well as previously described information about the effects of variable reward and delay, I expect to see an adoption pattern similar to that suggested by the value function in Figure 1. Flood risk managers in negative energy space due to high flood risk, the convex portion of the value function, should act more risk prone in order to try and mitigate negative impacts of floods. Whereas, flood risk managers who are in the positive energy space, the concave portion of the value function, should act more risk averse and may remain status quo. I hypothesize that flood risk managers in Washington are more likely to risk adopting a new technology because of their higher need to address floods. 
+
+### *Flood risk minimization*
+Shortfall minimization is a critical component of decision-making under risk. As discussed previously, risk can be minimized by resource pooling and social learning. Since lidar is an expensive investment, funding opportunities and collaborations can help minimize and share the risk of investing in lidar. For example, the Washington Geological Survey was granted funding from 2015-2021 for the collection and distribution of lidar data and lidar-derived products. Therefore, individuals who adopt this technology in Washington have the potential to minimize their risk of investment by pooling resources. Due to this resource pooling, I expect Washington to see an increase in lidar adoption. In addition, social learning can influence the norms and beliefs that a flood risk manager holds about appropriate adaptive behavior. Research has shown that collective memory provides context and is an important indicator of a community's flood risk culture (Viglione et al., 2014; Wachinger et al., 2013). Collective memory represents a community's ability to keep awareness of previous events that shape their decisions for the future. Often times, flood risk managers develop their collective memory based on information they learn from their peers and experience within their community. This awareness influences an individual to take action based on a collective idea of risk, rather than from individual belief. 
+
+# 3 METHODS (~ 1,000 words)
+**"Provide sufficient details to allow the work to be reproduced by an independent researcher. Methods that are already published should be summarized, and indicated by a reference. If quoting directly from a previously published method, use quotation marks and also cite the source. Any modifications to existing methods should also be described."**
+
+```{r, survey distribution, include=FALSE}
+
+# Washington
+washington.results <- read.csv("data/wa.csv")
+wa.no <- washington.results %>%
+  filter(grepl("2", screen))
+
+#load distribution history
+wa.dist <- read.csv("data/wa_dist.csv", stringsAsFactors=FALSE)[-c(1),] %>%
+  filter(grepl("Email Sent|Finished Survey|Partially Completed Survey|Started Survey", Status)) # this only keeps working emails & those who have opted in
+
+a <- length(wa.dist$Email) - 12
+# Total number of relevant respondents: total distribution minus those who didn't pass screening: 398-12: 384 potential responses
+
+# Idaho potential responses
+id.pot.responses <- read.csv("data/id_contacts.csv")
+b <- length(id.pot.responses$Email)
+# 463 potential responses
+
+total.sample.frame <-  a + b
+
+```
+
+```{r, survey data upload, include=FALSE}
+idaho <- read.csv("data/id.csv", stringsAsFactors=FALSE)[-c(1),] %>% # subsetting: took out 40 & 134 because they had duplicate entries 
+  filter(grepl("1", screen)) %>% # this tells it to only keep responses that selected "Yes" for the screening question\
+  subset(.,experience_1!="") %>% # remove blank responses
+  dplyr::select(matches("Duration|RecipientLastName|RecipientFirstName|RecipientEmail|LocationLatitude|LocationLongitude|screen|years|comm_name|NFIP|no_NFIP|experience_1|experience_2|experience_3|experience_4|experience_5|future_1|future_2|future_3|future_4|future_5|currentmap|flood_zone|prepared|incr_no_flood|incr_sev_flood|lidaruse|interestlid|barrier_1|barrier_2|barrier_3|barrier_4|barrier_5|barrier_6|usefulid|toolslid1|tooslid1_4_TEXT|accesslid|accesslid_7_TEXT|useslid|useslid_4_TEXT|toolslid|toolslid_4_TEXT|gender|age|education|degree|science_trust|gov_trust|gov_involve|soep_1|usefulid")) %>% # remove network data until pre-reg is complete
+  dplyr::rename(LastName = RecipientLastName,
+         FirstName = RecipientFirstName,
+         Email=RecipientEmail) %>% #this is so that I can merge this data with the contact list
+  #unite("ws_request",toolslid, toolslid1, toolslid_4_TEXT, toolslid1_4_TEXT,interestlid, sep="") %>% # this combines all columns that survey respondents selected into one column
+  add_column(.,location="Idaho") %>%
+  distinct(Email, .keep_all = TRUE) # there are some duplicate contacts, let's make sure to drop the duplicate 
+str(idaho)
+
+oregon <- read.csv("data/or.csv", stringsAsFactors=FALSE)[-c(1),] %>% # subsetting: took out 40 & 134 because they had duplicate entries 
+  filter(grepl("1", screen)) %>% # this tells it to only keep responses that selected "Yes" for the screening question\
+  subset(.,experience_1!="") %>% # remove blank responses  
+  dplyr::select(matches("Duration|RecipientLastName|RecipientFirstName|RecipientEmail|LocationLatitude|LocationLongitude|screen|years|comm_name|NFIP|no_NFIP|experience_1|experience_2|experience_3|experience_4|experience_5|future_1|future_2|future_3|future_4|future_5|currentmap|flood_zone|prepared|incr_no_flood|incr_sev_flood|lidaruse|interestlid|barrier_1|barrier_2|barrier_3|barrier_4|barrier_5|barrier_6|usefulid|toolslid1|tooslid1_4_TEXT|accesslid|accesslid_7_TEXT|useslid|useslid_4_TEXT|toolslid|toolslid_4_TEXT|gender|age|education|degree|science_trust|gov_trust|gov_involve|soep_1|usefulid")) %>% # remove network data until pre-reg is complete
+  dplyr::rename(LastName = RecipientLastName,
+         FirstName = RecipientFirstName,
+         Email=RecipientEmail) %>% #this is so that I can merge this data with the contact list
+  #unite("ws_request",toolslid, toolslid1, toolslid_4_TEXT, toolslid1_4_TEXT,interestlid, sep="") %>% # this combines all columns that survey respondents selected into one column
+  add_column(.,location="Oregon") %>%
+  distinct(Email, .keep_all = TRUE) # there are some duplicate contacts, let's make sure to drop the duplicate 
+str(oregon)
+
+washington <- read.csv("data/wa.csv", stringsAsFactors=FALSE)[-c(1),] %>% # subsetting: took out 40 & 134 because they had duplicate entries 
+  filter(grepl("1", screen)) %>% # this tells it to only keep responses that selected "Yes" for the screening question\
+  subset(.,experience_1!="") %>% # remove blank responses
+  dplyr::select(matches("Duration|RecipientLastName|RecipientFirstName|RecipientEmail|LocationLatitude|LocationLongitude|screen|years|comm_name|NFIP|no_NFIP|experience_1|experience_2|experience_3|experience_4|experience_5|future_1|future_2|future_3|future_4|future_5|currentmap|flood_zone|prepared|incr_no_flood|incr_sev_flood|lidaruse|interestlid|barrier_1|barrier_2|barrier_3|barrier_4|barrier_5|barrier_6|usefulid|toolslid1|tooslid1_4_TEXT|accesslid|accesslid_7_TEXT|useslid|useslid_4_TEXT|toolslid|toolslid_4_TEXT|gender|age|education|degree|science_trust|gov_trust|gov_involve|soep_1|usefulid")) %>% # remove network data until pre-reg is complete
+  dplyr::rename(LastName = RecipientLastName,
+         FirstName = RecipientFirstName,
+         Email=RecipientEmail) %>% #this is so that I can merge this data with the contact list
+  #unite("ws_request",toolslid, toolslid1, toolslid_4_TEXT, toolslid1_4_TEXT,interestlid, sep="") %>% # this combines all columns that survey respondents selected into one column
+  add_column(.,location="Washington") %>%
+  distinct(Email, .keep_all = TRUE) # there are some duplicate contacts, let's make sure to drop the duplicate 
+str(washington)
+
+alaska <- read.csv("data/ak.csv", stringsAsFactors=FALSE)[-c(1),] %>% # subsetting: took out 40 & 134 because they had duplicate entries 
+  filter(grepl("1", screen)) %>% # this tells it to only keep responses that selected "Yes" for the screening question\
+  subset(.,experience_1!="") %>% # remove blank responses
+  dplyr::select(matches("Duration|RecipientLastName|RecipientFirstName|RecipientEmail|LocationLatitude|LocationLongitude|screen|years|comm_name|NFIP|no_NFIP|experience_1|experience_2|experience_3|experience_4|experience_5|future_1|future_2|future_3|future_4|future_5|currentmap|flood_zone|prepared|incr_no_flood|incr_sev_flood|lidaruse|interestlid|barrier_1|barrier_2|barrier_3|barrier_4|barrier_5|barrier_6|usefulid|toolslid1|tooslid1_4_TEXT|accesslid|accesslid_7_TEXT|useslid|useslid_4_TEXT|toolslid|toolslid_4_TEXT|gender|age|education|degree|science_trust|gov_trust|gov_involve|soep_1|usefulid")) %>% # remove network data until pre-reg is complete
+  dplyr::rename(LastName = RecipientLastName,
+         FirstName = RecipientFirstName,
+         Email=RecipientEmail) %>% #this is so that I can merge this data with the contact list
+  #unite("ws_request",toolslid, toolslid1, toolslid_4_TEXT, toolslid1_4_TEXT,interestlid, sep="") %>% # this combines all columns that survey respondents selected into one column
+  add_column(.,location="Alaska") %>%
+  distinct(Email, .keep_all = TRUE) # there are some duplicate contacts, let's make sure to drop the duplicate 
+str(alaska)
+
+# Combine all four states into one dataset # 
+survey.responses <- rbind(idaho, washington) %>% 
+  subset(.,incr_no_flood!="") # remove additional blank responses
+
+write.csv(survey.responses, "C:/Users/tarapozzi/Documents/Manuscript/survey.responses.csv")
+
+```
+
+``` {r, survey stats, include=FALSE}
+time <- subset(survey.responses, Duration..in.seconds.<9000) # some folks must have left the survey open and then came back to it later so I got rid of the outlier responses times
+ave.time.sec <- summarise(time, avg=mean(Duration..in.seconds.))
+ave.time.min <- round(ave.time.sec/60, digits=0)
+ave.time.min
+```
+
+```{r, recode, include=FALSE}
+survey.responses$lidaruse <- revalue(survey.responses$lidaruse, c("1"="1", "2"="0", "3"="0"))
+idaho$lidaruse <- revalue(idaho$lidaruse, c("1"="1", "2"="0", "3"="0"))
+oregon$lidaruse <- revalue(oregon$lidaruse, c("1"="1", "2"="0", "3"="0"))
+washington$lidaruse <- revalue(washington$lidaruse, c("1"="1", "2"="0", "3"="0"))
+
+# yes=1, no=0
+
+# Direct Experiences
+survey.responses$experience_1 <- revalue(survey.responses$experience_1, c("1"="1", "2"="0"))# yes=1, no=0
+survey.responses$experience_2 <- revalue(survey.responses$experience_2, c("1"="1", "2"="0"))
+survey.responses$experience_3 <- revalue(survey.responses$experience_3, c("1"="1", "2"="0"))
+survey.responses$experience_4 <- revalue(survey.responses$experience_4, c("1"="1", "2"="0"))
+survey.responses$experience_5 <- revalue(survey.responses$experience_5, c("1"="1", "2"="0"))
+
+idaho$experience_1 <- revalue(idaho$experience_1, c("1"="1", "2"="0"))# yes=1, no=0
+idaho$experience_2 <- revalue(idaho$experience_2, c("1"="1", "2"="0"))
+idaho$experience_3 <- revalue(idaho$experience_3, c("1"="1", "2"="0"))
+idaho$experience_4 <- revalue(idaho$experience_4, c("1"="1", "2"="0"))
+idaho$experience_5 <- revalue(idaho$experience_5, c("1"="1", "2"="0"))
+
+washington$experience_1 <- revalue(washington$experience_1, c("1"="1", "2"="0"))# yes=1, no=0
+washington$experience_2 <- revalue(washington$experience_2, c("1"="1", "2"="0"))
+washington$experience_3 <- revalue(washington$experience_3, c("1"="1", "2"="0"))
+washington$experience_4 <- revalue(washington$experience_4, c("1"="1", "2"="0"))
+washington$experience_5 <- revalue(washington$experience_5, c("1"="1", "2"="0"))
+
+oregon$experience_1 <- revalue(oregon$experience_1, c("1"="1", "2"="0"))# yes=1, no=0
+oregon$experience_2 <- revalue(oregon$experience_2, c("1"="1", "2"="0"))
+oregon$experience_3 <- revalue(oregon$experience_3, c("1"="1", "2"="0"))
+oregon$experience_4 <- revalue(oregon$experience_4, c("1"="1", "2"="0"))
+oregon$experience_5 <- revalue(oregon$experience_5, c("1"="1", "2"="0"))
+
+
+# closer the experience, higher the number for yes
+
+# Trust-- reverse code
+survey.responses$gov_trust <- revalue(survey.responses$gov_trust, c("1"="5", "2"="4", "3"="3", "4"="2", "5"="1"))
+idaho$gov_trust <- revalue(idaho$gov_trust, c("1"="5", "2"="4", "3"="3", "4"="2", "5"="1"))
+oregon$gov_trust <- revalue(oregon$gov_trust, c("1"="5", "2"="4", "3"="3", "4"="2", "5"="1"))
+washington$gov_trust <- revalue(washington$gov_trust, c("1"="5", "2"="4", "3"="3", "4"="2", "5"="1"))
+# 5=stronly trust
+# 4=somewhat distrust
+# 3=neither trust nor distrust
+# 2=somewhat distrust
+# 1=strongly distrust
+
+survey.responses$science_trust <- revalue(survey.responses$science_trust, c("1"="5", "2"="4", "3"="3", "4"="2", "5"="1"))
+idaho$science_trust <- revalue(idaho$science_trust, c("1"="5", "2"="4", "3"="3", "4"="2", "5"="1"))
+oregon$science_trust <- revalue(oregon$science_trust, c("1"="5", "2"="4", "3"="3", "4"="2", "5"="1"))
+washington$science_trust <- revalue(washington$science_trust, c("1"="5", "2"="4", "3"="3", "4"="2", "5"="1"))
+# 5=stronly trust
+# 4=somewhat distrust
+# 3=neither trust nor distrust
+# 2=somewhat distrust
+# 1=strongly distrust
+
+# Gov Involvement
+survey.responses$gov_involve <- revalue(survey.responses$gov_involve, c("1"="5", "6"="4", "7"="3", "2"="2", "3"="1"))
+idaho$gov_involve <- revalue(idaho$gov_involve, c("1"="5", "6"="4", "7"="3", "2"="2", "3"="1"))
+oregon$gov_involve <- revalue(oregon$gov_involve, c("1"="5", "6"="4", "7"="3", "2"="2", "3"="1"))
+washington$gov_involve <- revalue(washington$gov_involve, c("1"="5", "6"="4", "7"="3", "2"="2", "3"="1"))
+
+# 5=completely involved
+# 4=mostly involved
+# 3=moderately involved
+# 2=somewhat involved
+# 1=not at all involved
+
+# Risk Perception
+# future flood risk
+survey.responses$future_1<- revalue(survey.responses$future_1, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+survey.responses$future_2<- revalue(survey.responses$future_2, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+survey.responses$future_3<- revalue(survey.responses$future_3, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+survey.responses$future_4<- revalue(survey.responses$future_4, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+survey.responses$future_5<- revalue(survey.responses$future_5, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+
+idaho$future_1<- revalue(idaho$future_1, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+idaho$future_2<- revalue(idaho$future_2, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+idaho$future_3<- revalue(idaho$future_3, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+idaho$future_4<- revalue(idaho$future_4, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+idaho$future_5<- revalue(idaho$future_5, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+
+oregon$future_1<- revalue(oregon$future_1, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+oregon$future_2<- revalue(oregon$future_2, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+oregon$future_3<- revalue(oregon$future_3, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+oregon$future_4<- revalue(oregon$future_4, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+oregon$future_5<- revalue(oregon$future_5, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+
+washington$future_1<- revalue(washington$future_1, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+washington$future_2<- revalue(washington$future_2, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+washington$future_3<- revalue(washington$future_3, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+washington$future_4<- revalue(washington$future_4, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+washington$future_5<- revalue(washington$future_5, c("20"="1", "19"=".75", "18"=".5", "17"=".25", "16"="0"))
+# 100% chance of happening
+# 75% chance of happening
+# 50% chance of happening
+# 25% chance of happening
+# 0% chance of happening
+# 1-5 to represent closeness
+
+#increase number of floods
+survey.responses$incr_no_flood <- revalue(survey.responses$incr_no_flood, c("1"="3", "2"="1", "3"="2"))
+idaho$incr_no_flood <- revalue(idaho$incr_no_flood, c("1"="3", "2"="1", "3"="2"))
+oregon$incr_no_flood <- revalue(oregon$incr_no_flood, c("1"="3", "2"="1", "3"="2"))
+washington$incr_no_flood <- revalue(washington$incr_no_flood, c("1"="3", "2"="1", "3"="2"))
+# increase=3# decrease=1# stay the same=2
+
+#increase severity of floods
+survey.responses$incr_sev_flood <- revalue(survey.responses$incr_sev_flood, c("1"="3", "2"="1", "3"="2"))
+idaho$incr_sev_flood <- revalue(idaho$incr_sev_flood, c("1"="3", "2"="1", "3"="2"))
+oregon$incr_sev_flood <- revalue(oregon$incr_sev_flood, c("1"="3", "2"="1", "3"="2"))
+washington$incr_sev_flood <- revalue(washington$incr_sev_flood, c("1"="3", "2"="1", "3"="2"))
+# increase=3# decrease=1# stay the same=2
+
+# Demographics
+# age is ordered correctly: 1= less than 20, 2=20-29 years, 3=30-39 years, 4=40-49 years, 5=50+ years
+# education is ordered correctly: 1= some high school, 2= high school diploma, 3=college edu, no grad, 4= associates, 5=bachelors, 6= advanced
+# gender is ordered fine: 1= male, 2=female
+
+# Structural Barriers
+# too expensive
+survey.responses$barrier_1<- revalue(survey.responses$barrier_1, c("17"="1", "16"="2", "15"="3", "14"="4", "13"="5"))
+# strongly disagree
+# somewhat disagree
+# neither agree nor disagree
+# somewhat agree
+# strongly agree
+
+#lack of expertise
+survey.responses$barrier_2<- revalue(survey.responses$barrier_2, c("17"="1", "16"="2", "15"="3", "14"="4", "13"="5"))
+# strongly disagree
+# somewhat disagree
+# neither agree nor disagree
+# somewhat agree
+# strongly agree
+
+# sparse population
+survey.responses$barrier_3<- revalue(survey.responses$barrier_3, c("17"="1", "16"="2", "15"="3", "14"="4", "13"="5"))
+# strongly disagree
+# somewhat disagree
+# neither agree nor disagree
+# somewhat agree
+# strongly agree
+
+# low rate of economic development
+survey.responses$barrier_4<- revalue(survey.responses$barrier_4, c("17"="1", "16"="2", "15"="3", "14"="4", "13"="5"))
+# strongly disagree
+# somewhat disagree
+# neither agree nor disagree
+# somewhat agree
+# strongly agree
+
+# low flooding risk
+survey.responses$barrier_5<- revalue(survey.responses$barrier_5, c("17"="1", "16"="2", "15"="3", "14"="4", "13"="5"))
+# strongly disagree
+# somewhat disagree
+# neither agree nor disagree
+# somewhat agree
+# strongly agree
+
+# lack of political support
+survey.responses$barrier_6<- revalue(survey.responses$barrier_6, c("17"="1", "16"="2", "15"="3", "14"="4", "13"="5"))
+# strongly disagree
+# somewhat disagree
+# neither agree nor disagree
+# somewhat agree
+# strongly agree
+
+# add a column for barrier 7 which is if lidar is present or not
+
+# SOEP
+survey.responses$soep_1<- revalue(survey.responses$soep_1, c("0"="10", "1"="9", "2"="8", "3"="7", "4"="6","5"="5", "6"="4", "7"="3", "8"="2", "9"="1","10"="0"))
+idaho$soep_1<- revalue(idaho$soep_1, c("0"="10", "1"="9", "2"="8", "3"="7", "4"="6","5"="5", "6"="4", "7"="3", "8"="2", "9"="1","10"="0"))
+oregon$soep_1<- revalue(oregon$soep_1, c("0"="10", "1"="9", "2"="8", "3"="7", "4"="6","5"="5", "6"="4", "7"="3", "8"="2", "9"="1","10"="0"))
+washington$soep_1<- revalue(washington$soep_1, c("0"="10", "1"="9", "2"="8", "3"="7", "4"="6","5"="5", "6"="4", "7"="3", "8"="2", "9"="1","10"="0"))
+
+# 10: risk loving
+# 0: risk averse
+
+#Gender all good, except "3" for other
+survey.responses$gender <- revalue(survey.responses$gender, c("1"="1", "2"="2", "3"="NA"))
+idaho$gender <- revalue(idaho$gender, c("1"="1", "2"="2", "3"="NA"))
+oregon$gender <- revalue(oregon$gender, c("1"="1", "2"="2", "3"="NA"))
+washington$gender <- revalue(washington$gender, c("1"="1", "2"="2", "3"="NA"))
+
+#age doesn't need recoding
+
+# Edcuation
+survey.responses$education <- revalue(survey.responses$education, c("1"="1", "2"="2", "3"="3", "4"="4", "5"="5", "7"="6"))
+idaho$education <- revalue(idaho$education, c("1"="1", "2"="2", "3"="3", "4"="4", "5"="5", "7"="6"))
+oregon$education <- revalue(oregon$education, c("1"="1", "2"="2", "3"="3", "4"="4", "5"="5", "7"="6"))
+washington$education <- revalue(washington$education, c("1"="1", "2"="2", "3"="3", "4"="4", "5"="5", "7"="6"))
+# 1: some high school
+# 6: advanced degree
+
+# prepared 
+survey.responses$prepared <- revalue(survey.responses$prepared, c("5"="1", "4"="2", "3"="3", "2"="4", "1"="5"))
+#1: not at all prepared
+#5: completely prepared
+
+#usefulness
+survey.responses$usefulid <- revalue(survey.responses$usefulid, c("5"="1", "4"="2", "3"="3", "2"="4", "1"="5"))
+#1: not at all useful
+#5: very useful
+
+#flood zone
+survey.responses$flood_zone <- revalue(survey.responses$flood_zone, c("1"="1", "2"="0"))
+#1: flooding outside of floodzone
+#2: no flooding outside
+```
+
+### *Survey design*
+Talk about the specific survey questions that I end up analyzing here...
+
+This survey covered several topics to measure predictors that could affect lidar adoption. This includes the following: awareness, preparedness, risk-taking attitude, collective memory, trust, and outcome efficacy. See Appendix A for a copy of each survey. 
+
+### *Survey procedures and participants*
+The survey's target respondent was the floodplain manager or administrator from participating and non-participating National Flood Insurance Program (NFIP) communities in Idaho and Washington in the Western United States. This also included individuals that may use lidar for flood risk management applications in conjunction such as Geographic Information System (GIS). Lidar, in this context, means either raw lidar data (e.g. LAS or point clouds) or lidar-derived data (e.g. digital elevation model (DEM)).The majority of sample respondents were municipal, state, and federal employees, as well as some private industry employees. In order to acheive our target population, the sample frame included several sources of contacts including NFIP coordinators, Assocation of State Floodplain Managers (ASFPM) recognized Certified Floodplain Mangers (CFM), county-level GIS administrators, the five largest cities and tribal GIS admnistratators if present, county and tribal emergency managers, the Federal Geospatial Data Coordination Contacts by State, and additional, relevant contacts for the 2019 Northwest Regional Floodplain Managers Assocation (NORFMA) Conference contact list. 
+
+In addition, this survey data was collected through a structured, online survey distributed through Qualtrics to email addresses in our sample frame. The survey was sent to Idaho and Washington between May and July 2020. The survey took on average `r ave.time.min` minutes. There were four to six email correspondence messages with potential survey participants over the course of four weeks. There was a total of `r a` potential survey respondents in Idaho and `r b` potential survey respondents in Washington. 
+
+``` {r, survey demographics, include=FALSE}
+id.sample.size <- count(idaho$location=="Idaho")
+wa.sample.size <- count(washington$location=="Washington")
+
+# age breakdown
+id.age.2 <- round((2/96)*100, digits=0)
+id.age.3 <- round((17/96)*100, digits=0)
+id.age.4 <- round((27/96)*100, digits=0)
+id.age.5 <- round((48/96)*100, digits=0)
+
+wa.age.2 <- round((3/58)*100, digits=0)
+wa.age.3 <- round((10/58)*100, digits=0)
+wa.age.4 <- round((17/58)*100, digits=0)
+wa.age.5 <- round((23/58)*100, digits=0)
+
+# gender breakdown
+id.gender.male <- round((59/96)*100, digits=0)
+id.gender.female <- round((37/96)*100, digits=0)
+
+wa.gender.male <- round((30/58)*100, digits=0)
+wa.gender.female <- round((24/58)*100, digits=0)
+
+#education breakdown
+id.edu.ba.ma <- round((37+29)/96*100, digits=0) # represents the number of respondents with either a bachelors or advanced degree
+wa.edu.ba.ma <- round((17+24)/58*100, digits=0)
+
+#years in the industry
+idaho$years <- as.numeric(idaho$years)
+id.years <- round(summarise(idaho, avg=mean(years)), digits=1)
+
+washington$years <- as.numeric(washington$years)
+wa.years <- round(summarise(washington, avg=mean(years)), digits=1)
+```
+
+```{r, survey demographics table, echo=FALSE, fig.cap="\\label{demographics}"}
+survey.dem <- matrix(c(96, 58, "61% male, 39% female", "52% male, 41% female", "69%", "71%",id.years, wa.years), ncol=2, byrow=TRUE)
+colnames(survey.dem) <- c("Idaho", "Washington")
+rownames(survey.dem) <- c("Sample Size", "Gender", "Education", "Average Flood Risk Experience (years)")
+knitr::kable(survey.dem, caption="Survey demographics for Idaho and Washington.")
+```
+
+``` {r, response rate, include=FALSE}
+
+id.rr <- round((96/a)*100, digits=2) # a is the total number of potential responses
+wa.rr <- round((58/b)*100, digits=2)
+
+```
+
+Additionally, a non-response analysis (how do I do this?) was run due to the low survey response rate of `r id.rr`% in Idaho and `r wa.rr`% in Washington. However, there were no significant distortions of representativeness found for age, gender, geographical area, or level of education (Need to check this). It is important to note, our data collection was completed during COVID-19 pandemic which required extra time and energy from emergency managers, our target population for this survey. For this reason, we expected a lower survey response than typical (unnecessary to say?).
+
+## **Survey analysis**
+A Hierarchical Bayesian approach with a Generalized Logistic Regression meets the model criteria for understanding risk because it is able to characterize non-linear, unpredictable outcomes. Furthermore, a logistic regression was used because the response variable, lidar use, is binary. Therefore, this analysis did not need account for ordered categorical response. This analysis uses a Markov Chain Monte Carlo alogrithm to predict posterior distributions of each parameter's effect on lidar use. 
+
+**insert bayes theorem**
+
+This model has two-levels of analysis. The first level of actors is represented by individual respondents and the second level is the cluster represented by each state. Furthermore, this model follows a binomial distribution curve, where the distribution of lidar use, y_{ij}, can be modeled as follows (https://idiom.ucsd.edu/~rlevy/pmsl_textbook/chapters/pmsl_8.pdf): 
+
+\[b_i \approx N(0,\sigma_b)\]
+
+\[\eta_i = \mu_\alpha + \beta x_{ij}+...+\beta_kx_{ij} + b_i\]
+
+\[\pi_i = \frac{e^{\eta}_i}{1+e^{\eta}_i}\]
+
+\[y_{ij} \approx Binom(1, \pi_i)\] (1)
+
+where $x_{ij}$, predictors, are the ith rows of the known design matrices x, and $\beta$ is a vector of regression parameters. The Bayesian approach allows for adjustment of uncertainity associated with each parameter on the final outcome (lidar use). In order to do this, each parameter has to be assigned a prior belief of that parameter value. The values for these parameters are fit by sampling from these distributions to maxmize the likelihood under this model[@kwonClimateInformedFlood2008]. The regression parameters, $\beta$, are normally distributed, \[\beta_k\approx N(\eta_{\beta k}, \sigma_k)\]. Additionally, the parameters of this distribution, $\eta_{\beta k}$ and $\sigma_k$, also have prior distrubtions assigned to them that are constrained by 0 and a positive value (should I be more specific?).
+
+The primary model included all predictors of interest with a varying intercept due to location. Subsequent models were run, isolaing each predictor and lidar use with vary intercept and slope. In addition, we ran a model comparison and assessed the overall preformance through Leave-One-Out Cross-Validation (LOOCV). This process provides an absolute metric for the model's predictive ability. Lastly, because this model had categorical predictors, we plotted the predicted probablity against the observed proportion for some binning of the data (Levy, 2012) [this text has a great example of how to plot this]
+
+# 4 RESULTS + DISCUSSION  (~2,000)
+**"This should explore the significance of the results of the work, not repeat them. A combined Results and Discussion section is often appropriate. Avoid extensive citations and discussion of published literature."**
+```{r, model tidy data, include=FALSE}
+survey.responses <- survey.responses %>%
+  mutate_at(vars('years','lidaruse', 'interestlid','LocationLatitude', 'LocationLongitude', 'years', 'experience_1', 'experience_2', 'experience_3', 'experience_4', 'experience_5', 'future_1', 'future_2', 'future_3', 'future_4', 'future_5', 'currentmap', 'flood_zone', 'prepared', 'incr_no_flood', 'incr_sev_flood', 'barrier_1', 'barrier_2', 'barrier_3', 'barrier_4', 'barrier_5', 'barrier_6', 'soep_1', 'age', 'gender', 'gov_trust', 'gov_involve', 'education', 'science_trust', 'toolslid', 'toolslid1', 'usefulid'), as.numeric) 
+
+model.variables <- c("lidaruse", "experience_1", "experience_2", "experience_3", "experience_4", "experience_5", "future_1", "future_2", "future_3", "future_5", "incr_sev_flood",  "soep_1", "science_trust", "gov_trust", "prepared", "location", "flood_zone")
+
+#model.variables <- c("lidaruse", "experience_1", "future_1", "incr_sev_flood",  "soep_1", "science_trust", "gov_trust", "prepared", "location", "flood_zone")
+
+model.data <- survey.responses[model.variables]
+
+```
+
+```{r, na omit, include=FALSE}
+model.data.na.omit <- na.omit(model.data)
+n = nrow(model.data.na.omit)
+n # 128
+```
+
+```{r, desc stats, include=FALSE}
+count(idaho$lidaruse==1)
+id.lidaruse <- round((48/96)*100, digits=2)
+
+count(washington$lidaruse==1)
+wa.lidaruse <- round((35/58)*100, digits=2)
+
+```
+
+```{r, model, include=FALSE}
+
+full.mod <- stan_glmer(lidaruse ~ incr_sev_flood + experience_1 + prepared +
+                           + soep_1 + future_1 + gov_trust + science_trust + flood_zone
+                           + (1|location),
+                           data=model.data.na.omit, family= binomial(link = "logit"), control = list(adapt_delta = 0.99)) # this elimates if there are responses with a certain amount of Na's # also experience_4 had zero yes's so 
+summary(full.mod)
+
+full.mod.priors <- stan_glmer(lidaruse ~incr_sev_flood + experience_1 + prepared +
+                             + soep_1 + future_1 + gov_trust + science_trust + flood_zone
+                           + (1|location),
+                           prior = normal(location = c(.6, .2, .3, .1, 1, -.2, .3, .8), 
+                           scale = c(3.72, 6.17, 3.23, 1.12, 8.17, 2.83, 3.31, 4.99), 
+                           autoscale = FALSE), # this specifies prior between 0 and 1 because it is a binonmial response variable
+                           prior_intercept = normal (location = 0, 
+                           scale = 2.5, 
+                           autoscale = FALSE), # intercept can only be between 0 and 1 
+                           data=model.data.na.omit, family= binomial(link = "logit"), control = list(adapt_delta = 0.99)) # this elimates if there are responses with a certain amount of Na's # also experience_4 had zero yes's so 
+summary(full.mod.priors)
+plot(full.mod.priors)
+plot(full.mod.priors, "areas", prob = 0.95, prob_outer = 1)
+median(bayes_R2(full.mod.priors))
+#pp_check(full.mod.priors)
+
+#model with sig factors based on AIC
+mod1 <- stan_glmer(lidaruse ~ incr_sev_flood + future_1 + flood_zone + (1|location), data=model.data.na.omit, family=binomial(link=logit), control = list(adapt_delta = 0.99))
+
+#model with sig factors based on non-zero posterior distributions
+mod2 <- stan_glmer(lidaruse ~ incr_sev_flood + soep_1 + future_1 + flood_zone + science_trust + (1|location), data=model.data.na.omit, family=binomial(link=logit), control = list(adapt_delta = 0.99))
+
+# null model
+
+null.mod <- stan_glm(lidaruse ~ 1, data=model.data.na.omit, family=binomial(link=logit))
+
+## Model comparison
+
+loo_compare(loo(full.mod), loo(full.mod.priors), loo(mod1), loo(mod2), loo(null.mod))
+# Based on the LOOIC comparison, mod1 has the greatest comparative out-of-sample predictive preformance
+
+##Another check-- let's see if specifying priors helps improve model 1 or 2
+
+priors.mod2 <- prior_summary(mod2)
+mod2.priors <- stan_glmer(lidaruse ~ incr_sev_flood + soep_1 + future_1 + flood_zone +
+                   science_trust + (1|location), 
+                   prior = normal(location = c(0, 0, 0, 0, 0), 
+                   scale = c( 3.703526, 1.078133, 8.236779, 4.987931, 3.271231), 
+                   autoscale = FALSE), # this specifies prior between 0 and 1 because it is a binonmial response variable
+                           prior_intercept = normal (location = 0, 
+                           scale = 2.5, 
+                           autoscale = FALSE), # intercept can only be between 0 and 1 
+                   data=model.data.na.omit, family=binomial(link=logit), control = list(adapt_delta = 0.99))
+
+loo_compare(loo(mod1), loo(mod2), loo(mod2.priors))
+```
+
+`r wa.lidaruse`% of survey respondents from Washington used lidar, where `r id.lidaruse`% survey respondents from Idaho used lidar. The rest of this analysis explores why this difference may exist.The model for this analysis was estimated to evalute the impacts of various predictors on the use of lidar for flood risk management. The programming language R and program Rstudio for were used to run this analysis. Furthermore, this analysis used MCMC technique with four chains with 1,000 iterations for warmup and an additional 1,000 iterations for the model. Additionally, convergence was checked by visually inspecting the MCMC trace plots of the model parameters. The results of this analysis suggest that awareness and collective memory have significant impact on lidar adoption. Experirence, risk attitude, and outcome efficacy have small to moderate impact on lidar use. Preparedness and government trust did not have a significant impact on lidar use. 
+
+```{r, model summary table, echo=FALSE, fig.cap="\\label{summary_stats}"}
+# these are based on summary(fullmod.priors) although this isn't the best model (mod2.priors is) I am going to include it because it provides the basis for the rest of this section
+summary.stats <- matrix(c(-5.2, 2.0, -7.8, -2.7, 1.0, 0.4, 0.6, 1.5, 0.2, 0.6, -0.6, 0.9, 0.4, 0.3, 0.1, 0.8, 0.1, 0.1, -0.1, 0.2, 1.6, 0.8, 0.6, 2.6, -0.1, 0.3, -0.5, 0.3, 0.1, 0.3, 0.1, 0.5, 0.4, 0.5, -0.2, 1.0), ncol=4, byrow=TRUE) #this is the plogis values for mean and SD
+colnames(summary.stats) <- c( "Mean", "S.D.", "10%", "90%")
+rownames(summary.stats) <- c("Intercept", "Increase in Flood Severity", "Direct Experience with Flood Damage in Community", "Level of Community Preparedness", "Risk Attitude", "Future Flood Risk", "Trust in Government FRM Products", "Trust in Scientific Products", "Flooding outside of Floodzone")
+knitr::kable(summary.stats, caption="Estimation results from the model")
+```
+
+$\label{tab:summary_stats}$ displays the results from a varying intercept model that considers the effect of all these factors on lidar use, while using partial pooling for location. This is helpful for drawing out the impact of various predictors, however we invesigated these further to determine state-level differences in predictors and lidar use. 
+
+## *Predictors showing significant effect on lidar use*
+
+```{r, awareness model, include=FALSE}
+awareness.mod <- stan_glmer(lidaruse ~ (1+incr_sev_flood|location), data=model.data.na.omit, family=binomial(link=logit), adapt_delta = 0.99)
+
+summary(awareness.mod)
+
+b.id <-  .6
+b.wa <-  1.2
+```
+
+### **Awareness**
+
+Awareness has a significant effect on lidar use in both Idaho and Washington. In Idaho, there is a slope of `r b.id` and in Washington it is `r b.wa`. Awareness was measured by asking the survey respondent about the perception of the average severity of flood damage in their community decreasing, staying the same, or increasing. Overall, there was a positive correlation between awareness of future risk and lidar use. Furthermore, Washington had a stronger correlation. This could be due to Washington having seen signifcantly more damage and portion of population at risk to floods shown in $\label{tab:state_comp}$. 
+
+```{r, awareness, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="\\label:awarnessplot"}
+awareness.plot <- ggplot(model.data.na.omit, aes(x = incr_sev_flood, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Change in Flood Severity', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(1,2,3), labels=c("Decrease", "Stay the Same", "Increase")) +
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+awareness.boxplot <- ggplot(model.data.na.omit, aes(x = incr_sev_flood, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2, color="grey")+
+  geom_point(stat = 'summary', fun.y = 'mean') +
+  geom_errorbar(stat = 'summary', fun.data = 'mean_se', 
+                width=0, fun.args = list(mult = 1.96)) +
+  facet_grid( location ~ . ) +
+  labs(x = 'Change in Flood Severity', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(1,2,3), labels=c("Decrease", "Stay the Same", "Increase")) +
+  theme_bw() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+ggpubr::ggarrange(awareness.plot, awareness.boxplot)
+
+```
+
+```{r, memory model, include=FALSE}
+future1.mod <- stan_glmer(lidaruse ~ (1+future_1|location), data=model.data.na.omit, family=binomial(link=logit), adapt_delta = 0.99)
+
+summary(future1.mod)
+
+mem.mod <- stan_glmer(lidaruse ~ (1+flood_zone|location), data=model.data.na.omit, family=binomial(link=logit), adapt_delta = 0.99)
+
+summary(mem.mod)
+
+b1.id <-  2
+b1.wa <-  1.5
+
+b2.id <-  .6
+b2.wa <-  .9
+```
+
+### **COllective Memory**
+
+Building off the first predictor, awareness, it is important for a community keep awarness high for it often has influence on how people respond to risk. This analysis also investigated collective memory, essentially timeless awareness, to understand its effect on lidar use. Both beliefs on future experiences and reflection on past experiences can make up an individual's collective memory. Furthermore, this memory is a collection of experiences of others through social learning about flood risk management. This survey measured collective memory in two ways. The first question asked the respondent how likely they think damage to property in their community will happen in the next 30 years. The second question asked the repondent if they were aware of floods happening outside of the designated flood zone on their community flood maps. Idaho had a slope of `r b1.id` and `r b2.id` for the relationship between lidar use and future flood risk and past flooding, respectively. Washington had a slope of `r b1.wa` and `r b2.wa` for the relationship between lidar use and future flood risk and past flooding, respectively. Therefore collective memory had, on average, a similar, significant effect on lidar use for both Idaho and Washington. 
+
+```{r, future&past, echo=FALSE,message=FALSE, warning=FALSE, fig.cap="\\label:memplot"}
+future1.plot <- ggplot(model.data.na.omit, aes(x = future_1, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Future Risk of Flood Damage', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(0, .25, .5, .75, 1), labels=c("0%", "25%", "50%", "75%", "100%")) +
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+floodzone.plot <- ggplot(model.data.na.omit, aes(x = flood_zone, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Flooding Outside of Flood Zone', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(0, .25, .5, .75, 1), labels=c("0%", "25%", "50%", "75%", "100%")) +
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+future1.boxplot <- ggplot(model.data.na.omit, aes(x = future_1, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2, color="grey")+
+  geom_point(stat = 'summary', fun.y = 'mean') +
+  geom_errorbar(stat = 'summary', fun.data = 'mean_se', 
+                width=0, fun.args = list(mult = 1.96)) +
+  facet_grid( location ~ . ) +
+  labs(x = 'Future Risk of Flood Damage', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(0, .25, .5, .75, 1), labels=c("0%", "25%", "50%", "75%", "100%")) +
+  theme_bw() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+floodzone.boxplot <- ggplot(model.data.na.omit, aes(x = flood_zone, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2, color="grey")+
+  geom_point(stat = 'summary', fun.y = 'mean') +
+  geom_errorbar(stat = 'summary', fun.data = 'mean_se', 
+                width=0, fun.args = list(mult = 1.96)) +
+  facet_grid( location ~ . ) +
+  labs(x = 'Flooding Outside of Flood Zone', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(0, .25, .5, .75, 1), labels=c("0%", "25%", "50%", "75%", "100%")) +
+  theme_bw() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+ggpubr::ggarrange(future1.plot, future1.boxplot)
+ggpubr::ggarrange(floodzone.plot, floodzone.boxplot)
+
+```
+## *Predictors showing small to moderate effect on lidar use*
+
+```{r, experience model, include=FALSE}
+exp.mod <- stan_glmer(lidaruse ~ (1+experience_1|location), data=model.data.na.omit, family=binomial(link=logit), adapt_delta = 0.99)
+
+summary(exp.mod)
+
+b5.id <- .3
+b5.wa <- .6
+
+```
+
+## **Experience**
+
+Direct experience has been studied extensively in the past as a singificant predictor of risk perception and behavior. Our survey asked respondents to report if they had experienced damage in their community, with yes or no responses. Our results found a moderate effect of experience on lidar use. Specifically, Idaho had a slope of `r b5.id` and Washington had a slope of `r b5.wa`. Previous research has found variable effects of experience on behavior and suggest that measuring the intensity of the event experience could provide a more informative measure. 
+
+
+```{r, experience, echo=FALSE,message=FALSE, warning=FALSE, fig.cap="\\label:expplot"}
+exp.plot <- ggplot(model.data.na.omit, aes(x = experience_1, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Experienced flood damage in your community', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(0, 1), labels=c("No", "Yes")) + 
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+exp.boxplot <- ggplot(model.data.na.omit, aes(x = experience_1, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2, color="grey")+
+  geom_point(stat = 'summary', fun.y = 'mean') +
+  geom_errorbar(stat = 'summary', fun.data = 'mean_se', 
+                width=0, fun.args = list(mult = 1.96)) +
+  facet_grid( location ~ . ) +
+  labs(x = 'Experienced flood damage in your community', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(0, 1), labels=c("No", "Yes")) +
+  theme_bw() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+ggpubr::ggarrange(exp.plot, exp.boxplot)
+```
+
+```{r, risk attitude model, include=FALSE}
+soep1.mod <- stan_glmer(lidaruse ~ (1+soep_1|location), data=model.data.na.omit, family=binomial(link=logit), adapt_delta = 0.99)
+
+summary(soep1.mod)
+
+b3.id <- 0
+b3.wa <- 0.2
+
+```
+
+### **Risk Attitude**
+
+As discussed eariler, there is a risk inherent with adopting a new technology such as lidar due to variable time delay and reward. In this analysis, risk-taking attitude had no effect in Idaho with a slope of `r b3.id` and minor effect in Washington with a slope of `r b3.wa. This contradcits the expected result based on risk sensitivity theory. This could be because in fact risk minimization tactics like resource pooling and social learning are not as salient as previously thought in lidar adoption.(??)
+
+```{r, risk attitude, echo=FALSE,message=FALSE, warning=FALSE, fig.cap="\\label:soepplot"}
+soep1.plot <- ggplot(model.data.na.omit, aes(x = soep_1, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Future Risk of Flood Damage', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(0, 5, 8), labels=c("Risk Averse", "Risk Neutral", "Risk Prone")) +
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+soep1.boxplot <- ggplot(model.data.na.omit, aes(x = soep_1, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2, color="grey")+
+  geom_point(stat = 'summary', fun.y = 'mean') +
+  geom_errorbar(stat = 'summary', fun.data = 'mean_se', 
+                width=0, fun.args = list(mult = 1.96)) +
+  facet_grid( location ~ . ) +
+  labs(x = 'Flooding Outside of Flood Zone', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(0, 5, 8), labels=c("Risk Averse", "Risk Neutral", "Risk Prone")) +
+  theme_bw() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+ggpubr::ggarrange(soep1.plot, soep1.boxplot)
+```
+
+
+```{r, soep model, include=FALSE}
+science.mod <- stan_glmer(lidaruse ~ (1+science_trust|location), data=model.data.na.omit, family=binomial(link=logit), adapt_delta = 0.99)
+
+summary(science.mod)
+
+b4.id <- plogis(-.1)
+b4.wa <- plogis(.1)
+
+```
+
+### **Outcome efficacy**
+
+The outcome efficacy of the risk being taken can play a significant role in the adoption of the adapative behavior. These results are quite opposing for Idaho and Washington. Idaho has a negative correlation between trust in science and lidar use, whereas Washington has a positive correlation between trust in science and lidar use. This is really interesting... it could be why Idaho continues to use old maps, because they think they are sufficient?
+
+```{r, outcome efficacy, echo=FALSE,message=FALSE, warning=FALSE, fig.cap="\\label:outeffplot"}
+outeff.plot <- ggplot(model.data.na.omit, aes(x = science_trust, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Trust in Usefulness of Scientific Products', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+ scale_x_discrete(limits=c(1, 5), labels=c("Strongly distrust", "Strongly trust")) +
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+outeff.boxplot <- ggplot(model.data.na.omit, aes(x = science_trust, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2, color="grey")+
+  geom_point(stat = 'summary', fun.y = 'mean') +
+  geom_errorbar(stat = 'summary', fun.data = 'mean_se', 
+                width=0, fun.args = list(mult = 1.96)) +
+  facet_grid( location ~ . ) +
+  labs(x = 'Trust in Usefulness of Scientific Products', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(1, 3, 5), labels=c("Strongly distrust", "Neither trust nor distrust", "Strongly trust")) +
+  theme_bw() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+ggpubr::ggarrange(outeff.plot, outeff.boxplot)
+```
+
+## *Predictors showing minimal effect on lidar use*
+
+## **Prepared**
+*Still not sure if I should include this one.*
+
+```{r, prepared, echo=FALSE,message=FALSE, warning=FALSE, fig.cap="\\label:prepplot"}
+prep.plot <- ggplot(model.data.na.omit, aes(x = prepared, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Level of preparedness', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(1, 3, 5), labels=c("Not at all", "Moderately", "Completely")) + 
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+prep.boxplot <- ggplot(model.data.na.omit, aes(x = prepared, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2, color="grey")+
+  geom_point(stat = 'summary', fun.y = 'mean') +
+  geom_errorbar(stat = 'summary', fun.data = 'mean_se', 
+                width=0, fun.args = list(mult = 1.96)) +
+  facet_grid( location ~ . ) +
+  labs(x = 'Level of preparedness', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(1, 3, 5), labels=c("Not at all", "Moderately", "Completely")) + 
+  theme_bw() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+ggpubr::ggarrange(prep.plot, prep.boxplot)
+```
+
+```{r, prepared model, include=FALSE}
+prep.mod <- stan_glmer(lidaruse ~ (1+prepared|location), data=model.data.na.omit, family=binomial(link=logit), adapt_delta = 0.99)
+
+summary(prep.mod)
+
+b6.id <- 0
+b6.wa <- .2
+
+```
+
+
+```{r, gov trust model, include=FALSE}
+gov.mod <- stan_glmer(lidaruse ~ (1+gov_trust|location), data=model.data.na.omit, family=binomial(link=logit), adapt_delta = 0.99)
+
+summary(gov.mod)
+
+b7.id <- -0.1
+b7.wa <- 0.0
+
+```
+
+## **Trust in the Government**
+Often times trust in the government has been measured in relation to ability to adapt. Although, most research has been conducted in terms of the trust the public has for government officials to protect them from floods. This survey asked flood risk managers how much they trust the usefulness of the products the federal government develops for FRM. Idaho had a slope of `r b7.id` and Washington a slope of `r b7.wa`. Overall, there was a not a significant relationship between trust in government products and lidar use. Moreover, Washington actually saw a decrease in lidar use with increased trust in federal government FRM products. This could be because flood risk managers in Washington feel that these products are sufficient and they do not need additional data from lidar.  
+```{r, gov trust, echo=FALSE,message=FALSE, warning=FALSE, fig.cap="\\label:govplot"}
+gov.plot <- ggplot(model.data.na.omit, aes(x = gov_trust, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Trust in government FRM products', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(1, 3, 5), labels=c("Not at all", "Moderately", "Completely")) + 
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+gov.boxplot <- ggplot(model.data.na.omit, aes(x = gov_trust, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2, color="grey")+
+  geom_point(stat = 'summary', fun.y = 'mean') +
+  geom_errorbar(stat = 'summary', fun.data = 'mean_se', 
+                width=0, fun.args = list(mult = 1.96)) +
+  facet_grid( location ~ . ) +
+  labs(x = 'Trust in government FRM products', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(1, 3, 5), labels=c("Not at all", "Moderately", "Completely")) + 
+  theme_bw() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+ggpubr::ggarrange(gov.plot, gov.boxplot)
+```
+
+The following are parts of the analysis that I am not sure if I should include or not: 
+
+```{r, exploratory factor analysis, include=FALSE}
+#Do i need to do this?? https://www.r-bloggers.com/2018/05/exploratory-factor-analysis-in-r/
+
+#Loading the dataset
+#bfi_data=model.data
+#Remove rows with missing values and keep only complete cases
+#bfi_data=bfi_data[complete.cases(bfi_data),]
+#Create the correlation matrix from bfi_data
+#bfi_cor <- cor(bfi_data)
+#Factor analysis of the data
+#factors_data <- fa(r = bfi_cor, nfactors = 3)
+#Getting the factor loadings and model analysis
+#factors_data
+```
+
+
+```{r, aic, include=FALSE}
+## Not sure how helpful this is...
+# Full model using all predictors AIC or BIC # However, this is not a good approach for data with lots of na's
+# https://bookdown.org/egarpor/PM-UC3M/app-nas.html
+
+#model.data.na.omit <- na.omit(model.data)
+#n = nrow(model.data.na.omit)
+#n # 128
+
+# k = log(n): penalty for BIC rather than AIC
+#AIC.lm <- lm(lidaruse ~ ., data=model.data.na.omit,  family= binomial(link = "logit")) #I've been getting a warning about divergent transitions after warmup. In order to make this better, I am going to make the step size smaller, I also have eliminatead varying effects for the purposes of AIC # Okay looks like I can only run a LM, GLM doesn't provide step information for AIC
+
+#AIC
+#mod.AIC = step(AIC.lm, k=2) 
+# the best model is with flood_zone, future_1, and incr_sev_flood
+```
+
+```{r, k fold, include=FALSE}
+
+#kfold1<- kfold(mod1, K=10) 
+#kfold1
+
+#kfold2 <- kfold(mod2, K=10) 
+#kfold2
+
+#loo_compare(kfold1, kfold2) #mod2 is slightly better
+```
+
+```{r, r-squared, include=FALSE}
+
+median(bayes_R2(mod1))
+median(bayes_R2(mod2)) # slightly better than mod1
+median(bayes_R2(mod2.priors)) # slightly better than mod2
+
+```
+```{r, LOOCV, include=FALSE}
+
+#Result_G <- data.frame(matrix(nrow=nrow(model.data.na.omit), ncol=6))
+
+#set the column names
+#colnames(Result_G) <- c("MedianG", "LowerBound1_G", "LowerBound2_G", "UpperBound1_G", "UpperBound2_G", "R2_Bayes")
+
+#do the leave one out cross validation
+# create for loop function
+#for(i in 1:length(model.data.na.omit$lidaruse)){ # for all the data points
+ # sub_dat <- model.data.na.omit[-i,] #remove each one at a time
+ # m_sub <-  stan_glmer(lidaruse ~ incr_sev_flood + soep_1 + future_1 + flood_zone +
+                   #science_trust + (1|location), 
+                  # prior = normal(location = c(0, 0, 0, 0, 0), 
+                  # scale = c( 3.703526, 1.078133, 8.236779, 4.987931, 3.271231), 
+                  # autoscale = FALSE), # this specifies prior between 0 and 1 because it is a binonmial response variable
+                           #prior_intercept = normal (location = 0, 
+                          # scale = 2.5, 
+                          # autoscale = FALSE), # intercept can only be between 0 and 1 
+                   #data=model.data.na.omit, family=binomial(link=logit), control = list(adapt_delta = 0.99))
+  #post=posterior_predict(m_sub, model.data.na.omit[i,], draws=4000)
+  #r2=r2_bayes(m_sub)# predict that point
+ #Result_G[i,1]=quantile(post, 0.5) # fill a df with the credibility intervals
+  #Result_G[i,2]=quantile(post, 0.25) 
+  #Result_G[i,3]=quantile(post, 0.025)
+  #Result_G[i,4]=quantile(post, 0.75)
+  #Result_G[i,5]=quantile(post,0.975)
+  #Result_G[i,6]=r2
+#}
+
+#write.csv(Result_G, "G:/Everyone-Temp/TaraPozzi/Survey/Analysis/data/Result_G.csv")
+```
+
+```{r, model plot, echo=FALSE, include=FALSE}
+pplot<-plot(mod2.priors, "areas", prob = 0.95, prob_outer = 1)
+pplot+ geom_vline(xintercept = 0)
+
+
+# let's simulate data to see what how well our model is predicting
+#incr_sev_flood.sim <- rep(c(1:3), each=129)
+
+# set other predictor variables to their lowest affect at their minimum
+
+#simdata <-add_fitted_draws(newdata=data.frame(incr_sev_flood= incr_sev_flood.sim,
+                                              #soep_1=5,
+                                             # future_1=1,
+                                             # flood_zone=2,
+                                             # science_trust=1),
+                          # mod2.priors) 
+
+## Plot the results 
+#sev.plot <- ggplot(simdata, aes(as.factor(incr_sev_flood), .value)) + 
+  #geom_boxplot() + 
+  #labs(x = "Flood severity experienced \nby survey respondent", y = "Effect on probability of LiDAR adoption \n while holding other IVs at lowest values") +
+ # theme_bw() 
+  
+```
+
+## *Barriers to lidar use*
+
+Part of the survey asked respondents to report on barriers to lidar use. These responses solely came from individuals that did not currently use lidar. 
+
+
+# 5 CONCLUSION (~500)
+**"The main conclusions of the study may be presented in a short Conclusions section, which may stand alone or form a subsection of a Discussion or Results and Discussion section."**
+
+While this theoretical model has never been applied to understanding risk in hazard management, I think that it could provide improved insight into significant predictors of long-term risk mitigation. This paper examines alternative predictors to risk perception in an effort to address why risk perception may not align with long-term risk mitigation behavior, also called the "Risk Perception Paradox." From a behavioral ecology perspective, these predictors could be cultural and contextual factors that moderate risk perception's effect size on decision-making and behavior. This paper investigates how these predictors may affect lidar adoption in flood risk management in Idaho and Washington. This makes an interesting and effective case study because the benefits of this technology have a variable reward and time delay, two key factors that can feel risky in adopting this technology. Furthermore, the findings from this research could have important implications for the risk field of research and advance our understanding of the driving factors of an individual's long-term risk mitigation behavior. 
+
+
+\newpage
+
+<!--
+Literature Cited
+=========================
+\setlength{\parindent}{-0.2in}
+\setlength{\leftskip}{0.2in}
+\setlength{\parskip}{8pt}
+\vspace*{-0.2in}
+\noindent
+-->
+
+Word jail: 
+
+Summary information about environmental and social differences between Idaho and Washington. 
+State | Idaho | Washington | Difference
+------------- | ------------- | ------------- | -------------
+Portion of land in 100-year floodplain | 1.8% | 5.0% | 3.2%
+Portion of population in 100-year floodplain | 3.7% | 8.8% | 5.1%
+Cumulative Property Loss | $ 180 million (1950-2017) | $2 billion (1960-2016) | $1.2 billion
+
+Table 2. Survey demographics for Idaho and Washington. 
+Survey Demographics | Idaho | Washington |
+------------- | ------------- | ------------- |
+Sample Size (n) | 96 | 58
+Age | `r id.age.2`% 20-29 years,  `r id.age.3`% 30-39 years,  `r id.age.4`% 40-49 years,  `r id.age.5`% 50+ years| `r wa.age.2`% 20-29 years,  `r wa.age.3`% 30-39 years,  `r wa.age.4`% 40-49 years,  `r wa.age.5`% 50+ years
+Gender| `r id.gender.male`% male, `r id.gender.female`% female | `r wa.gender.male`% male,`r wa.gender.female`% female
+Education (Bachelors or Advanced degree) | `r id.edu.ba.ma`% | `r wa.edu.ba.ma`%
+Average flood risk experience (years) | `r id.years` | `r wa.years`
+
+The varying intercept by actor is represented by $\alpha_j$, which is defined as follows:  
+
+\[\alpha_j\approx N(\mu_\alpha, \sigma^2_\alpha)\] (2) 
+
+The average slope across clusters is defined as follows:  
+
+\[\mu_{ij} = \mu_\alpha + \beta x_{ij}\] (3) 
+
+This slope is a function of all the predictors in the model and is defined as follows: 
+
+\[\mu_{ij} = \mu_\alpha + \beta x_{ij}+...+\beta_kx_{ij}\] (4) 
+
+\end{document}
