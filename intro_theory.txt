@@ -1,0 +1,16 @@
+Intro/theory edits
+
+Hi Vicken,
+
+Introduction: 
+This is pretty generic-- will update based on how the rest of the paper shapes up.
+
+Theory: 
+1. Definition of risk: I haven't found an interdiscplinary definition that I really like yet, so I made one up. Definitely needs to be played around with/if you have any references that could be of use for this let me know. 
+2. Big picture: what do you think of using risk-senstivity as the main theory guiding this? Does figure 3 feel like an accurate portrayal of this theory in regards to flood risk? I think that I might need to move some things around (e.g. gov trust may fit better under resource pooling)
+3. How is the flow of this section? Need to rearrange?
+4. Should I add more information to the case study? especially in regards to the environmental context of washington versus idaho?
+
+
+Thanks,
+Tara
