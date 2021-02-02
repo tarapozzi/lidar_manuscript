@@ -1,0 +1,23 @@
+Results review (updated 2/1/2021)
+
+Hi Vicken,
+
+I have updated the results section to include network proxies. Turns out they are important! 
+
+I have broken down the analysis section into descriptive and inferential statistics. There weren't very many papers that used bayesian stats in Climate Risk Management but I found one: https://www.sciencedirect.com/science/article/pii/S2212096317301869. Also, I used this paper that did a survey on flood preferences as a reference: https://www.sciencedirect.com/science/article/pii/S2212096317300232. 
+
+Review items: 
+1. I would like help double checking my work & making sure I didn't make a typo on the recoding section. 
+2. Descriptive stats
+	- Do you feel like I have honed in on the important details? 
+	- Anything I am missing?
+	
+3. Inferential stats
+	- Would love some direction on what to report here. I feel like our study is more focused on inference, than prediction because we are exploring the level of influence of predictors. Do you agree with this thought? Should I still run some predictive diagnostics?
+	- I organized based on r2 value. Do you think this is a fair approach?
+	- Also, does running seperate models to distinguish slopes for each state make sense?
+
+There are also comments throughout the results section. 
+
+Thanks so much!
+Tara
