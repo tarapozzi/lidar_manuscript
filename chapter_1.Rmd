@@ -195,41 +195,6 @@ This next section discusses how we measured each of these contributing factors a
 # 3 METHODS (~ 1,000 words)
 **"Provide sufficient details to allow the work to be reproduced by an independent researcher. Methods that are already published should be summarized, and indicated by a reference. If quoting directly from a previously published method, use quotation marks and also cite the source. Any modifications to existing methods should also be described."**
 
-add part about interviews
-```{r, survey distribution, include=FALSE}
-# Washington
-washington.results <- read.csv("data/wa.csv")
-wa.no <- washington.results %>%
-  filter(grepl("2", screen))
-
-#load distribution history
-wa.dist <- read.csv("data/wa_dist.csv", stringsAsFactors=FALSE)[-c(1),] %>%
-  filter(grepl("Email Sent|Finished Survey|Partially Completed Survey|Started Survey", Status)) # this only keeps working emails & those who have opted in
-
-a <- length(wa.dist$Email) - 13
-# Total number of relevant respondents: total distribution minus those who didn't pass screening: 398-13: 383 potential responses
-
-# oregon
-oregon.results <- read.csv("data/or.csv")
-or.no <- oregon.results %>%
-  filter(grepl("2", screen))
-
-#load distribution history
-or.dist <- read.csv("data/or_dist.csv", stringsAsFactors=FALSE)[-c(1),] %>%
-  filter(grepl("Email Sent|Finished Survey|Partially Completed Survey|Started Survey", Status)) # this only keeps working emails & those who have opted in
-
-b <- length(or.dist$Email) - 13
-# Total number of relevant respondents: total distribution minus those who didn't pass screening: 357-13: 344 potential responses
-
-
-# Idaho potential responses
-id.pot.responses <- read.csv("data/id_contacts.csv")
-c <- length(id.pot.responses$Email)
-# 463 potential responses
-
-total.sample.frame <-  a + b + c
-
-```
 
 ```{r, survey data upload, include=FALSE}
 
@@ -290,29 +255,92 @@ survey.responses <- rbind(idaho, oregon, washington) %>%
 
 ```
 
-### *Survey design*
-Talk about the specific survey questions that I end up analyzing here...
+### *3.1 Survey design*
+We conducted eight, semi-structured interviews with stakeholders (e.g. flood risk managers, state officials, academics) to identify common themes and the extent of relevant predictors to measure. These interviews were conducted prior to the finalization of the survey instrument and directly informed our approach to ensure our work could identify opportunities and barriers to lidar adoption. In addition, we pre-tested our survey instrument with three industry professionals (two women and one man) to provide feedback on question clarity and survey flow. The second pre-test was with six (?) university students and staff to give additional feedback on the survey. We modified the survey based on this feedback. The final draft of the survey was then approved by the Institutional Review Board (IRB) at Boise State University. 
 
-This survey covered several topics to measure predictors that could affect lidar adoption. This includes the following: awareness, preparedness, risk-taking attitude, collective memory, trust, and outcome efficacy. See Appendix A for a copy of each survey. 
+The finalized survey consisted of four main parts (see Appendix A). The first part focused on gathering information about the respondent's experience and beliefs about their FRM community. The first section of the survey consisted of a screening question to assess if the respondent was qualified by asking if they were a flood risk manager. The second section of survey gathered background information about the number of years in the profession. The third section of the survey asked the respondent about their local floodplain. This section included sections about the respondent's community's participation in the NFIP, as well as information about flooding damage history and perceived future risk of flooding in the next 30 years. The fourth section examined the current mapping data in the respondent's community. This included questions about floodplain map accuracy, flooding outside the designated FEMA flood zone, and level of preparation for a flood event. The next section asked the respondent to report their personal beliefs about the change in the number and/or severity of flood events in their community in the future. 
 
-### *Survey procedures and participants*
+The next part of the survey centered around the respondent's relationship with lidar for FRM. The sixth section focused on the respondent's relationship with lidar for FRM. If the respondent replied yes, then they were asked questions about where they received it from and how they apply it to FRM, as well as continued educational opportunities. If they selected no, they were asked about barriers they faced to using lidar. 
+
+The third part of the survey gathered information about the respondent's network. The seventh section focused on the respondent's FRM network connections. For each reported alter, they reported if the alter used lidar, how much they communicated with each other, and the respondent's perceived expertise of the alter. 
+
+The final part of the survey asked the respondent about their personal beliefs in risk-taking and trust. The eighth section asked the respondent to report their general risk taking attitude. The ninth section asked about the respondent's gender, age, and education level, as well as their personal beliefs regarding trust in the federal government, science, and involvement level of the federal government with FRM. 
+
+### *3.2 Data collection*
 The survey's target respondent was the floodplain manager or administrator from participating and non-participating National Flood Insurance Program (NFIP) communities in Idaho and Washington in the Western United States. This also included individuals that may use lidar for flood risk management applications in conjunction such as Geographic Information System (GIS). Lidar, in this context, means either raw lidar data (e.g. LAS or point clouds) or lidar-derived data (e.g. digital elevation model (DEM)).The majority of sample respondents were municipal, state, and federal employees, as well as some private industry employees. In order to achieve our target population, the sample frame included several sources of contacts including NFIP coordinators, Association of State Floodplain Managers (ASFPM) recognized Certified Floodplain Mangers (CFM), county-level GIS administrators, the five largest cities and tribal GIS administrators if present, county and tribal emergency managers, the Federal Geospatial Data Coordination Contacts by State, and additional, relevant contacts for the 2019 Northwest Regional Floodplain Managers Association (NORFMA) Conference contact list. 
 
-In addition, this survey data was collected through a structured, online survey distributed through Qualtrics to email addresses in our sample frame. The survey was sent to Idaho and Washington between May and July 2020. The survey took on average xx minutes. There were four to six email correspondence messages with potential survey participants over the course of four weeks. There was a total of `r a` potential survey respondents in Idaho and `r b` potential survey respondents in Washington. 
+```{r, survey distribution, include=FALSE}
+# Washington
+washington.results <- read.csv("data/wa.csv")
+wa.no <- washington.results %>%
+  filter(grepl("2", screen))
 
-``` {r, response rate, include=FALSE}
+#load distribution history
+wa.dist <- read.csv("data/wa_dist.csv", stringsAsFactors=FALSE)[-c(1),] %>%
+  filter(grepl("Email Sent|Finished Survey|Partially Completed Survey|Started Survey", Status)) # this only keeps working emails & those who have opted in
 
-id.rr <- round((96/a)*100, digits=2) # a is the total number of potential responses
+a <- length(wa.dist$Email) - 13
+# Total number of relevant respondents: total distribution minus those who didn't pass screening: 398-13: 383 potential responses
 
-or.rr <- round((58/b)*100, digits=2)
+# oregon
+oregon.results <- read.csv("data/or.csv")
+or.no <- oregon.results %>%
+  filter(grepl("2", screen))
 
-wa.rr <- round((54/c)*100, digits=2)
+#load distribution history
+or.dist <- read.csv("data/or_dist.csv", stringsAsFactors=FALSE)[-c(1),] %>%
+  filter(grepl("Email Sent|Finished Survey|Partially Completed Survey|Started Survey", Status)) # this only keeps working emails & those who have opted in
+
+b <- length(or.dist$Email) - 13
+# Total number of relevant respondents: total distribution minus those who didn't pass screening: 357-13: 344 potential responses
+
+
+# Idaho potential responses
+id.pot.responses <- read.csv("data/id_contacts.csv")
+c <- length(id.pot.responses$Email)
+# 463 potential responses
+
+
+#load distribution history
+alaska.results <- read.csv("data/ak.csv")
+ak.no <- alaska.results %>%
+  filter(grepl("2", screen)) # 2 said no to screening
+
+ak.dist <- read.csv("data/ak_dist.csv", stringsAsFactors=FALSE)[-c(1),] %>%
+  filter(grepl("Email Sent|Finished Survey|Partially Completed Survey|Started Survey", Status)) # this only keeps working emails & those who have opted in
+d <- length(ak.dist$Email) - 2
+
+total.sample.frame <-  a + b + c + d
+
 
 ```
 
-Additionally, a non-response analysis (how do I do this?) was run due to the low survey response rate of `r id.rr`% in Idaho, 'r or.rr'% in Oregon, and `r wa.rr`% in Washington. However, there were no significant distortions of representativeness found for age, gender, geographical area, or level of education (Need to check this). It is important to note, our data collection was completed during COVID-19 pandemic which required extra time and energy from emergency managers, our target population for this survey. For this reason, we expected a lower survey response than typical (unnecessary to say?).
+``` {r, response rate, include=FALSE}
 
-## **Survey analysis**
+id.rr <- round((96/a)*100, digits=1) # a is the total number of potential responses
+
+or.rr <- round((58/b)*100, digits=1)
+
+wa.rr <- round((54/c)*100, digits=1)
+
+ak.rr <- round((6/d)*100, digits=1)
+
+
+```
+
+In addition, this survey data was collected through a structured, online survey distributed through Qualtrics to email addresses in our sample frame. The survey was sent to Idaho, Oregon, Washington and Alaska between May and July 2020. The survey took an average of 10 to 15 minutes. There were four to six email correspondence messages with potential survey participants over the course of four weeks. Table $\label{survey data collection}$ summarizes the potential respondents, number of usable survey responses, and response rate for each state. 
+
+```{r, survey data collection table, echo=FALSE, fig.cap="\\label{survey data collection}"}
+survey.data <- matrix(c(a, 96, id.rr, b, 58, or.rr, c, 54, wa.rr, d, 6, ak.rr), ncol=3, byrow=TRUE)
+colnames(survey.data) <- c("Potential Respondents", "Number of Usable Responses", "Response Rate")
+rownames(survey.data) <- c("Idaho", "Oregon", "Washington", "Alaska")
+knitr::kable(survey.data, caption="Comparative survey distribution and collection.")
+```
+
+
+Since our study is focused on the variation of lidar adoption across states, we did not include Alaska in our analysis because of insufficient number of responses. Furthermore both Oregon and Washington had lower response rates than Idaho. It is common to see 10-25% response rate from detailed online surveys, therefore our response rates are within the typical bounds [@sauermannIncreasingWebSurvey2013]. We suspect the variation in response rate could have been lowered due to competing time availability during COVID-19 pandemic which required extra time and energy from emergency managers, our target population for this survey. For this reason, we expected a lower survey response than typical (unnecessary to say?). Therefore, there may be some implications of the representativeness of sample. However, we feel there are sufficient amount of responses to conduct a quality analysis. In addition, there were no significant distortions of representativeness found for age, gender, geographical area, or level of education (any ideas for how to verify this?). 
+
+### *3.3 Survey analysis*
 A Hierarchical Bayesian approach with a Generalized Logistic Regression meets the model criteria for understanding risk because it is able to characterize non-linear, unpredictable outcomes. Furthermore, a logistic regression was used because the response variable, lidar use, is binary. Therefore, this analysis did not need account for ordered categorical response. This analysis uses a Markov Chain Monte Carlo algorithm to predict posterior distributions of each parameter's effect on lidar use. 
 
 **insert bayes theorem**
