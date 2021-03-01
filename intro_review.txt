@@ -1,0 +1,12 @@
+Introduction review (updated 02/03/2021)
+
+1. I tried to step through the background in more detail to paint the picture for the current problem & gap. Do you think there are areas that I need to expand on at all? 
+
+2. Is the figure helpful? Should I find a way to display this differently? I also have a map with the date of FEMA floodplain maps for each county that could be interesting to include. 
+
+3. I think the second part of the intro needs help with transitioning from risk perception to gaps in the literature to our theoretical approach.
+	- I added in a bit about convergence research. Lori Peek (& several others) just published an article about this topic. I think that our work could fit in nicely with this concept. Here is the paper: https://www.frontiersin.org/articles/10.3389/fbuil.2020.00110/full
+
+4. Should I give more information about cultural evolutionary theory in the intro? Maybe introduce social learning?
+
+5. I haven't named the specific predictors we measured. Would be this be helpful to include in the intro?

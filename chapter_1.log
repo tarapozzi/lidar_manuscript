@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.9)  30 JAN 2021 14:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.9)  3 FEB 2021 15:26
 entering extended mode
 **./chapter_1.tex
 (chapter_1.tex
@@ -480,7 +480,19 @@ File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
 \l__pdf_internal_box=\box54
 ) (chapter_1.aux
 
-LaTeX Warning: Label `tab:state_comp' multiply defined.
+LaTeX Warning: Label `:' multiply defined.
+
+
+LaTeX Warning: Label `:' multiply defined.
+
+
+LaTeX Warning: Label `:' multiply defined.
+
+
+LaTeX Warning: Label `:' multiply defined.
+
+
+LaTeX Warning: Label `:' multiply defined.
 
 
 LaTeX Warning: Label `:' multiply defined.
@@ -673,150 +685,194 @@ File: C:/Users/tarapozzi/Documents/lidar_manuscript/images/lidar_map.PNG Graphi
 c file (type png)
 <use C:/Users/tarapozzi/Documents/lidar_manuscript/images/lidar_map.PNG>
 Package pdftex.def Info: C:/Users/tarapozzi/Documents/lidar_manuscript/images/l
-idar_map.PNG  used on input line 207.
+idar_map.PNG  used on input line 217.
 (pdftex.def)             Requested size: 469.7392pt x 208.88193pt.
-
-Underfull \hbox (badness 5490) in paragraph at lines 210--210
-[]\T1/lmr/m/n/12 (+20) Figure 1: []``The U.S. In-ter-a-gency El-e-va-tion In-ve
-n-tory dis-plays all publically-
- []
-
-
-Underfull \hbox (badness 4505) in paragraph at lines 210--210
-\T1/lmr/m/n/12 (+20) available li-dar data and lidar-derived prod-ucts for the 
-con-tin-gu-ous, lower 48
- []
-
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 221.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 221.
 [3 <C:/Users/tarapozzi/Documents/lidar_manuscript/images/lidar_map.PNG>] [4] [5
-] [6]
-<C:/Users/tarapozzi/Documents/lidar_manuscript/images/value_function.png, id=53
+]
+<C:/Users/tarapozzi/Documents/lidar_manuscript/images/value_function.png, id=51
 , 237.5274pt x 185.493pt>
 File: C:/Users/tarapozzi/Documents/lidar_manuscript/images/value_function.png G
 raphic file (type png)
 <use C:/Users/tarapozzi/Documents/lidar_manuscript/images/value_function.png>
 Package pdftex.def Info: C:/Users/tarapozzi/Documents/lidar_manuscript/images/v
-alue_function.png  used on input line 433.
+alue_function.png  used on input line 419.
 (pdftex.def)             Requested size: 237.53406pt x 185.49818pt.
-[7 <C:/Users/tarapozzi/Documents/lidar_manuscript/images/value_function.png>] [
-8]
-<C:/Users/tarapozzi/Documents/lidar_manuscript/images/dem_comp.png, id=70, 740.
+[6] [7 <C:/Users/tarapozzi/Documents/lidar_manuscript/images/value_function.png
+>]
+<C:/Users/tarapozzi/Documents/lidar_manuscript/images/dem_comp.png, id=67, 740.
 7675pt x 277.035pt>
 File: C:/Users/tarapozzi/Documents/lidar_manuscript/images/dem_comp.png Graphic
  file (type png)
 <use C:/Users/tarapozzi/Documents/lidar_manuscript/images/dem_comp.png>
 Package pdftex.def Info: C:/Users/tarapozzi/Documents/lidar_manuscript/images/d
-em_comp.png  used on input line 539.
+em_comp.png  used on input line 525.
 (pdftex.def)             Requested size: 469.76045pt x 175.68277pt.
 
-LaTeX Warning: Reference `tab:tab_statecomp' on page 9 undefined on input line 
-558.
+LaTeX Warning: Reference `tab:tab_statecomp' on page 8 undefined on input line 
+544.
 
-
-Overfull \hbox (18.00694pt too wide) in alignment at lines 560--577
- [] [] [] [] 
- []
-
-
-Overfull \hbox (18.00694pt too wide) in alignment at lines 577--592
- [] [] [] [] 
- []
-
-
-Overfull \hbox (18.27928pt too wide) in paragraph at lines 606--607
-[]\T1/lmr/m/n/12 (-20) Washington|  
- []
-
-
-Overfull \hbox (9.3994pt too wide) in paragraph at lines 618--619
-[]\T1/lmr/m/n/12 (-20) Difference|  
- []
-
-
-Overfull \hbox (18.00694pt too wide) in alignment at lines 592--630
- [] [] [] [] 
- []
-
-[9 <C:/Users/tarapozzi/Documents/lidar_manuscript/images/dem_comp.png>]
-<C:/Users/tarapozzi/Documents/lidar_manuscript/images/theory_factors.jpg, id=78
+[8]
+<C:/Users/tarapozzi/Documents/lidar_manuscript/images/theory_factors.jpg, id=74
 , 963.6pt x 542.025pt>
 File: C:/Users/tarapozzi/Documents/lidar_manuscript/images/theory_factors.jpg G
 raphic file (type jpg)
 <use C:/Users/tarapozzi/Documents/lidar_manuscript/images/theory_factors.jpg>
 Package pdftex.def Info: C:/Users/tarapozzi/Documents/lidar_manuscript/images/t
-heory_factors.jpg  used on input line 655.
+heory_factors.jpg  used on input line 589.
 (pdftex.def)             Requested size: 469.75679pt x 264.23819pt.
-[10 <C:/Users/tarapozzi/Documents/lidar_manuscript/images/theory_factors.jpg>] 
-[11] [12]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 824.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 824.
+
+Overfull \vbox (223.72832pt too high) has occurred while \output is active []
+
+[9 <C:/Users/tarapozzi/Documents/lidar_manuscript/images/dem_comp.png>] [10 <C:
+/Users/tarapozzi/Documents/lidar_manuscript/images/theory_factors.jpg>] [11] [1
+2]
+Overfull \hbox (1.35986pt too wide) in paragraph at lines 829--830
+ []\T1/lmr/m/n/12 (-20) Idaho|
+ []
+
+
+Overfull \hbox (4.83797pt too wide) in paragraph at lines 832--833
+ []\T1/lmr/m/n/12 (-20) Oregon|
+ []
+
+
+Overfull \hbox (9.24226pt too wide) in paragraph at lines 835--836
+ []\T1/lmr/m/n/12 (-20) Washington|
+ []
+
+
+Overfull \hbox (22.52199pt too wide) in alignment at lines 821--838
+ [] [] [] [] 
+ []
+
+
+Overfull \hbox (1.35986pt too wide) in paragraph at lines 844--845
+ []\T1/lmr/m/n/12 (-20) Idaho|
+ []
+
+
+Overfull \hbox (4.83797pt too wide) in paragraph at lines 847--848
+ []\T1/lmr/m/n/12 (-20) Oregon|
+ []
+
+
+Overfull \hbox (9.24226pt too wide) in paragraph at lines 850--851
+ []\T1/lmr/m/n/12 (-20) Washington|
+ []
+
+
+Overfull \hbox (22.52199pt too wide) in alignment at lines 838--853
+ [] [] [] [] 
+ []
+
+
+Overfull \hbox (22.52199pt too wide) in alignment at lines 853--1003
+ [] [] [] [] 
+ []
+
 [13]
-<Figures_MS/proportion of lidar users-1.pdf, id=113, 469.755pt x 325.215pt>
+Overfull \hbox (1.12534pt too wide) in alignment at lines 1051--1056
+ [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (1.12534pt too wide) in alignment at lines 1056--1060
+ [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (1.12534pt too wide) in alignment at lines 1060--1080
+ [] [] [] [] [] 
+ []
+
+[14]
+Overfull \hbox (88.55771pt too wide) in alignment at lines 1101--1107
+ [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (88.55771pt too wide) in alignment at lines 1107--1111
+ [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (88.55771pt too wide) in alignment at lines 1111--1131
+ [] [] [] [] [] 
+ []
+
+[15]
+<Figures_MS/proportion of lidar users-1.pdf, id=138, 469.755pt x 325.215pt>
 File: Figures_MS/proportion of lidar users-1.pdf Graphic file (type pdf)
 <use Figures_MS/proportion of lidar users-1.pdf>
 Package pdftex.def Info: Figures_MS/proportion of lidar users-1.pdf  used on in
-put line 912.
+put line 1157.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<Figures_MS/awareness-1.pdf, id=114, 469.755pt x 325.215pt>
+<Figures_MS/expertise-1.pdf, id=139, 469.755pt x 325.215pt>
+File: Figures_MS/expertise-1.pdf Graphic file (type pdf)
+<use Figures_MS/expertise-1.pdf>
+Package pdftex.def Info: Figures_MS/expertise-1.pdf  used on input line 1170.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+<Figures_MS/comm in network-1.pdf, id=140, 469.755pt x 325.215pt>
+File: Figures_MS/comm in network-1.pdf Graphic file (type pdf)
+<use Figures_MS/comm in network-1.pdf>
+Package pdftex.def Info: Figures_MS/comm in network-1.pdf  used on input line 1
+186.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+<Figures_MS/awareness-1.pdf, id=141, 469.755pt x 325.215pt>
 File: Figures_MS/awareness-1.pdf Graphic file (type pdf)
 <use Figures_MS/awareness-1.pdf>
-Package pdftex.def Info: Figures_MS/awareness-1.pdf  used on input line 931.
+Package pdftex.def Info: Figures_MS/awareness-1.pdf  used on input line 1204.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[14] [15 <./Figures_MS/proportion of lidar users-1.pdf>] [16 <./Figures_MS/awar
-eness-1.pdf>]
-<Figures_MS/future&past-1.pdf, id=147, 469.755pt x 325.215pt>
-File: Figures_MS/future&past-1.pdf Graphic file (type pdf)
-<use Figures_MS/future&past-1.pdf>
-Package pdftex.def Info: Figures_MS/future&past-1.pdf  used on input line 958.
+[16 <./Figures_MS/proportion of lidar users-1.pdf>] [17 <./Figures_MS/expertise
+-1.pdf>] [18 <./Figures_MS/comm in network-1.pdf>]
+<Figures_MS/future damage-1.pdf, id=180, 469.755pt x 325.215pt>
+File: Figures_MS/future damage-1.pdf Graphic file (type pdf)
+<use Figures_MS/future damage-1.pdf>
+Package pdftex.def Info: Figures_MS/future damage-1.pdf  used on input line 122
+5.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<Figures_MS/future&past-2.pdf, id=148, 469.755pt x 325.215pt>
-File: Figures_MS/future&past-2.pdf Graphic file (type pdf)
-<use Figures_MS/future&past-2.pdf>
-Package pdftex.def Info: Figures_MS/future&past-2.pdf  used on input line 959.
+<Figures_MS/floodzone damage-1.pdf, id=181, 469.755pt x 325.215pt>
+File: Figures_MS/floodzone damage-1.pdf Graphic file (type pdf)
+<use Figures_MS/floodzone damage-1.pdf>
+Package pdftex.def Info: Figures_MS/floodzone damage-1.pdf  used on input line 
+1244.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-
-Overfull \hbox (17.62366pt too wide) in paragraph at lines 958--961
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 958--961
-[]
- []
-
-[17 <./Figures_MS/future&past-1.pdf>]
-<Figures_MS/experience-1.pdf, id=159, 469.755pt x 325.215pt>
-File: Figures_MS/experience-1.pdf Graphic file (type pdf)
-<use Figures_MS/experience-1.pdf>
-Package pdftex.def Info: Figures_MS/experience-1.pdf  used on input line 977.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<Figures_MS/risk attitude-1.pdf, id=160, 469.755pt x 325.215pt>
+[19 <./Figures_MS/awareness-1.pdf>] [20 <./Figures_MS/future damage-1.pdf>] [21
+ <./Figures_MS/floodzone damage-1.pdf>]
+<Figures_MS/risk attitude-1.pdf, id=218, 469.755pt x 325.215pt>
 File: Figures_MS/risk attitude-1.pdf Graphic file (type pdf)
 <use Figures_MS/risk attitude-1.pdf>
-Package pdftex.def Info: Figures_MS/risk attitude-1.pdf  used on input line 996
-.
+Package pdftex.def Info: Figures_MS/risk attitude-1.pdf  used on input line 126
+4.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[18 <./Figures_MS/future&past-2.pdf>] [19 <./Figures_MS/experience-1.pdf>] [20 
-<./Figures_MS/risk attitude-1.pdf>]
-<Figures_MS/outcome efficacy-1.pdf, id=196, 469.755pt x 325.215pt>
-File: Figures_MS/outcome efficacy-1.pdf Graphic file (type pdf)
-<use Figures_MS/outcome efficacy-1.pdf>
-Package pdftex.def Info: Figures_MS/outcome efficacy-1.pdf  used on input line 
-1014.
+<Figures_MS/experience-1.pdf, id=219, 469.755pt x 325.215pt>
+File: Figures_MS/experience-1.pdf Graphic file (type pdf)
+<use Figures_MS/experience-1.pdf>
+Package pdftex.def Info: Figures_MS/experience-1.pdf  used on input line 1287.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<Figures_MS/prepared-1.pdf, id=197, 469.755pt x 325.215pt>
+[22 <./Figures_MS/risk attitude-1.pdf>] [23 <./Figures_MS/experience-1.pdf>]
+<Figures_MS/science trust-1.pdf, id=247, 469.755pt x 325.215pt>
+File: Figures_MS/science trust-1.pdf Graphic file (type pdf)
+<use Figures_MS/science trust-1.pdf>
+Package pdftex.def Info: Figures_MS/science trust-1.pdf  used on input line 130
+4.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+<Figures_MS/prepared-1.pdf, id=248, 469.755pt x 325.215pt>
 File: Figures_MS/prepared-1.pdf Graphic file (type pdf)
 <use Figures_MS/prepared-1.pdf>
-Package pdftex.def Info: Figures_MS/prepared-1.pdf  used on input line 1030.
+Package pdftex.def Info: Figures_MS/prepared-1.pdf  used on input line 1320.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<Figures_MS/gov trust-1.pdf, id=198, 469.755pt x 325.215pt>
+<Figures_MS/gov trust-1.pdf, id=249, 469.755pt x 325.215pt>
 File: Figures_MS/gov trust-1.pdf Graphic file (type pdf)
 <use Figures_MS/gov trust-1.pdf>
-Package pdftex.def Info: Figures_MS/gov trust-1.pdf  used on input line 1050.
+Package pdftex.def Info: Figures_MS/gov trust-1.pdf  used on input line 1342.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[21 <./Figures_MS/outcome efficacy-1.pdf>] [22 <./Figures_MS/prepared-1.pdf>] [
-23 <./Figures_MS/gov trust-1.pdf>] [24] [25] [26] (chapter_1.aux)
+[24 <./Figures_MS/science trust-1.pdf>] [25 <./Figures_MS/prepared-1.pdf>] [26 
+<./Figures_MS/gov trust-1.pdf>] [27] [28] [29] [30] (chapter_1.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -825,13 +881,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 13578 strings out of 479697
- 206059 string characters out of 2865233
- 546776 words of memory out of 3000000
- 30181 multiletter control sequences out of 15000+200000
- 487490 words of font info for 138 fonts, out of 3000000 for 9000
+ 13632 strings out of 479697
+ 207264 string characters out of 2865233
+ 546942 words of memory out of 3000000
+ 30199 multiletter control sequences out of 15000+200000
+ 487877 words of font info for 141 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 79i,6n,85p,798b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 79i,6n,85p,798b,541s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/tarapozzi/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.en
 c}{C:/Users/tarapozzi/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-maths
 y.enc}{C:/Users/tarapozzi/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-m
@@ -848,9 +904,9 @@ TeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/tarapozzi/AppData/Local/Programs/
 MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/tarapozzi/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/tarapozzi/AppData/Local/Pro
 grams/MiKTeX/fonts/type1/public/lm/lmsy10.pfb>
-Output written on chapter_1.pdf (26 pages, 1134540 bytes).
+Output written on chapter_1.pdf (30 pages, 1222524 bytes).
 PDF statistics:
- 487 PDF objects out of 1000 (max. 8388607)
- 133 named destinations out of 1000 (max. 500000)
- 14626 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 538 PDF objects out of 1000 (max. 8388607)
+ 161 named destinations out of 1000 (max. 500000)
+ 14604 words of extra memory for PDF output out of 17280 (max. 10000000)
 
