@@ -332,7 +332,8 @@ knitr::kable(survey.data, caption="Comparative survey distribution and collectio
 
 We did not include Alaska in our final statistical analysis because of insufficient number of responses. In addition, both Oregon and Washington had lower response rates than Idaho. It is common to see 10-25% response rate from detailed online surveys, which our response rates are within the typical bounds [@sauermannIncreasingWebSurvey2013]. We suspect the variation in response rates between states could be due to competing time availability during the COVID-19 pandemic which required extra time and energy from emergency managers, which was our target population for this survey. For this reason, we expected a lower survey response than typical (unnecessary to say?). Given this, there may be some implications of the representativeness of sample. 
 
-### *3.3 Survey analysis*
+### *3.3 Estimation Analysis*
+
 A Hierarchical Bayesian approach with a Generalized Logistic Regression meets the model criteria for understanding risk because it is able to characterize non-linear, unpredictable outcomes. Furthermore, a logistic regression was used because the response variable, lidar use, is binary. Therefore, this analysis did not need account for ordered categorical response. This analysis uses a Markov Chain Monte Carlo algorithm to predict posterior distributions of each parameter's effect on lidar use. 
 
 This model has two-levels of analysis. The first level of actors is represented by individual respondents and the second level is the cluster represented by each state. Furthermore, this model follows a binomial distribution curve, where the distribution of lidar use, y_{ij}, can be modeled as follows (https://idiom.ucsd.edu/~rlevy/pmsl_textbook/chapters/pmsl_8.pdf): 
@@ -345,14 +346,177 @@ This model has two-levels of analysis. The first level of actors is represented 
 
 \[y_{ij} \approx Binom(1, \pi_i)\] (1)
 
-where $x_{ij}$, predictors, are the ith rows of the known design matrices x, and $\beta$ is a vector of regression parameters. The Bayesian approach allows for adjustment of uncertainty associated with each parameter on the final outcome (lidar use). In order to do this, each parameter has to be assigned a prior belief of that parameter value. The values for these parameters are fit by sampling from these distributions to maximize the likelihood under this model[@kwonClimateInformedFlood2008]. The regression parameters, $\beta$, are normally distributed, \[\beta_k\approx N(\eta_{\beta k}, \sigma_k)\]. Additionally, the parameters of this distribution, $\eta_{\beta k}$ and $\sigma_k$, also have prior distributions assigned to them that are constrained by 0 and a positive value (should I be more specific?).
+where $x_{ij}$, predictors, are the ith rows of the known design matrices x, and $\beta$ is a vector of regression parameters. The Bayesian approach allows for adjustment of uncertainty associated with each parameter on the final outcome (lidar use). In order to do this, each parameter has to be assigned a prior belief of that parameter value. The values for these parameters are fit by sampling from these distributions to maximize the likelihood under this model[@kwonClimateInformedFlood2008]. The regression parameters, $\beta$, are normally distributed, \[\beta_k\approx N(\eta_{\beta k}, \sigma_k)\]. Additionally, the parameters of this distribution, $\eta_{\beta k}$ and $\sigma_k$, also have prior distributions assigned to them that are constrained by 0 and a positive value.
 
 #### *Priors*
 
-The primary model included all predictors of interest with a varying intercept due to location. Subsequent models were run, isolating each predictor and lidar use with vary intercept and slope. In addition, we ran a model comparison and assessed the overall performance through Leave-One-Out Cross-Validation (LOOCV). This process provides an absolute metric for the model's predictive ability. Lastly, because this model had categorical predictors, we plotted the predicted probability against the observed proportion for some binning of the data (Levy, 2012) [this text has a great example of how to plot this]
+The primary model included all predictors of interest with a varying intercept due to location. Subsequent models were run, isolating each predictor and lidar use with vary intercept and slope. In addition, we ran a model comparison and assessed the overall performance through Leave-One-Out Cross-Validation (LOOCV). This process provides an absolute metric for the model's predictive ability. Lastly, because this model had categorical predictors, we plotted the predicted probability against the observed proportion for some binning of the data (Levy, 2012) [this text has a great example of how to plot this]. In addition, weakly informative prior distribution provides modest regularization and can reduce type I errors and improves out-of-sample prediction for regression models (McElreath 2015). Gelman et al. (2008) suggests the use of a Cauchy distribution with center 0 and scale 2.5 for nonhierarchical logistic regression models [@gelmanWeaklyInformativeDefault2008]. This study uses a cauchy distribution as recommended for models with random-intercept and low sample sizes [@lemoineMovingNoninformativePriors2019]. 
+
+#### *Validation*
+
+In order to assess the out-of-sample predictive ability of our  model, we ran a k-fold leave one-out-cross-validation (LOOCV). We chose this method because... add reasoning.
+
+#### *Error*
+
+We specified our model to compute 2,000 lidar use predictions based on our predictors. We interpreted the mean of these results as the projected lidar use. We used Bayesian R-squared to measure our overall model accuracy. However, this can be unreliable for small sample sizes
+so we also calcuated the mean absolute error (MAE) of our model. 
+
+#### *Exploratory Analysis*
+
+The results of this model allowed us to explore the effect, considering a multitude of individual and collective predictors, on lidar use in Idaho, Oregon, and Washington. We hypothesized that the model would be helpful for understanding the general level of effect, however we expected the predictive capacity of our model to be limited considering the large number of predictors and small sample size of our study. 
 
 # 4 RESULTS + DISCUSSION  (~2,000)
-**"This should explore the significance of the results of the work, not repeat them. A combined Results and Discussion section is often appropriate. Avoid extensive citations and discussion of published literature."**
+
+Table xx below compares the demographic and experience representation of survey responses from flood risk managers by region. We received the greatest number of responses from Idaho. This is potentially because of the survey's affiliation with Boise State University and therefore flood risk managers in Idaho took greater interest in this study. Washington the highest percentage of female respondents, second highest percentage of respondents with a bachelor's degree or higher, and longest average length of flood risk manager experience. The results show no significant distortions of representativeness found for age, gender, geographical area, or level of education. 
+
+
+``` {r, survey demographics, include=FALSE}
+id.sample.size <- count(idaho$location=="Idaho")
+or.sample.size <- count(oregon$location=="Oregon")
+wa.sample.size <- count(washington$location=="Washington")
+
+count(idaho$age)
+count(oregon$age)
+count(washington$age)
+# age breakdown
+id.age.2 <- round((2/96)*100, digits=0) # the denominator is the sample size
+id.age.3 <- round((17/96)*100, digits=0) # the numerator is from 
+id.age.4 <- round((27/96)*100, digits=0)
+id.age.5 <- round((48/96)*100, digits=0)
+
+or.age.2 <- round((2/58)*100, digits=0)
+or.age.3 <- round((9/58)*100, digits=0)
+or.age.4 <- round((17/58)*100, digits=0)
+or.age.5 <- round((25/58)*100, digits=0) # some people didn't respond
+
+wa.age.2 <- round((3/54)*100, digits=0)
+wa.age.3 <- round((10/54)*100, digits=0)
+wa.age.4 <- round((17/54)*100, digits=0)
+wa.age.5 <- round((23/54)*100, digits=0)
+
+# gender breakdown
+id.gender.male <- round((59/96)*100, digits=0)
+id.gender.female <- round((37/96)*100, digits=0)
+
+or.gender.male <- round((35/58)*100, digits=0)
+or.gender.female <- round((20/58)*100, digits=0)
+
+wa.gender.male <- round((30/54)*100, digits=0)
+wa.gender.female <- round((24/54)*100, digits=0)
+
+#education breakdown
+id.edu.ba.ma <- round((37+29)/96*100, digits=0) # represents the number of respondents with either a bachelors or advanced degree
+or.edu.ba.ma <- round((21+26)/58*100, digits=0) 
+wa.edu.ba.ma <- round((17+24)/54*100, digits=0)
+
+#years in the industry
+idaho$years <- as.numeric(idaho$years)
+id.years <- round(summarise(idaho, avg=mean(years)), digits=1)
+
+oregon$years <- as.numeric(oregon$years)
+or.years <- round(summarise(oregon, avg=mean(years, na.rm=TRUE)), digits=1) ### THIS ISNT WORKING
+
+washington$years <- as.numeric(washington$years)
+wa.years <- round(summarise(washington, avg=mean(years)), digits=1)
+```
+
+```{r, survey demographics table, echo=FALSE, fig.cap="\\label{demographics}"}
+survey.dem <- matrix(c(96, 58, 54, "39%", "34%", "44%", "69%","81%", "76%",id.years, or.years, wa.years), ncol=3, byrow=TRUE)
+colnames(survey.dem) <- c("Idaho", "Oregon", "Washington")
+rownames(survey.dem) <- c("Sample Size", "Female", "University Education", "Average Flood Risk Experience (years)")
+knitr::kable(survey.dem, caption="Comparative descriptive statistics for survey demographics across Idaho, Oregon, and Washington.")
+```
+
+```{r, data sim, include=FALSE}
+## STEP 1: Data Simulation ##
+set.seed(124) 
+N=180 # number of survey respondents # played around with n=720 and that made results significatly better
+K=8 # number of predictors
+
+## 1) Set the intercept ##
+
+intercept=0 ## mean value of lidar use when all predictors are equal to 0
+
+# for random effects, we could look at location
+
+location_mean <- rep(rnorm(c(0,0.1,0.2), sd=0.1), times=60) # 3 states drawn 60 times (bsaed on a smaple size of 50)
+
+intercept_v <- location_mean
+
+## 2) Set the predictor variables ##
+## set simulate experience with binomial for each type of experience
+experience_1 <- rbinom(N, 1, .5) # damage to property in community # yes (1) no (0)
+future_1 <- sample(1:5, N, replace=TRUE) # damage to property in community in the future 1=0% to 5=100%
+science_trust <- sample(1:5, N, replace=TRUE) # not at all (1) completely (5)
+incr_sev_flood<- sample(1:3, N, replace=TRUE) # no (1) stay the same (2) yes (3)
+soep <-  sample(0:10, N, replace=TRUE) # range of risk preference from 0 to 10, where 0 = I generally prefer to take risks to 10 = I generally prefer to avoid risks
+alter_lidar_prop <- runif(N, 0, 1) # this simulates the a range of potential proportion of lidar users in alters
+alter_exp_mean <- runif(N, 0, 10) # this will rep the mean expertise of alters 
+alter_comm_mean <- runif(N, 1, 6) # reps the mean communication of alters with respondent
+
+#location <- as.factor(rep(c("Idaho", "Oregon", "Washington"), times=60))
+
+# Make data frame with raw data
+raw.data2 <- data.frame(location_mean, experience_1, future_1, science_trust, incr_sev_flood, soep, alter_lidar_prop, alter_comm_mean, alter_exp_mean)
+
+raw.data2 <- tibble::rowid_to_column(raw.data2, "ID")
+
+## Now let's set the effect size ##
+b_experience_1 <- .2
+b_future_1 <- -.6
+b_incr_sev_flood <- 0.6
+b_science_trust <- 0.1
+b_soep <-  0
+b_alter_lidar_prop <- 1 
+b_alter_comm_mean <- 0.1
+b_alter_exp_mean <- 0.1
+
+
+# 4) Set the response variable (aka deterministic part) ##
+p2 <- intercept + experience_1*b_experience_1 + future_1*b_future_1 + incr_sev_flood*b_incr_sev_flood  + science_trust*b_science_trust + 
+  soep*b_soep + alter_lidar_prop*b_alter_lidar_prop + alter_comm_mean*b_alter_comm_mean + alter_exp_mean*b_alter_exp_mean 
+
+p_varying2 <- p <- intercept_v + experience_1*b_experience_1 + future_1*b_future_1 + incr_sev_flood*b_incr_sev_flood + science_trust*b_science_trust + 
+  soep*b_soep + alter_lidar_prop*b_alter_lidar_prop + alter_comm_mean*b_alter_comm_mean + alter_exp_mean*b_alter_exp_mean 
+
+pr2 <- plogis(p2) # convert from log odds to probability
+
+pr_v <- plogis(p_varying2)
+
+lidaruse2 <- rbinom(N,1,pr2)
+
+lidaruse_v2 <- rbinom(N,1,pr_v)
+
+## 5) Combine data into dataframe ##
+
+sim.data2 <- data.frame(lidaruse2, lidaruse_v2, location_mean, experience_1, future_1, science_trust, incr_sev_flood, soep, alter_lidar_prop, alter_comm_mean, alter_exp_mean)
+write.csv(sim.data2, "sim_data2.csv")
+
+#### Descriptive Stasim.data ####
+# Check for correlations
+cor(sim.data2) # nothing > |.5| so we are good!
+
+# plot the raw data & check for outliers
+boxplot(sim.data2[-24])
+
+#### Check out the model & see if it returns out effects
+
+model_v2 <- stan_glmer(lidaruse_v2 ~ incr_sev_flood + experience_1 + future_1 + science_trust + alter_lidar_prop + alter_comm_mean + alter_exp_mean +(1|location_mean), data=sim.data2, family= binomial(link = "logit")) # this elimates if there are responses with a certain amount of Na's # also experience_4 had zero yes's so 
+
+model_2 <- stan_glm(lidaruse2 ~ incr_sev_flood + experience_1 + future_1 + science_trust + soep + alter_lidar_prop + alter_comm_mean + alter_exp_mean, data=sim.data2, family= binomial(link = "logit")) # this elimates if there are responses with a certain amount of Na's # also experience_4 had zero yes's so 
+
+
+plot(model_2)
+coef(model_2)
+
+
+plot(model_v2)
+coef(model_v2)
+
+loo_compare(loo(model_2), loo(model_v2))
+## by running several scenarios, it seems like I need to have a large sample size in order to recover the effect size I specified. And when I do a large sample size, the varying effects model returns slight  more accurate results
+## with n=180, there the effect size is off by +/-.2, this seems good enough?
+```
 
 ```{r, recode, include=FALSE}
 survey.responses$lidaruse <- revalue(survey.responses$lidaruse, c("1"="1", "2"="0", "3"="0"))
@@ -678,7 +842,7 @@ survey.responses <- join(survey.responses, expertise.subset[, c("Email", "expert
 
 ```{r, model specific data, include=FALSE}
 # Dataset for the model
-model.variables <- c("lidaruse", "experience_1", "future_1", "incr_sev_flood",  "soep_1", "science_trust","gov_trust", "location", "prepared", "flood_zone","prop_lidar_network", "comm_total", "expert_total", "no_alters")
+model.variables <- c("lidaruse", "experience_1", "future_1", "incr_sev_flood",  "soep_1", "science_trust","location","prop_lidar_network", "comm_total", "expert_total")
 
 model.data <- survey.responses[model.variables]
 
@@ -704,83 +868,14 @@ wa.lidaruse <- round((35/54)*100, digits=1)
 
 ```
 
-## *4.1 Descriptive Statistics*
+## *4.1 Descriptive Results and Discussion*
 
-**add quotes from interview 
+Table xx quantifies survey respondent's responses to individul and collective predictors of interest. Flood risk manager's reported the highest direct experience with flood damage in their community, compared to Oregon which reported the least, although the majority of flood risk managers in all three states have had direct experience with flood damage in their communities. Interestingly, the percent of flood risk manager's who perceive future flood damage in their communities significantly dropped with only 28% of flood risk manager's in Idaho perceiving the future risk. And despite this low belief in future damage, a higher number of reported a perceived increase in flood severity. This descrepancy could indicate that despite knowledge of increased flood risk, manager's feel as if their communities are adapting or have adapted to handle this increase in flood severity. We found that flood risk managers in Washington tend to be less risk-averse than managers in Oregon and Idaho. This is interesting and is hard to say exactly why... any thoughts? Overall, all three states reported a high trust in the accuracy of FRM scientific proeducts (e.g. topographic data, floodplain mapping, floodplain modeling) with Washington reporting the highest percentage of trust. 
 
-Table xx below compares the demographic and experience representation of survey responses from flood risk managers by region. 
+The collective predictors of lidar use varied slightly among the states, however there were no significant differences among the states.
 
-``` {r, survey demographics, include=FALSE}
-id.sample.size <- count(idaho$location=="Idaho")
-or.sample.size <- count(oregon$location=="Oregon")
-wa.sample.size <- count(washington$location=="Washington")
-
-count(idaho$age)
-count(oregon$age)
-count(washington$age)
-# age breakdown
-id.age.2 <- round((2/96)*100, digits=0) # the denominator is the sample size
-id.age.3 <- round((17/96)*100, digits=0) # the numerator is from 
-id.age.4 <- round((27/96)*100, digits=0)
-id.age.5 <- round((48/96)*100, digits=0)
-
-or.age.2 <- round((2/58)*100, digits=0)
-or.age.3 <- round((9/58)*100, digits=0)
-or.age.4 <- round((17/58)*100, digits=0)
-or.age.5 <- round((25/58)*100, digits=0) # some people didn't respond
-
-wa.age.2 <- round((3/54)*100, digits=0)
-wa.age.3 <- round((10/54)*100, digits=0)
-wa.age.4 <- round((17/54)*100, digits=0)
-wa.age.5 <- round((23/54)*100, digits=0)
-
-# gender breakdown
-id.gender.male <- round((59/96)*100, digits=0)
-id.gender.female <- round((37/96)*100, digits=0)
-
-or.gender.male <- round((35/58)*100, digits=0)
-or.gender.female <- round((20/58)*100, digits=0)
-
-wa.gender.male <- round((30/54)*100, digits=0)
-wa.gender.female <- round((24/54)*100, digits=0)
-
-#education breakdown
-id.edu.ba.ma <- round((37+29)/96*100, digits=0) # represents the number of respondents with either a bachelors or advanced degree
-or.edu.ba.ma <- round((21+26)/58*100, digits=0) 
-wa.edu.ba.ma <- round((17+24)/54*100, digits=0)
-
-#years in the industry
-idaho$years <- as.numeric(idaho$years)
-id.years <- round(summarise(idaho, avg=mean(years)), digits=1)
-
-oregon$years <- as.numeric(oregon$years)
-or.years <- round(summarise(oregon, avg=mean(years, na.rm=TRUE)), digits=1) ### THIS ISNT WORKING
-
-washington$years <- as.numeric(washington$years)
-wa.years <- round(summarise(washington, avg=mean(years)), digits=1)
-```
-
-```{r, survey demographics table, echo=FALSE, fig.cap="\\label{demographics}"}
-survey.dem <- matrix(c(96, 58, 54, "39%", "34%", "44%", "69%","81%", "76%",id.years, or.years, wa.years), ncol=3, byrow=TRUE)
-colnames(survey.dem) <- c("Idaho", "Oregon", "Washington")
-rownames(survey.dem) <- c("Sample Size", "Female", "University Education", "Average Flood Risk Experience (years)")
-knitr::kable(survey.dem, caption="Comparative descriptive statistics for survey demographics across Idaho, Oregon, and Washington.")
-```
-The results show no significant distortions of representativeness found for age, gender, geographical
-area, or level of education (Need to check this). [insert section about how FRM descriptive stats compare to FRM in other states?]
-
-Table xx gives an overview of selected answers to questions relating to the respondent's individual experiences and knowledge regarding floods in their primary community of work, collective influence, and their adoption of lidar.
 
 ``` {r, survey variable decriptions, echo=FALSE, fig.cap="\\label{survey variables}"}
-
-# Knowledge of flooding outside designated FEMA flood zone in the community
-id.floodzone <- round((table(idaho$flood_zone == 1)/length(idaho$flood_zone))*100, digits=1) # reports results as true/false # is there a function to just report true?
-id.floodzone <- 49.0
-or.floodzone <- round((table(oregon$flood_zone == 1)/length(oregon$flood_zone))*100, digits=1)
-or.floodzone <- 34.5
-wa.floodzone <- round((table(washington$flood_zone == 1)/length(washington$flood_zone))*100, digits=1) 
-wa.floodzone <- 59.3
-# 1=yes
 
 #Direct experience with flood damage in community
 id.experience <- round((table(idaho$experience_1 == 1)/length(idaho$experience_1))*100, digits=1)
@@ -809,34 +904,17 @@ wa.incr.sev.flood <- (table(washington$incr_sev_flood == 3)/length(washington$in
 wa.incr.sev.flood <- 57.4
 # 3=increasing
 
-#Feel community is at least mostly prepared for a flood event
-id.prepared <- (table(idaho$prepared == 3)/length(idaho$prepared))*100
-id.prepared <- 44.8
-or.prepared <- (table(oregon$prepared == 3)/length(oregon$prepared))*100
-or.prepared <- 36.2
-wa.prepared <- (table(washington$prepared == 3)/length(washington$prepared))*100
-wa.prepared <- 40.7
-
 #Risk-taking attitude
-idaho$soep_1 <- as.numeric(idaho$soep_1)
-id.soep <- round(summarise(idaho, avg=mean(soep_1, na.rm=TRUE)), digits=1)
+#idaho$soep_1 <- as.numeric(idaho$soep_1)
+#id.soep <- round(summarise(idaho, avg=mean(soep_1, na.rm=TRUE)), digits=1)
 id.soep <- 2.8
-oregon$soep_1 <- as.numeric(oregon$soep_1)
-or.soep <- round(summarise(oregon, avg=mean(soep_1, na.rm=TRUE)), digits=1)
+#oregon$soep_1 <- as.numeric(oregon$soep_1)
+#or.soep <- round(summarise(oregon, avg=mean(soep_1, na.rm=TRUE)), digits=1)
 or.soep <- 3.3
-washington$soep_1 <- as.numeric(washington$soep_1)
-wa.soep <- round(summarise(washington, avg=mean(soep_1, na.rm=TRUE)), digits=1)
+#washington$soep_1 <- as.numeric(washington$soep_1)
+#wa.soep <- round(summarise(washington, avg=mean(soep_1, na.rm=TRUE)), digits=1)
 wa.soep <- 3.7
 #0-risk averse to 10-risk loving
-
-#Trust in usefulness of government FRM products
-id.gov.trust <- (table(idaho$gov_trust > 3)/length(idaho$gov_trust))*100
-id.gov.trust <- 76.0
-or.gov.trust <- (table(oregon$gov_trust > 3)/length(oregon$gov_trust))*100
-or.gov.trust <- 70.7
-wa.gov.trust <- (table(washington$gov_trust > 3)/length(washington$gov_trust))*100
-wa.gov.trust <- 75.9
-#4-somewhat trust, 5-completely trust
 
 #Trust in accuracy of FRM scientific products
 id.science.trust <- (table(idaho$science_trust > 3)/length(idaho$science_trust))*100
@@ -849,74 +927,86 @@ wa.science.trust <- 90.7
 
 #Proportion of lidar users in FRM network
 idaho <- join(idaho, survey.responses[, c("Email", "prop_lidar_network", "comm_ave", "expert_ave")], by= "Email", type="left")
-id.prop.lidar <- (round(summarise(idaho, avg=mean(prop_lidar_network, na.rm=TRUE)), digits=2))*100
+#id.prop.lidar <- (round(summarise(idaho, avg=mean(prop_lidar_network, na.rm=TRUE)), digits=2))*100
 id.prop.lidar <- 35.0
 oregon <- join(oregon, survey.responses[, c("Email", "prop_lidar_network", "comm_ave", "expert_ave")], by= "Email", type="left")
-or.prop.lidar <- (round(summarise(oregon, avg=mean(prop_lidar_network, na.rm=TRUE)), digits=2))*100
+#or.prop.lidar <- (round(summarise(oregon, avg=mean(prop_lidar_network, na.rm=TRUE)), digits=2))*100
 or.prop.lidar <- 40.0
 washington <- join(washington, survey.responses[, c("Email", "prop_lidar_network", "comm_ave", "expert_ave")], by= "Email", type="left")
-wa.prop.lidar <- (round(summarise(washington, avg=mean(prop_lidar_network, na.rm=TRUE)), digits=2))*100
+#wa.prop.lidar <- (round(summarise(washington, avg=mean(prop_lidar_network, na.rm=TRUE)), digits=2))*100
 wa.prop.lidar <- 42.0
 #Total communication in FRM network
-id.comm.network <- (round(summarise(idaho, avg=mean(comm_ave, na.rm=TRUE)), digits=1))
+#id.comm.network <- (round(summarise(idaho, avg=mean(comm_ave, na.rm=TRUE)), digits=1))
 id.comm.network <- 3
-or.comm.network <- (round(summarise(oregon, avg=mean(comm_ave, na.rm=TRUE)), digits=1))
+#or.comm.network <- (round(summarise(oregon, avg=mean(comm_ave, na.rm=TRUE)), digits=1))
 or.comm.network <- 3
-wa.comm.network <- (round(summarise(washington, avg=mean(comm_ave, na.rm=TRUE)), digits=1))
+#wa.comm.network <- (round(summarise(washington, avg=mean(comm_ave, na.rm=TRUE)), digits=1))
 wa.comm.network <- 3
 
 #Perceived expertise in FRM network
-id.expert.network <- (round(summarise(idaho, avg=mean(expert_ave, na.rm=TRUE)), digits=1))
+#id.expert.network <- (round(summarise(idaho, avg=mean(expert_ave, na.rm=TRUE)), digits=1))
 id.expert.network <- 6.6
-or.expert.network <- (round(summarise(oregon, avg=mean(expert_ave, na.rm=TRUE)), digits=1))
+#or.expert.network <- (round(summarise(oregon, avg=mean(expert_ave, na.rm=TRUE)), digits=1))
 or.expert.network <- 7.3
-wa.expert.network <- (round(summarise(washington, avg=mean(expert_ave, na.rm=TRUE)), digits=1))
+#wa.expert.network <- (round(summarise(washington, avg=mean(expert_ave, na.rm=TRUE)), digits=1))
 wa.expert.network <- 6.7
 
 #Use of lidar for FRM
-id.lidaruse <- (table(idaho$lidaruse == 1)/length(idaho$lidaruse))*100
+#id.lidaruse <- (table(idaho$lidaruse == 1)/length(idaho$lidaruse))*100
 id.lidaruse <- 50.0
-or.lidaruse <- (table(oregon$lidaruse == 1)/length(oregon$lidaruse))*100
+#or.lidaruse <- (table(oregon$lidaruse == 1)/length(oregon$lidaruse))*100
 or.lidaruse <- 62.1
-wa.lidaruse <- (table(washington$lidaruse == 1)/length(washington$lidaruse))*100
+#wa.lidaruse <- (table(washington$lidaruse == 1)/length(washington$lidaruse))*100
 wa.lidaruse <- 64.8
 
-survey.variable.stats <- matrix(c(id.floodzone, or.floodzone, wa.floodzone, id.experience, or.experience, wa.experience, id.future, or.future, wa.future, id.incr.sev.flood, or.incr.sev.flood, wa.incr.sev.flood, id.prepared, or.prepared, wa.prepared, id.soep, or.soep, wa.soep, id.gov.trust, or.gov.trust, wa.gov.trust, id.science.trust, or.science.trust, wa.science.trust, id.prop.lidar, or.prop.lidar, wa.prop.lidar, id.comm.network, or.comm.network, wa.comm.network, id.expert.network, or.expert.network, wa.expert.network, id.lidaruse, or.lidaruse, wa.lidaruse), ncol=3, byrow=TRUE)
+survey.variable.stats <- matrix(c(id.experience, or.experience, wa.experience, id.future, or.future, wa.future, id.incr.sev.flood, or.incr.sev.flood, wa.incr.sev.flood, id.soep, or.soep, wa.soep, id.science.trust, or.science.trust, wa.science.trust, id.prop.lidar, or.prop.lidar, wa.prop.lidar, id.comm.network, or.comm.network, wa.comm.network, id.expert.network, or.expert.network, wa.expert.network, id.lidaruse, or.lidaruse, wa.lidaruse), ncol=3, byrow=TRUE)
 colnames(survey.variable.stats) <- c("Idaho", "Oregon", "Washington")
-rownames(survey.variable.stats) <- c("Knowledge of flooding outside designated FEMA floodzone in the community (%)", "Direct experience with flood damage in community (%)", "Direct experience with future flood damage in the community (%)","Perceived Increase in Flood Severity (%)", "Feel community is at least somewhat prepared for a flood event (%)", "Average risk-taking attitude /n (0 to 10 with 10 being risk-loving)", "Trust in usefulness of government FRM products (%)", "Trust in accuracy of FRM scientific products (%)", "Proportion of lidar users in FRM network (%)", "Average amount of communication with FRM network* ", "Perceived expertise in FRM network (0 to 10 with 10 being of highest expertise)", "Use lidar for FRM (%)" )
+rownames(survey.variable.stats) <- c( "Direct experience with flood damage in community (%)", "Direct experience with future flood damage in the community (%)","Perceived Increase in Flood Severity (%)", "Average risk-taking attitude (0 to 10 with 10 being risk-loving)", "Trust in accuracy of FRM scientific products (%)", "Proportion of lidar users in FRM network (%)", "Average amount of communication with FRM network* ", "Perceived expertise in FRM network (0 to 10 with 10 being of highest expertise)", "Use lidar for FRM (%)" )
 knitr::kable(survey.variable.stats, caption="Descriptive statistics of survey question responses by State.")
 ```
-*should I break this table up? It could be broken up as follows: table 1- experience/future beliefs about flooding, table 2- trust, table 3- risk aversion, network OR table 1- individual variables (experience, future beliefs, trust, risk attitude) and table 2- collective variables (network)*
 
-These results are representative for survey respondents who adopted lidar. For those that didn't use lidar, they were asked what barriers they face to adoption. Table XX reflects the results of barriers that flood risk managers face when adopting lidar into their practice. 
+Washington reported the highest amount of lidar use in FRM with almost 65% of respondent's using lidar. This trend was expected because of the established lidar acquistion and coordinated lidar program in Washington. Established in the Department of Natural Resources, the Washington State General Fund provides funding for two permanent lidar positions, a lidar manager and a lidar specialist. These positions provide assistance for lidar acquisition and coordination in the state. In addition, Washington has focused on dissemating interactive (e.g. Washington Story Map) information on lidar to educate the public and advocate for continued lidar investment at the state-level. Oregon and Idaho also have established lidar acquisition and coordination efforts, however they do not have a permanently funded position to manage lidar. Granted, Oregon reported a similar use to Washington with 62% of respondents using lidar. However, only 50% of survey respondents in Idaho reported using lidar. This is significantly less than Washington and Oregon. In an effort to explore this variation at a more nuanced level, this next section explores the results of our Generalized Logistic Multilevel Model.
 
-*add table summarizing barriers*
+## *4.3 Estimation Results and Discussion* 
 
-## *4.3 Estimation Results* 
+#### *Missing data values*
+Survey data commonly suffers from item nonresponse that can result in missing data. Typical methods for handling missing data are reweight, imputation, and dropping responses with missing data. Interestingly, the network section in our survey was more suceptible to  nonresponse from respondents. Of the 208 usable responses we received, 50 of them did not fill out the network section. This could have been due to response fatigue since the network section came at the end of the survey. Another possible explanation is that this part was confusing or uncomfortable for respondents to fill out. In contract, the rest of the survey from which the individual predictors of lidar use were collected had less than 10% of responses with missing data. Since our model considers both individual and collective predictors and needs equal size data lengths for each predictor in order to run, we dropped almost 25% of our data responses. Since we used the drop technique for handling our missing data, it is likely that our results underestimate the effect size of our predictors and intercept [@langkampTechniquesHandlingMissing2010]. 
 
-```{r, full model, include=FALSE}
+```{r, full model, include=FALSE, eval=FALSE}
 #add number of alters?
-full.mod <- stan_glmer(lidaruse ~ incr_sev_flood + experience_1 + prepared + soep_1 + future_1 + gov_trust + science_trust + flood_zone + prop_lidar_network + comm_total + expert_total + (1|location), data=model.data.na.omit, family= binomial(link = "logit")) # this elimates if there are responses with a certain amount of Na's # also experience_4 had zero yes's so 
-summary(full.mod)
+full.mod <- stan_glmer(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + comm_total + expert_total + (1|location), data=model.data.na.omit, family= binomial(link = "logit")) # this elimates if there are responses with a certain amount of Na's # also experience_4 had zero yes's so 
+summary(full.mod)                                                           
 plot(full.mod)
 plot(full.mod, "areas", prob = 0.95, prob_outer = 1)
-median(bayes_R2(full.mod))
+median(bayes_R2(full.mod)) # best r2 value
 pp_check(full.mod) # this checks the posterior predictive ability. looks good
 
-# informed priors model
-full.mod.priors <- stan_glmer(lidaruse ~ incr_sev_flood + experience_1 + prepared + soep_1 + future_1 + gov_trust + science_trust + flood_zone + prop_lidar_network + comm_total + expert_total + (1|location),
-                           prior = normal(location = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # leaving the intercept at 0 had better results than using the intercept value from the previous model
-                           scale = c(3.7, 6.4, 3.3, 1.1, 8.3, 2.8, 3.3, 5.0, 7.0, 0.3, 0.1), # this is from prior_summary of full.mod without priors
-                           autoscale = FALSE), # this specifies prior between 0 and 1 because it is a binonmial response variable
-                           prior_intercept = normal (location = 0, 
-                           scale = 2.5, 
-                           autoscale = FALSE), # intercept can only be between 0 and 1 
-                           data=model.data.na.omit, family= binomial(link = "logit")) # this elimates if there are responses with a certain amount of Na's # also experience_4 had zero yes's so 
+
+# informed priors model with cauchy distribution, based on full mod prior summary
+full.mod.priors <- stan_glmer(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + comm_total + expert_total + (1|location),
+                           prior = cauchy(0, 2.5),
+                           prior_intercept = cauchy(0,10), 
+                           data=model.data.na.omit, family= binomial(link = "logit")) 
+
 summary(full.mod.priors)
 plot(full.mod.priors)
 plot(full.mod.priors, "areas", prob = 0.95, prob_outer = 1)
-median(bayes_R2(full.mod.priors))
-#pp_check(full.mod.priors)
+r2.final.model <- median(bayes_R2(full.mod.priors))
+pp_check(full.mod.priors) 
+
+# informed priors model with cauchy distribution, this is based on the gelman et al. 2008 paper
+full.mod.priors2 <- stan_glmer(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + comm_total + expert_total + (1|location),
+                           prior = cauchy(location=c(0,0,0,0,0,0,0,0), 
+                                          scale=c(3.7,6.4,1.1,8.4,3.3,7.0,.3,.1)),
+                           prior_intercept = cauchy(0,10), 
+                           data=model.data.na.omit, family= binomial(link = "logit")) 
+
+summary(full.mod.priors2)
+plot(full.mod.priors2)
+plot(full.mod.priors2, "areas", prob = 0.95, prob_outer = 1)
+median(bayes_R2(full.mod.priors2))
+pp_check(full.mod.priors2) 
+
 
 # null model
 
@@ -924,79 +1014,85 @@ null.mod <- stan_glm(lidaruse ~ 1, data=model.data.na.omit, family=binomial(link
 
 ## Model comparison
 
-loo_compare(loo(full.mod), loo(full.mod.priors))
-# Based on the LOOIC comparison, full mod without set priors has the greatest comparative out-of-sample predictive preformance
+loo_compare(loo(full.mod), loo(full.mod.priors), loo(full.mod.priors2))
+# Based on the LOOIC comparison, full mod with prior specification based on Gelman procedure has the best predictive power
+
 ```
 
-$\label{survey variables}$ displays variation among Idaho, Oregon, and Washington when it comes to lidar adoption.  We explored why this variation may exist through an exploratory analysis of individual and collective factors that influence a flood risk managers decision-making. Through the use of the programming language R and program Rstudio,  this analysis used Bayesian theory to analyze the effect of various predictors of lidar adoption. The analysis used four Monte Carol Markov Chains (MCMC) with 1,000 iterations for warmup and an additional 1,000 iterations for the model. Additionally, convergence was checked by visually inspecting the MCMC trace plots of the model parameters. We assessed effective sample size and checked model convergence, indicated by R-hat statistics close to 1 and stable, well-mixed chains  [@gelmanBayesianWorkflow2020]. 
+```{r, final model, include=FALSE}
+# informed priors model with cauchy distribution, based on full mod prior summary
+full.mod.priors <- stan_glmer(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + comm_total + expert_total + (1|location),
+                           prior = cauchy(0, 2.5),
+                           prior_intercept = cauchy(0,10), 
+                           data=model.data.na.omit, family= binomial(link = "logit")) 
 
-$\label{tab:summary_stats}$ displays the results from a varying intercept model that considers the effect of all these factors on lidar use, while using partial pooling for location. Partial pooling is the benefit of using a hierarchical model and allows the model to appropriately generalize across similar but not identical settings [@gelmanBayesianWorkflow2020]. This works well in our study because we are looking at the regional variation of lidar adoption. In addition, this methodology allows for propagation of uncertainty throughout the model, which is important because...The results of this analysis suggest that proportion of lidar users and total amount of expertise in a respondent's network had the most significant effect on lidar adoption. In addition, awareness and knowledge of flood risk and risk-taking attitude had moderate impact on lidar use. Direct experience, preparedness, and trust had a minor impact on lidar use. 
+summary(full.mod.priors)
+plot(full.mod.priors)
+plot(full.mod.priors, "areas", prob = 0.95, prob_outer = 1)
+r2.final.model <- median(bayes_R2(full.mod.priors))
+pp_check(full.mod.priors) 
+
+```
+
+Through the use of the programming language R and program Rstudio, we used Bayesian theory to analyze the effect of individual and collective predictors of lidar adoption. We used four Monte Carol Markov Chains (MCMC) with 1,000 iterations for warmup and an additional 1,000 iterations for the model. Additionally, the convergence was checked by visually inspecting the MCMC trace plots of the model parameters. We assessed effective sample size and checked model convergence, indicated by R-hat statistics close to 1 and stable, well-mixed chains  [@gelmanBayesianWorkflow2020]. 
+
+$\label{tab:summary_stats}$ displays the results from a varying intercept model that considers the effect of individual and collective predictors on lidar use, while using partial pooling for location. Partial pooling is the benefit of using a hierarchical model and allows the model to appropriately generalize across similar but not identical settings [@gelmanBayesianWorkflow2020]. This worked well in our study because we were looking at the regional variation of lidar adoption. In addition, this methodology allowed for propagation of uncertainty throughout the model, which is important because...? 
 
 ```{r, model summary table, echo=FALSE, fig.cap="\\label{summary_stats}"}
 #these are based on summary(full.mod) which returned a slightly better result that fullmod.priors
-summary.stats <- matrix(c(-4.2, 2.1, -7.7, -0.9, 
-                          0.5, 0.4, -0.2, 1.2, 
-                          0.2, 0.7, -1.0, 1.3, 
-                          0.5, 0.4, -0.1, 1.1, 
-                          0.1, 0.1, -0.1, 0.3, 
-                          0.9, 0.9, -0.6, 2.4, 
-                          -0.4, 0.4, -1.0, 0.4, 
-                          0.0, 0.4, -0.7, 0.7, 
-                          1.0, 0.5, 0.1, 1.8, 
-                          5.5, 0.9, 4.0, 7.1, 
+summary.stats <- matrix(c(-2.7, 1.5, -5.3, -0.4,
+                          0.5, 0.6, -0.4, 1.5,
+                          0.6, 0.7, -0.5, 1.9,
+                          0.3, 0.4, -0.3, 0.8, 
+                          0.1, 0.1, -0.1, 0.2, 
+                          -0.1, 0.3, -0.6, 0.3,
+                          4.5, 0.8, 3.2, 5.9, 
                           0.0, 0.0, 0.0, 0.1, 
                           0.0, 0.0, 0.0, 0.0), ncol=4, byrow=TRUE) #this is the plogis values for mean and SD ### UPDATE THESE NUMBERS
-colnames(summary.stats) <- c( "Mean", "S.D.", "5%", "95%")
-rownames(summary.stats) <- c("Intercept", "Increase in Flood Severity", "Direct Experience with Flood Damage in Community", "Level of Community Preparedness", "Risk Attitude", "Future Experience with Flood Damage in Community", "Trust in Usefulness of Government FRM Products", "Trust in Accuracy of FRM Scientific Products", "Flooding outside of Floodzone", "Proportion of Lidar Users in Respondent's FRM Network", "Level Communication with Respondent and their FRM Network", "Total Expertise in Respondent's FRM Network")
+colnames(summary.stats) <- c( "Mean (log odds)", "S.D.", "5%", "95%")
+rownames(summary.stats) <- c("Intercept", "Direct Experience with Flood Damage in Community", "Future Experience with Flood Damage in Community", "Increase in Flood Severity", "Risk Attitude", "Trust in Accuracy of FRM Scientific Products", "Proportion of Lidar Users in Respondent's FRM Network", "Level Communication with Respondent and their FRM Network", "Total Expertise in Respondent's FRM Network")
 knitr::kable(summary.stats, caption="Estimation results from the model")
 ```
 
-In addition, we ran a model with informative priors based on the prior summary of the model with weakly informative priors. However, this model did not do a better predictive probability so we didn't not explore it further (see model chunk code above). *am I inputting my priors wrong? I feel like it should have made the model's predictive ability better?*
+Our model suggests that the proportion of lidar users in a respondent's FRM network has the most significant effect on lidar use. Direct experience, future risk perception, and knowledge have moderate effect on lidar use. Risk attitude, trust in science, network communication and expertise have minimal effect on lidar use. 
 
-## *Bayesian posteriors*
+```{r, posterior distribution, echo=FALSE, fig.cap="\\lablel{ppd}"}
 
-This section focuses on the explanatory power of each predictor and summarizes the effect size of predictor. The full model had a Bayesian R-squared value of 'r full.mod.r2`. The following section breaks down the influence of each predictor model fit. We calculated this running by individual models with predictor of interest and lidar use, with varying location. $\label{model_fit}$ summarizes these findings. *add sd & ci to table?*
+areas.plot <- plot(full.mod.priors, "areas", prob = 0.95, prob_outer = 1)
 
-``` {r, model fit table, echo=FALSE, fig.cap="\\label{model_fit}"}
-model.fit <- matrix(c("", "", "", .51,
-                      0.2, 0.3, 0.6, 0.05,
-                      0.1, 0.1, 0.1, 0.01, 
-                      0.0, 0.1, 0.1, 0.02,
-                      0.0, 0.0, 0.2, 0.03,
-                      0.5, 0.4, 0.6, 0.03,
-                      0.0, -0.1, 0.0, 0.01,
-                      -0.1, 0.0, 0.1, 0.02,
-                      0.5, 0.8, 0.5, 0.05,
-                      4.9, 5.2, 3.5, 0.35,
-                      0.0, 0.0, 0.1, 0.05,
-                      0.0, 0.0, 0.1, 0.09), ncol=4, byrow=TRUE) #this is the plogis values for mean and SD ### UPDATE THESE NUMBERS
-colnames(model.fit) <- c( "Idaho", "Oregon.", "Washington", "Bayes R2")
-rownames(model.fit) <- c("Full Model", "Increase in Flood Severity", "Direct Experience with Flood Damage in Community", "Level of Community Preparedness", "Risk Attitude", "Future Flood Risk", "Trust in Usefulness of Government FRM Products", "Trust in Accuracy of FRM Scientific Products", "Flooding outside of Floodzone", "Proportion of Lidar Users in Respondent's FRM Network", "Level Communication with Respondent and their FRM Network", "Total Expertise in Respondent's FRM Network")
-knitr::kable(model.fit, caption="Slope estimation for influfence of each predictor on lidar use by State")
+ci.plot <- plot(full.mod.priors)
+
+ggpubr::ggarrange(areas.plot, ci.plot)
 
 ```
-*add plot with posterior distributions?*
+** calculate probability of lidar use based on predictor
 
-### *Significant Predictors of Lidar Adoption*
+Our results suggest that the respondent's social network has the largest effect on lidar use. More specifically, the proportion of respondent's alters that use lidar is significantly correlated with lidar use. Furthermore, Washington had a stronger correlation. Oregon had the largest correlation of 'r b.or.prop.lidar', where as Washington had the smallest of 'r b.id.prop.lidar'. These results are in line with what we expected to see because of the strong influence social learning has on technology adoption. 
 
-#### **Proportion of Lidar Use in Network**
-
-
-```{r, proportion of lidar users model, include=FALSE}
-prop.lidar.mod <- stan_glmer(lidaruse ~ (1+prop_lidar_network|location), data=model.data.na.omit, family=binomial(link=logit), adapt_delta = 0.99)
-
-summary(prop.lidar.mod)
-median(bayes_R2(prop.lidar.mod))
-plot(prop.lidar.mod, "areas", prob = 0.95, prob_outer = 1)
-
-b.id.prop.lidar <- 4.9
-b.or.prop.lidar <- 5.2
-b.wa.prop.lidar <- 3.5
+```{r, prop lidar users plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="\\label:prop.lidar.plot"}
+ggplot(model.data.na.omit, aes(x = prop_lidar_network, y = lidaruse, colour = location)) +
+  geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Proportion of Lidar Users in Respondents FRM Network', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(0, 0.25, .50, .75, 1), labels=c("0%", "25", "50%", "75%", "100%")) +
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
 
 ```
 
-Our results suggest that the respondent's social network has the largest effect on lidar use. More specifically, the proportion of respondent's alters that use lidar is significantly correlated with lidar use. The survey measured this by asking the respondent to report yes, no, or I don't know if their FRM network alter used lidar. Furthermore, Washington had a stronger correlation. Oregon had the largest correlation of 'r b.or.prop.lidar', where as Washington had the smallest of 'r b.id.prop.lidar'. These results are in line with what we expected to see because of the strong influence social learning has on technology adoption. 
-*should I add more network information here? like number of alters?*
+Add a chart showing the variation 
+
+
+## *Model Validation and Error*
+The model has a Bayesian R-squared value of 'r r2.final.model`. 
+
+predictive figure?
+
 
 ```{r, proportion of lidar users, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="\\label:prop.lidar.plot"}
 prop.lidar.plot <- ggplot(model.data.na.omit, aes(x = prop_lidar_network, y = lidaruse, colour = location)) +
