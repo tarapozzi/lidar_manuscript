@@ -1228,16 +1228,15 @@ preds <- add_fitted_draws(newdata=data.frame(prop_lidar_network=proplidar.sim,
                                               comm_total=0,
                                               expert_total=0, 
                                               location=location.sim),
-                          draws = 500,
+                          draws = 200,
                           full.mod.priors)
 
-ggplot(data=model.data.na.omit, aes(x=prop_lidar_network, y=lidaruse, group=location, col=location)) +
-  geom_jitter(col="grey", width=0.05, height=0.05) +
-  stat_smooth(data=preds, aes(x=prop_lidar_network, y=.value), fill = "grey", se=TRUE) +
-  labs(y= "Probability of Lidar Adoption", x = "Amount of Lidar User's in Respondent's Network") +
-  scale_y_continuous(breaks = c(0, .5, 1), labels=c("0%", "50%", "100%")) +
-  scale_x_continuous(breaks=c(0, 0.25, .50, .75, 1), labels=c("0%", "25%", "50%", "75%", "100%")) +
-  theme_classic()
+ggplot(preds, aes(x = prop_lidar_network, group=location, col=location)) +
+  stat_lineribbon(aes(y = .value), .width = c(.95, .5)) + 
+  scale_fill_brewer(palette = "Greys") +
+  labs(x = "Proportion of Lidar User's in Respondent's Network", y = "Probability of LiDAR adoption") + theme_bw() + 
+  scale_colour_discrete(name = "Location") +
+  theme( axis.text=element_text(size=12), axis.title=element_text(size=14),plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14))
 
 ```
 
