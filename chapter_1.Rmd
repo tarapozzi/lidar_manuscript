@@ -108,7 +108,7 @@ Figure \@ref(fig:lidar_map) displays the footprint of available topographic and 
 
 ![(fig:lidar_map)"The U.S. Interagency Elevation Inventory displays all publically-available lidar data and lidar-derived products for the continguous, lower 48 states."](C:/Users/tarapozzi/Documents/lidar_manuscript/images/lidar_map_us.jpg)
 
-This study examines the landscape of factors that catalyze decision-makers to use lidar for flood risk management. Past research emphasizes risk perception as a key driver of risk mitigation behavior [@birkholzRethinkingRelationshipFlood2014;@mishraDecisionMakingRiskIntegrating2014;@slovicPerceptionRisk1987]. Risk perception is a fundamental way to characterize how individual’s intuitive risk judgment and allows for the identification, characterization, and quantification of risk. However, previous research on risk perception has been opposing. Past findings suggests individuals who perceive that natural hazards pose a greater risk also behave more cautiously [@vinhhungFloodRiskManagement2007]. Interestingly, studies also found the opposite in that individuals who perceive a greater risk engage in fewer mitigating behaviors [@bubeckReviewRiskPerceptions2012; @wachingerRiskPerceptionParadoxImplications2013]. This paradoxical behavior suggests that risk perception is more nuanced and moderated by individual and socio-cultural factors [@baerenklauUnderstandingTechnologyAdoption2005; @birkholzRethinkingRelationshipFlood2014; @bubeckReviewRiskPerceptions2012; @kahanCultureIdentityProtectiveCognition2007; @vanvalkengoedMetaanalysesFactorsMotivating2019].
+This study examines the factors that catalyze decision-makers to use lidar for flood risk management. Past research emphasizes risk perception as a key driver of risk mitigation behavior [@birkholzRethinkingRelationshipFlood2014;@mishraDecisionMakingRiskIntegrating2014;@slovicPerceptionRisk1987]. Risk perception is a fundamental way to characterize an individual’s intuitive risk judgment and allows for the identification, characterization, and quantification of risk. However, previous research on risk perception has uncovered conflicting results. Past findings suggest individuals who perceive that natural hazards pose a greater risk also behave more cautiously [@vinhhungFloodRiskManagement2007]. Interestingly, studies also found the opposite in that individuals who perceive a greater risk engage in fewer mitigating behaviors [@bubeckReviewRiskPerceptions2012; @wachingerRiskPerceptionParadoxImplications2013]. This paradoxical behavior suggests that risk perception is more nuanced and moderated by individual and socio-cultural factors [@baerenklauUnderstandingTechnologyAdoption2005; @birkholzRethinkingRelationshipFlood2014; @bubeckReviewRiskPerceptions2012; @kahanCultureIdentityProtectiveCognition2007; @vanvalkengoedMetaanalysesFactorsMotivating2019].
 
 While the field of hazards and disaster research is inherently multidisciplinary, there has been a recent, concerted effort for convergence research to integrate knowledge across disciplines and organizational boundaries to reduce disaster losses and promote collective well-being (Peek at al., 2020). In addition, previous flood risk research identified two main theoretical limitations of our existing intellectual understanding of risk-mitigating behavior. Firstly, there is limited predictive power of the theories applied so far (e.g. protection motivation theory) [@kellensPerceptionCommunicationFlood2013a]. Secondly, there is limited focus on the role of collective action (e.g. social beliefs) [@kuhlickeBehavioralTurnFlood2020].
 In addition, recent research suggests the importance of context, local power relations, and constraints/opportunities that affect the complex relationship between risk perception and risk mitigating behavior; there needs to be a critical look at the underlying assumptions of risk perception and a focus on coordination of theories, methods, and variables. [@rufatSwimmingAloneWhy2020]. We employ cultural evolutionary theory to study lidar adoption because it offers a convergent research lens to compare individual and collective action and has the potential for prediction.  
@@ -122,7 +122,7 @@ Previous research identified the importance of several individual factors as a f
 ## *Topical Review* 
 Previous flood risk management research focused on flood risk perception as a critical factor of developing effective flood risk management strategies [@birkholzRethinkingRelationshipFlood2014]. However, recent research has re-examined risk perception's role in behavior and decision-making because of the difficulty connecting risk perception with management and the challenge of parsing out the connection of risk perception with underlying contextual factors [@rufatSwimmingAloneWhy2020]. For example, a study by Bubeck et al. (2012) found risk perception to be a weak predictor of precautionary behavior and suggests shifting focus towards flood-coping appraisal for explaining flood risk management behavior. In addition, Kellens et al. (2013) reviewed 57 empirically based peer-reviewed articles on flood risk perception and communication to assess overall trends in flood risk research. The authors found that the majority of studies were exploratory and did not apply a theoretical framework to examine risk perception [@kellensPerceptionCommunicationFlood2013a]. Of the studies that employed a theoretical framework, protection motivation theory (PMT) was the most common. PMT explains individual decisions about preparing for risk as a function of threat appraisal (e.g. likelihood of exposure to a flood, severity of exposure, and fear) and coping appraisal (e.g. self-efficacy, outcome efficacy, and outcome costs). The results of this review suggest future research should have more theoretical support and methodological openness; specifically, the use of a theoretical framework that emphasizes the effects of physical exposure and hazard experience [@kellensPerceptionCommunicationFlood2013a]. 
 
-Collective factors of risk mitigation behavior are limited in the existing flood risk management literature, however there has been some initial evidence found of the influence of social networks on risk mitigation behavior [@kuhlickeBehavioralTurnFlood2020;@bojovicUnderstandingDisseminationAdoption2020]. Social networks are of particular interest for our study because they are a way of measuring peer influence, the diffusion of ideas, practices, or technologies through network ties from social interactions [@muterSocialContagionRisk2013]. Peer influence is a helpful tool for behavior prediction based on an individual’s position in a social network [@daraganovaAutologisticActorAttribute2012; @levinProblemPatternScale1992]. Furthermore, the technology adoption literature has also applied network analysis to measure information exchange and diffusion through network relations [@pengResearchNoteDynamic2013]. The application of social networks to flood risk management decision-making is still in its infancy, however the findings from previous research with respect to social networks and technology adoption provide a compelling baseline for using it to understand peer influence in our study.
+Collective factors of risk mitigation behavior are limited in the existing flood risk management literature, however there has been some initial evidence found of the influence of social networks on risk mitigation behavior [@lechowskaApproachesResearchFlood2021;@kuhlickeBehavioralTurnFlood2020;@bojovicUnderstandingDisseminationAdoption2020]. Social networks are of particular interest for our study because they are a way of measuring peer influence, the diffusion of ideas, practices, or technologies through network ties from social interactions [@muterSocialContagionRisk2013]. Peer influence is a helpful tool for behavior prediction based on an individual’s position in a social network [@daraganovaAutologisticActorAttribute2012; @levinProblemPatternScale1992]. Furthermore, the technology adoption literature has also applied network analysis to measure information exchange and diffusion through network relations [@pengResearchNoteDynamic2013]. The application of social networks to flood risk management decision-making is still in its infancy, however the findings from previous research with respect to social networks and technology adoption provide a compelling baseline for using it to understand peer influence in our study.
 
 Additionally, recent research suggests the importance of context, local power relations, constraints, and opportunities that affect risk mitigating behavior calling for convergence research to understand the underlying assumptions of decision-making [@rufatSwimmingAloneWhy2020]. Given the current gaps of understanding in flood risk management research and the push for convergent research, we employ cultural evolutionary theory to employ a comprehensive theoretical baseline for flood risk mitigation behavior research that can be used across disciplines and scales. 
 
@@ -203,11 +203,11 @@ knitr::kable(state.comp, caption="Summary information about environmental and so
 
 Given the previous literature, as well as the nature of our case study we narrowed down our study to focus on eight constructs. Table \@ref(tab:individual) displays the five individual predictors that we selected for our study. We chose these factors because they aligned with repeated themes in our semi-structured interviews, in addition to each factor providing important information to help inform lidar coordination. 
 
-![(#tab:individual) "Individual predictors of lidar adoption"](C:/Users/tarapozzi/Documents/lidar_manuscript/images/predictor_individual.pdf)
+![(#tab:individual) "Individual predictors of lidar adoption"](C:/Users/tarapozzi/Documents/lidar_manuscript/images/predictor_individual.jpg)
 
 In addition, we selected three collective factors reflected in Table \@ref(tab:collective). Several studies have implemented social network analysis to examine the the influence of social ties on communication in disaster management, however the effect of social networks on other topics in disaster management has been minimally explored [@bojovicUnderstandingDisseminationAdoption2020]. Bojovic et al. (2020) conducted a full network analysis on the diffusion of innovation and technologies for risk management, which was the first study of this topic in disaster management. The study focused on the identification of key actors to implement information dissemination through. In addition, there is another type of social network analysis called an ego network analysis, that is helpful for understanding the variation of behavior of individuals through identification of local social structures unique to the individual of interest (e.g. flood risk manager) [@hannemanChapterEgoNetworks2005].It focused on the respondent's flood risk management network connections. We chose to use an ego network analysis for our study. The predictors we selected are reflected in Table \@ref(tab:collective).
 
-![(#tab:collective) "Collective predictors of lidar adoption"](C:/Users/tarapozzi/Documents/lidar_manuscript/images/predictor_collective.pdf)
+![(#tab:collective) "Collective predictors of lidar adoption"](C:/Users/tarapozzi/Documents/lidar_manuscript/images/predictor_collective-1.jpg)
 
 ```{r, survey data upload, include=FALSE}
 
@@ -269,17 +269,14 @@ survey.responses <- rbind(idaho, oregon, washington) %>%
 ```
 
 ### *Survey design*
-We conducted eight, semi-structured interviews with stakeholders (e.g. flood risk managers, state officials, academics) to identify common themes and the extent of relevant predictors to measure. These interviews were conducted prior to the finalization of the survey instrument and directly informed our approach to ensure our work could identify opportunities and barriers to lidar adoption. In addition, we pre-tested our survey instrument with three industry professionals (two women and one man) to provide feedback on question clarity and survey flow. The second pre-test was with six university students and staff to give additional feedback on the survey. We modified the survey based on this feedback. The final draft of the survey was then approved by the Institutional Review Board at Boise State University. 
+Prior to finalizing our survey instrument, we conducted eight, semi-structured interviews with stakeholders including flood risk managers, government officials, industry professionals, and academics. The interviews lasted about an hour and were occasionally recorded. These interviews were used to identify common themes, ensure that our survey questions were relevant, and confirm that we were adequately identifying facilitators and barriers to lidar adoption.*add interview instrument to appendix*
 
-The finalized survey consisted of four main parts (see Appendix A). The first part focused on gathering information about the respondent's experience and beliefs about their flood risk management community. The first section consisted of a screening question to assess if the respondent was qualified by asking if they were a flood risk manager. The second section gathered background information about the number of years in the profession and the third section asked the respondent about their local floodplain. This section ask the respondent if their community participated in the NFIP, as well as information about flooding damage history and perceived future flood damage in the next 30 years. The fourth section examined the current mapping data in the respondent's flood risk management community. This included questions about floodplain map accuracy, flooding outside the designated FEMA flood zone, and level of preparation for a flood event. The next section asked the respondent to report their personal beliefs about the change in the number and/or severity of flood events in their flood risk management community in the future. 
+Once we created our survey instrument, we conducted an expert review with eight university students and staff to give feedback about the appropriateness of the survey (e.g. length, difficulty, and readability), question fit to research questions, and survey structure (e.g. question order, section transitions, survey logic). Next, the survey was tested as a pilot survey with a flood risk manager, an industry professional, and a lidar academic to provide additional feedback from the perspective of a potential, target respondent. 
 
-The next part of the survey centered around the respondent's relationship with lidar for flood risk management. The first section in this part focused on the respondent's relationship with lidar for flood risk management. Lidar use, in this context, referred to work with either raw lidar data (e.g. LAS or point clouds) or lidar-derived data (e.g. DEM, DSM). If the respondent replied yes, then they were asked questions about where they received it from and how they apply it to flood risk management, as well as continued educational opportunities. If they selected no, they were asked about barriers they faced to using lidar and if they would like to partake in education opportunities. 
-
-The third part of the survey gathered information about the respondent's network. 
-The final part of the survey asked the respondent about their personal beliefs in risk-taking and trust. The first section in this part asked the respondent to report their general risk-taking attitude. The second section asked about the respondent's gender, age, and education level, as well as their personal beliefs regarding trust in the federal government, science, and involvement level of the federal government with flood risk management. 
+The finalized survey consisted of four main parts (see Appendix B). The first part focused on gathering information about the respondent's experience and beliefs about their flood risk management community. The second section was centered around the respondent's relationship with lidar for flood risk management including if they used lidar, how they use lidar, and if they would like to take part in lidar workshops. The third part of the survey gathered information about the respondent's flood risk management network. Lastly, the final part of the survey asked the respondent about their personal beliefs in risk-taking, trust, and demographic questions such as education and gender.  
 
 ### *Data collection*
-The survey's target respondent was the floodplain manager or administrator from participating and non-participating NFIP communities in Idaho, Oregon, Washington, and Alaska. This also included individuals that may use lidar for flood risk management applications in conjunction with software applications such as Geographic Information System (GIS). The majority of sample respondents were municipal, state, and federal employees, as well as some private industry employees. In order to achieve our target population, the sample frame included several sources of contacts including NFIP coordinators, Association of State Floodplain Managers (ASFPM) recognized Certified Floodplain Mangers (CFM), county-level GIS administrators, the five largest cities and tribal GIS administrators if present, county and tribal emergency managers, the Federal Geospatial Data Coordination Contacts by State, and additional, relevant contacts for the 2019 Northwest Regional Floodplain Managers Association (NORFMA) Conference contact list. 
+Our survey's target population included floodplain managers and administrators in Idaho, Oregon, Washington, and Alaska. This also included individuals that may use lidar for flood risk management applications in conjunction with software applications such as Geographic Information System (GIS). The majority of sample respondents were municipal, state, and federal employees, as well as some private industry employees. We constructed our sample frame using several publicly available lists of managers including NFIP coordinators, Association of State Floodplain Managers (ASFPM) recognized Certified Floodplain Mangers (CFM), county-level GIS administrators, the five largest cities and tribal GIS administrators if present, county and tribal emergency managers, the Federal Geospatial Data Coordination Contacts by State, and additional, relevant contacts for the 2019 Northwest Regional Floodplain Managers Association Conference contact list. 
 
 ```{r, survey distribution, include=FALSE}
 # Washington
@@ -340,21 +337,20 @@ ak.rr <- round((6/d)*100, digits=1)
 
 ```
 
-Survey data was collected through a structured, online survey distributed through Qualtrics to email addresses in our sample frame. The survey was sent to Idaho, Oregon, Washington and Alaska between May and July 2020. The survey took an average of 10 to 15 minutes to complete. There were four to six email correspondence messages with potential survey participants over the course of four weeks to help increased our response rate. Table \@ref(tab:data-collection) summarizes the potential respondents, number of usable survey responses, and response rate for each state. 
+We delivered the survey online using Qualtrics to 1,257 email addresses in our sample frame between May and July 2020. The survey took an average of 10 to 15 minutes to complete. We used Dillman et al. (2014) guidelines for web and mobile survey implementation. We initially set an introductory email that stated what was being asked of respondents, why they were selected, and information about the intent, purpose, and outcomes of the survey [@dillmanInternetPhoneMail2014]. We sent three to five follow-up email correspondence messages over the course of four weeks to help increase our response rate. In addition, we stated the survey was anonymous and their information would be kept confidential. Table \@ref(tab:data-collection) summarizes the potential respondents, number of survey responses, and response rate for each state. 
 
 ```{r, data-collection, echo=FALSE, fig.cap="\\label{survey data collection}"}
 survey.data <- matrix(c(a, 96, id.rr, b, 58, or.rr, c, 54, wa.rr, d, 6, ak.rr), ncol=3, byrow=TRUE)
-colnames(survey.data) <- c("Potential Respondents", "Number of Usable Responses", "Response Rate")
+colnames(survey.data) <- c("Potential Respondents", "Number of Responses", "Response Rate")
 rownames(survey.data) <- c("Idaho", "Oregon", "Washington", "Alaska")
 knitr::kable(survey.data, caption="Comparative survey distribution and collection.")
 ```
 
+We did not include Alaska in our final statistical analysis because of an insufficient number of responses. In addition, both Oregon and Washington had lower response rates than Idaho. Our response rates are within the typical bounds for online surveys of 10-25% [@sauermannIncreasingWebSurvey2013].  
 
-We did not include Alaska in our final statistical analysis because of insufficient number of responses. In addition, both Oregon and Washington had lower response rates than Idaho. It is common to see 10-25% response rate from detailed online surveys, which our response rates are within the typical bounds [@sauermannIncreasingWebSurvey2013]. We suspect the variation in response rates between states could be due to competing time availability during the COVID-19 pandemic which required extra time and energy from emergency managers, which was our target population for this survey. For this reason, we expected a lower survey response than typical. Given this, there may be some implications of the representativeness of sample. 
+### *Data Analysis*
 
-### *Estimation Analysis*
-
-A Bayesian approach with a Generalized Logistic Regression (GLR) met the model criteria for understanding risk because it is able to characterize non-linear, unpredictable outcomes. Furthermore, a logistic regression was used because the response variable, lidar use, is binary. This analysis uses a Markov Chain Monte Carlo algorithm to predict posterior distributions of each parameter's effect on lidar use. 
+We used a Bayesian Generalized Logistic Regression (GLR) to estimate the relationship between our predictors of interest and our response, lidar use, because it is binary.The results of this model allowed us to explore the effect of a multitude of predictors on lidar use in Idaho, Oregon, and Washington. We hypothesized that the model would be helpful for understanding the level of predictor influence, however we expected the predictive capacity of our model to be limited considering the large number of predictors and small sample size of our study. 
 
 The model followed a binomial distribution curve, where the distribution of lidar use, y_{ij}, was modeled as follows: 
 
@@ -368,6 +364,8 @@ The model followed a binomial distribution curve, where the distribution of lida
 
 where $x_{ij}$, predictors, are the ith rows of the known design matrices x, and $\beta$ is a vector of regression parameters. This Bayesian approach allowed for adjustment of uncertainty associated with each parameter on the final outcome, lidar use. In order to do this, each parameter had to be assigned a prior belief of that parameter value. The values for these parameters are fit by sampling from these distributions to maximize the likelihood under this model [@kwonClimateInformedFlood2008]. The regression parameters, $\beta$, are normally distributed, \[\beta_k\approx N(\eta_{\beta k}, \sigma_k)\]. Additionally, the parameters of this distribution, $\eta_{\beta k}$ and $\sigma_k$, also have prior distributions assigned to them that are constrained by 0 and a positive value.
 
+We used four Monte Carol Markov Chains (MCMC) with 2,000 iterations for warmup and an additional 2,000 iterations for the model. Additionally, the convergence was checked by visually inspecting the MCMC trace plots of the model parameters. We assessed effective sample size and checked model convergence, indicated by R-hat statistics close to 1 and stable, well-mixed chains [@gelmanBayesianWorkflow2020]. In addition, this methodology allowed for propagation of uncertainty throughout the model.
+
 #### **Priors**
 
 We used a weakly informative prior distribution to provide modest regularization, reduce the chance of a Type I error, and improve the out-of-sample prediction for regression models (McElreath 2015). Gelman et al. (2008) suggests the use of a Cauchy distribution with center 0 and scale 2.5 for logistic regression models [@gelmanWeaklyInformativeDefault2008]. This study uses a Cauchy distribution as recommended for models with a low sample size [@lemoineMovingNoninformativePriors2019]. 
@@ -378,17 +376,12 @@ We assessed the overall model performance through Leave-One-Out Cross-Validation
 
 #### **Error**
 
-We specified our model to compute 2,000 lidar use predictions based on our predictors. We interpreted the mean of these results as the projected lidar use. We used Bayesian R-squared to measure our overall model accuracy. However, this can be unreliable for small sample sizes, so we also calculated the mean absolute error (MAE) of our model. 
+We specified our model to compute 2,000 lidar use predictions based on our predictors. We interpreted the mean of these results as the projected lidar use. We used Bayesian R-squared to measure our overall model accuracy. However, this can be unreliable for small sample sizes, so we also calculated the mean absolute error (MAE) of our model. All Pareto k estimates are good (k < 0.5). 
 
-#### **Exploratory Analysis**
-
-Through the use of the programming language R and program Rstudio, we used Bayesian theory to analyze the effect of individual and collective predictors of lidar adoption. We used four Monte Carol Markov Chains (MCMC) with 2,000 iterations for warmup and an additional 2,000 iterations for the model. Additionally, the convergence was checked by visually inspecting the MCMC trace plots of the model parameters. We assessed effective sample size and checked model convergence, indicated by R-hat statistics close to 1 and stable, well-mixed chains [@gelmanBayesianWorkflow2020]
-
-The results of this model allowed us to explore the effect of a multitude of predictors on lidar use in Idaho, Oregon, and Washington. We hypothesized that the model would be helpful for understanding the level of predictor influence, however we expected the predictive capacity of our model to be limited considering the large number of predictors and small sample size of our study. 
 
 # RESULTS
 
-Table \@ref(tab:survey-dem-table) below compares the demographic and experience background of survey respondents by region. We received the greatest number of responses from Idaho. This is potentially because of the survey's affiliation with Boise State University and therefore flood risk managers in Idaho took greater interest in this study. Washington had the highest percentage of female respondents, second highest percentage of respondents with a Bachelor's degree or higher, and longest average length of flood risk manager experience. The results show no significant distortions of representativeness found for age, gender, geographical area, or level of education. 
+We received the greatest number of responses from Idaho (Table \@ref(tab:survey-dem-table). This is potentially because of the survey's affiliation with Boise State University and therefore flood risk managers in Idaho took greater interest in this study. Washington had the highest percentage of female respondents, second highest percentage of respondents with a Bachelor's degree or higher, and longest average length of flood risk manager experience. The results show slight differences in demographic factors summarized in Table \@ref(tab:survey-dem-table. We were unable to confirm if our survey sample demographics match those of the population in each state.
 
 
 ``` {r, survey demographics, include=FALSE}
@@ -872,9 +865,13 @@ wa.lidaruse <- round((35/54)*100, digits=1)
 
 ```
 
-## *Descriptive Results and Discussion*
+## *Descriptive Results*
 
-Table \@ref(tab:survey-variable-table) summarizes survey respondent's responses to individual and collective predictors of interest. Flood risk manager's in Washington reported the highest direct experience with flood damage in their community, compared to Oregon which reported the least, although the majority of flood risk managers in all three states have had direct experience with flood damage in their communities. Interestingly, the percent of flood risk managers who perceive future flood damage in their communities significantly dropped with only 28% of flood risk managers in Idaho perceiving the future risk. And despite this small belief in future damage, a higher number reported a perceived increase in flood severity. This discrepancy could indicate that despite knowledge of increased flood risk, manager's feel as if their communities are adapting or have adapted to handle an increase in flood severity. We found that flood risk managers in Washington tend to be less risk-averse than managers in Oregon and Idaho. This is interesting and is hard to say exactly why... *any thoughts?* Overall, all three states reported a high trust in the accuracy of flood risk management scientific products (e.g. topographic data, floodplain mapping, floodplain modeling) with Washington reporting the highest percentage of trust. 
+Table \@ref(tab:survey-variable-table) summarizes survey respondent's responses to individual and collective predictors of interest. 85.2% of flood risk manager's in Washington reported direct experience with flood damage in their community, compared to 72.4% of flood risk managers in Oregon. Despite this difference, it is important to note that over 70% of flood risk managers, in all three states, had direct experience with flood damage in their communities. 
+
+Interestingly, between 28% - 48% of respondents reported that they expect flood damage in their communities in the future. In addition, between 38.% - 57.4% of respondent's reported they believe there will be an increase in flood severity. This results illuminate a discrepancy between experienced flooding and perceived flooding risk. This discrepancy could indicate that despite knowledge of increased flood risk, manager's feel as if their communities are adapting or have adapted to handle an increase in flood severity. 
+
+We found that flood risk managers in Washington tend to be less risk-averse than managers in Oregon and Idaho. In addition, all three states reported a high trust in the accuracy of flood risk management scientific products (e.g. topographic data, floodplain mapping, floodplain modeling) with Washington reporting the highest percentage of trust. 
 
 ``` {r, survey-variable-table, echo=FALSE, fig.cap="\\label{survey variables}"}
 
@@ -966,125 +963,11 @@ rownames(survey.variable.stats) <- c( "Direct experience with flood damage in co
 knitr::kable(survey.variable.stats, caption="Descriptive statistics of survey question responses by State.")
 ```
 
-The collective predictors of lidar use varied slightly among the states, with the most significant difference between Washington, with an average of 42% proportion of lidar users in network, and Idaho with an average of 35% proportion of lidar users in network. We hypothesized this difference would lead to differential lidar adoption. Washington reported the highest amount of lidar use in flood risk management with almost 65% of respondent's using lidar. As expected, Idaho report a lower amount of 50% lidar users. This is significantly less than Washington and Oregon. One reason this could be the case is because of the lidar acquisition and coordination program in Washington. The Washington Geological Survey was granted funding from 2015-2021 for the collection and distribution of lidar data and lidar-derived products. Established in the Department of Natural Resources, the funding came from the Washington State General Fund and also provided funding for two permanent lidar positions, a lidar manager and a lidar specialist. In addition, Washington has focused on disseminating interactive (e.g. [Washington Story Map](https://wadnr.maps.arcgis.com/apps/Cascade/index.html?appid=b93c17aa1ef24669b656dbaea009b5ce_)) information on lidar to educate the public and advocate for sustained lidar investment at the state-level. Oregon and Idaho also have established lidar acquisition and coordination efforts, however they do not have a permanently funded position to manage lidar. 
-
-Furthermore, we looked at general trends for each of the predictors and lidar use. Figure \@ref(fig:summary-plots) point out an interesting variation in relationships of certain predictors and lidar use. For each state, the proportion of lidar users and lidar use was highly correlated. While, the direct experience of flood damage in a flood risk manager's community was not highly correlated for lidar use in Washington, unlike Idaho and Oregon. This could be because lidar is already a widely-established technology in Washington. 
-**build out this section more?**
-
-```{r, summary-plots, echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Relationship between lidar use and each predictor by region." }
-prop.lidar.plot <- ggplot(model.data.na.omit, aes(x = prop_lidar_network, y = lidaruse, colour = location)) +
-  #geom_jitter(width=0.2, height=0.2)+
-  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
-  labs(x = 'Proportion of Lidar Users in Respondents flood risk management Network', y = 'Lidar Use') +
-  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
-  scale_x_discrete(limits=c(0, 0.25, .50, .75, 1), labels=c("0%", "25", "50%", "75%", "100%")) +
-  theme_classic() +
-  theme(
-    axis.title = element_text(size = 12),
-    axis.text = element_text(size = 10),
-    legend.position = 'none'
-  )
-
-expertise.plot <- ggplot(model.data.na.omit, aes(x = expert_total, y = lidaruse, colour = location)) +
-  #geom_jitter(width=0.2, height=0.2)+
-  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
-  labs(x = 'Total Perceived Expertise in Respondents flood risk management Network', y = 'Lidar Use') +
-  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
-  #scale_x_discrete(limits=c(0, 0.25, .50, .75, 1), labels=c("0%", "25", "50%", "75%", "100%")) +
-  theme_classic() +
-  theme(
-    axis.title = element_text(size = 12),
-    axis.text = element_text(size = 10),
-    legend.position = 'none'
-  )
-
-comm.plot <- ggplot(model.data.na.omit, aes(x = comm_total, y = lidaruse, colour = location)) +
- # geom_jitter(width=0.2, height=0.2)+
-  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
-  labs(x = 'Total Communication with Alters in Respondents flood risk management Network', y = 'Lidar Use') +
-  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
-  #scale_x_discrete(limits=c(0, 0.25, .50, .75, 1), labels=c("0%", "25", "50%", "75%", "100%")) +
-  theme_classic() +
-  theme(
-    axis.title = element_text(size = 12),
-    axis.text = element_text(size = 10),
-    legend.position = 'none'
-  )
-
-knowledge.plot <- ggplot(model.data.na.omit, aes(x = incr_sev_flood, y = lidaruse, colour = location)) +
-  #geom_jitter(width=0.2, height=0.2)+
-  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
-  labs(x = 'Change in Flood Severity', y = 'Lidar Use') +
-  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
-  scale_x_discrete(limits=c(1,2,3), labels=c("Decrease", "Stay the Same", "Increase")) +
-  theme_classic() +
-  theme(
-    axis.title = element_text(size = 12),
-    axis.text = element_text(size = 10),
-    legend.position = 'none'
-  )
-
-future1.plot <- ggplot(model.data.na.omit, aes(x = future_1, y = lidaruse, colour = location)) +
- # geom_jitter(width=0.2, height=0.2)+
-  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
-  labs(x = 'Future Risk of Flood Damage', y = 'Lidar Use') +
-  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
-  scale_x_discrete(limits=c(0, .25, .5, .75, 1), labels=c("0%", "25%", "50%", "75%", "100%")) +
-  theme_classic() +
-  theme(
-    axis.title = element_text(size = 12),
-    axis.text = element_text(size = 10),
-    legend.position = 'none'
-  )
-
-soep1.plot <- ggplot(model.data.na.omit, aes(x = soep_1, y = lidaruse, colour = location)) +
-  #geom_jitter(width=0.2, height=0.2)+
-  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
-  labs(x = 'Future Risk of Flood Damage', y = 'Lidar Use') +
-  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
-  scale_x_discrete(limits=c(0, 5, 8), labels=c("Risk Averse", "Risk Neutral", "Risk Prone")) +
-  theme_classic() +
-  theme(
-    axis.title = element_text(size = 12),
-    axis.text = element_text(size = 10),
-    legend.position = 'none'
-  )
-
-experience.plot <- ggplot(model.data.na.omit, aes(x = experience_1, y = lidaruse, colour = location)) +
-  #geom_jitter(width=0.2, height=0.2)+
-  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
-  labs(x = 'Experienced flood damage in your community', y = 'Lidar Use') +
-  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
-  scale_x_discrete(limits=c(0, 1), labels=c("No", "Yes")) + 
-  theme_classic() +
-  theme(
-    axis.title = element_text(size = 12),
-    axis.text = element_text(size = 10),
-    legend.position = 'none'
-  )
-
-science.plot <- ggplot(model.data.na.omit, aes(x = science_trust, y = lidaruse, colour = location)) +
-  #geom_jitter(width=0.2, height=0.2)+
-  stat_smooth(method="glm", se=FALSE, method.args = list(family=binomial)) +
-  labs(x = 'Trust in Usefulness of Scientific Products', y = 'Lidar Use') +
-  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
- scale_x_discrete(limits=c(1, 5), labels=c("Strongly distrust", "Strongly trust")) +
-  theme_classic() +
-  theme(
-    axis.title = element_text(size = 12),
-    axis.text = element_text(size = 10),
-    legend.position = 'none'
-  )
-
-ggpubr::ggarrange(prop.lidar.plot, experience.plot, future1.plot, knowledge.plot, soep1.plot, science.plot, comm.plot, expertise.plot, ncol = 4, nrow = 2)
-
-```
-**need to add legend**
+The collective predictors of lidar use varied slightly among the states. Respondents in Washington, on average, had 42% of the people a respondent reported sharing information with also use lidar compared to 35% in Idaho. From this result, we hypothesized this difference. Washington reported the highest amount of lidar use in flood risk management with almost 65% of respondent's using lidar. Idaho reported the lowest amount of lidar users, 50%. 
 
 ## *Estimation Results* 
 
-### **Missing data values**
-Survey data commonly suffers from item nonresponse that can result in missing data. Typical methods for handling missing data are reweight, imputation, and dropping responses with missing data [@langkampTechniquesHandlingMissing2010]. The network section in our survey was more susceptible to nonresponse from respondents. Of the 208 usable responses we received, 50 of them did not fill out the network section. This could have been due to response fatigue since the network section came at the end of the survey. Another possible explanation is that this part was confusing or uncomfortable for respondents to fill out. In contrast, the rest of the survey, where the individual predictors of lidar use were collected, had less than 10% of responses with missing data. Since our model considers both individual and collective predictors and needs equal size data lengths for each predictor in order to run the model, we dropped almost 25% of our data responses. Since we used the drop technique for handling our missing data, it is likely that our results underestimate the effect size of our predictors and intercept [@langkampTechniquesHandlingMissing2010]. 
+Our GLR model allowed us to explore the effect of a multitude of predictors on lidar use in Idaho, Oregon, and Washington. We had item-nonresponse in the survey, in particular for the network section, and we dropped incomplete responses to conduct our statistical modeling. Of the 208 usable responses we received, 50 of them did not fill out the network section. Since our model considers both individual and collective predictors, and needs equal size data lengths for each predictor in order to run the model, we dropped almost 25% of our data responses, which may result in effect size underestimation [@langkampTechniquesHandlingMissing2010]. 
 
 ```{r, full model, include=FALSE, eval=FALSE}
 #add number of alters?
@@ -1168,35 +1051,7 @@ pp_check(full.mod.priors)
 
 ```
 
-Table \@ref(tab:model-summary-table) displays the results from our GLR model that considers the effect of individual and collective predictors on lidar use. In addition, this methodology allowed for propagation of uncertainty throughout the model. Our model has a Bayesian R-squared value of 'r r2.final.model` and LOOIC of 157.1 and standard error of 15.3. All Pareto k estimates are good (k < 0.5). 
-
-```{r, LOOCV, include=FALSE, eval=FALSE}
-
-Result_G <- data.frame(matrix(nrow=nrow(model.data.na.omit), ncol=6))
-
-#set the column names
-colnames(Result_G) <- c("MedianG", "LowerBound1_G", "LowerBound2_G", "UpperBound1_G", "UpperBound2_G", "R2_Bayes")
-
-#do the leave one out cross validation
-# create for loop function
-for(i in 1:length(model.data.na.omit$lidaruse)){ # for all the data points
- sub_dat <- model.data.na.omit[-i,] #remove each one at a time
- m_sub <-  stan_glmer(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + comm_total + expert_total + (1|location),
-                           prior = cauchy(0, .5), # I initially tried 2.5, but I got this message:  Rejecting initial value: Log probability evaluates to log(0), i.e. negative infinity.
-                           prior_intercept = cauchy(0,10), 
-                           data=model.data.na.omit, family= binomial(link = "logit"), control = list(adapt_delta = 0.99))
-  post=posterior_predict(m_sub, model.data.na.omit[i,], draws=4000)
-  r2=r2_bayes(m_sub)# predict that point
-  Result_G[i,1]=quantile(post, 0.5) # fill a df with the credibility intervals
-  Result_G[i,2]=quantile(post, 0.25) 
-  Result_G[i,3]=quantile(post, 0.025)
-  Result_G[i,4]=quantile(post, 0.75)
-  Result_G[i,5]=quantile(post,0.975)
-  Result_G[i,6]=r2
-}
-
-write.csv(Result_G, "C:/Users/tarapozzi/Documents/lidar_manuscript/data")
-```
+Table \@ref(tab:model-summary-table) displays the results from our GLR model that considers the effect of individual and collective predictors on lidar use.   
 
 ```{r, model-summary-table, echo=FALSE, fig.cap="\\label{summary_stats}"}
 #these are based on summary(full.mod) which returned a slightly better result that fullmod.priors
@@ -1220,18 +1075,26 @@ library(bayesplot)
 
 color_scheme_set("teal")
 
-areas.plot <- mcmc_areas(full.mod.priors, pars = c("incr_sev_flood", "experience_1", "soep_1", "future_1", "science_trust", "prop_lidar_network", "comm_total", "expert_total"), prob = 0.95) +
-  scale_y_discrete(expand = c(0, 0))
+areas.plot <- mcmc_areas(full.mod.priors, pars = c("incr_sev_flood", "experience_1", "soep_1", "future_1", "science_trust", "prop_lidar_network", "comm_total", "expert_total"), 
+                         prob=0.8,#80% intervals
+                         prob_outer=0.99, #99%
+                         point_est= "mean"
+                         ) +
+  scale_y_discrete(expand = c(0, 0)) +
+  labs(x = "Posterior Predictive Distribution", y = "Predictors") +
+  theme( axis.text=element_text(size=12), axis.title=element_text(size=14),plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14))
 
-ci.plot <- plot(full.mod.priors, pars = c("incr_sev_flood", "experience_1", "soep_1", "future_1", "science_trust", "prop_lidar_network", "comm_total", "expert_total"))
+ci.plot <- mcmc_intervals(full.mod.priors, pars = c("incr_sev_flood", "experience_1", "soep_1", "future_1", "science_trust", "prop_lidar_network", "comm_total", "expert_total")) +
+  labs(x = "Parameter Estimate Confidence Interval") +
+  theme( axis.text=element_text(size=12), axis.title=element_text(size=14),plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14))
 
 ggpubr::ggarrange(areas.plot, ci.plot)
 
 ```
 
-Figure \@ref(fig:posterior-distribution) displays the Posterior Predictive Distribution for each predictor and the intercept. This displays the range of predicted probability of lidar use given the predictor is present (?). 
+Figure \@ref(fig:posterior-distribution) displays the Posterior Predictive Distribution for each predictor and the intercept. We considered predictors that had parameter estimates whose 90% credible interval did not overlap with zero to be important. These results suggest that the proportion of lidar users in a respondent's flood risk management network had a non-zero effect on lidar use.
 
-```{r, model-plot, echo=FALSE, include=FALSE, fig.cap= "The effect of lidar proportion in respondent's network on lidar adoption, while holding all other variables at their minimum." }
+```{r, model-plot, echo=FALSE, include=TRUE, fig.cap= "The effect of lidar proportion in respondent's network on lidar adoption, while holding all other variables at their minimum." }
 ### let's try simulating continuous variable
 
 proplidar.sim <- seq(min(model.data.na.omit$prop_lidar_network), max(model.data.na.omit$prop_lidar_network), length.out=180)
@@ -1250,21 +1113,91 @@ preds <- add_fitted_draws(newdata=data.frame(prop_lidar_network=proplidar.sim,
                           draws = 200,
                           full.mod.priors)
 
-ggplot(preds, aes(x = prop_lidar_network, group=location, col=location)) +
-  stat_lineribbon(aes(y = .value), .width = c(.95, .5)) + 
+model_plot <- ggplot(preds, aes(x = prop_lidar_network, group=location, col=location)) +
+  stat_lineribbon(aes(y = .value), .width = c(.95, .5)) +
   scale_fill_brewer(palette = "Greys") +
-  labs(x = "Proportion of Lidar User's in Respondent's Network", y = "Probability of LiDAR adoption") + theme_bw() + 
+  labs(x = "Proportion of Lidar User's in Respondent's Network", y = "Probability of Lidar Adoption") + theme_classic() + 
   scale_colour_discrete(name = "Location") +
-  theme( axis.text=element_text(size=12), axis.title=element_text(size=14),plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14))
+  theme( axis.text=element_text(size=12), axis.title=element_text(size=14), plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14))
+
+model_plot
 
 ```
 
-Figure \@ref(fig:model-plot) displays the effect, when holding all other variables at their minimum, for respondents who have a higher percentage of lidar user's in their network there is an increased likelihood in lidar adoption when compared to respondents who did not have any network connections with lidar adoption. *create plot for each predictor?*
+Figure \@ref(fig:model-plot) displays the effect, when holding all other variables at their minimum, of the proportion of lidar user's in a respondent's network on lidar use by region. When every alter in a respondent's network used lidar, there was over 87% probability of the respondent adopting lidar. This drastically decreases as the proportion of lidar user's network decreases, with less than 15% of respondents using lidar.  
 
-Direct experience, future risk perception, and knowledge have moderate effect on lidar use. We found this result to be surprising in that we expected experience to have a greater impact on lidar adoption. Risk attitude, trust in science, network communication and expertise have minimal effect on lidar use. 
+```{r, future-exp plot, echo=FALSE, include=FALSE}
+### let's try simulating continuous variable
+
+future.sim <- rep(c(1:5), each=180)
+
+location.sim <- as.factor(rep(c("Idaho", "Oregon", "Washington"), times=60))
+
+preds.future <- add_fitted_draws(newdata=data.frame(future_1=future.sim,
+                                              soep_1=5,
+                                              incr_sev_flood=2, 
+                                              prop_lidar_network=0,
+                                              experience_1=0,
+                                              science_trust=3,
+                                              comm_total=0,
+                                              expert_total=0, 
+                                              location=location.sim),
+                          draws = 1000,
+                          full.mod.priors)
+
+ggplot(preds.future, aes(as.factor(future_1), .value)) + 
+  geom_boxplot() + 
+  labs(x = "Probabiility of Future Flood Experirence", y = "Probability of Lidar Adoption") +
+  theme_bw() 
+  
+
+```
+
+```{r, ppc check, echo=FALSE, fig.cap="Displays a histogram, using the PPC function, that represents the number of individuals that do not use lidar (0) in the left column and use lidar (1) in the right column. The y histogram represents the actual data and the yrep represents the data generated from the posterior predictive distribution. Overall, the yrep is representative of the y, meaning our model has an accurate predictive ability."}
+ppc <- pp_check(full.mod.priors, plotfun="ppc_hist", nreps=3) +
+  labs(x = "Lidar Use", y = "Number of Lidar Users") +
+  theme_bw() 
+
+ppc
+```
+
+Furthermore, we examined the  out-of-sample predictive performance of our model. The Loo Information Criterion was 157.1 with standard error of 15.3. The predictive power of the model was assessed by using a Posterior Predictive Checking from the bayesplot package in R. 
+
+```{r, LOOCV, include=FALSE, eval=FALSE}
+
+Result_G <- data.frame(matrix(nrow=nrow(model.data.na.omit), ncol=6))
+
+#set the column names
+colnames(Result_G) <- c("MedianG", "LowerBound1_G", "LowerBound2_G", "UpperBound1_G", "UpperBound2_G", "R2_Bayes")
+
+#do the leave one out cross validation
+# create for loop function
+for(i in 1:length(model.data.na.omit$lidaruse)){ # for all the data points
+ sub_dat <- model.data.na.omit[-i,] #remove each one at a time
+ m_sub <-  stan_glm(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + comm_total + expert_total + location,
+                           prior = cauchy(0, .5), # I initially tried 2.5, but I got this message:  Rejecting initial value: Log probability evaluates to log(0), i.e. negative infinity.
+                           prior_intercept = cauchy(0,10), 
+                           data=model.data.na.omit, family= binomial(link = "logit"), control = list(adapt_delta = 0.99))
+  post=posterior_predict(m_sub, model.data.na.omit[i,], draws=4000)
+  r2=r2_bayes(m_sub)# predict that point
+  Result_G[i,1]=quantile(post, 0.5) # fill a df with the credibility intervals
+  Result_G[i,2]=quantile(post, 0.25) 
+  Result_G[i,3]=quantile(post, 0.025)
+  Result_G[i,4]=quantile(post, 0.75)
+  Result_G[i,5]=quantile(post,0.975)
+  Result_G[i,6]=r2
+}
+
+write.csv(Result_G, "C:/Users/tarapozzi/Documents/lidar_manuscript/data")
+```
+
+Lastly, the Bayesian R-squared value for our model was 0.39, which represents a moderate effect size in social science data [@fergusonEffectSizePrimer2009]. 
+
 
 # DISCUSSION 
 
+One reason this could be the case is because of the lidar acquisition and coordination program in Washington. The Washington Geological Survey was granted funding from 2015-2021 for the collection and distribution of lidar data and lidar-derived products. Established in the Department of Natural Resources, the funding came from the Washington State General Fund and also provided funding for two permanent lidar positions, a lidar manager and a lidar specialist. In addition, Washington has focused on disseminating interactive (e.g. [Washington Story Map](https://wadnr.maps.arcgis.com/apps/Cascade/index.html?appid=b93c17aa1ef24669b656dbaea009b5ce_)) information on lidar to educate the public and advocate for sustained lidar investment at the state-level. Oregon and Idaho also have established lidar acquisition and coordination efforts, however they do not have a permanently funded position to manage lidar. 
+ 
 The above findings offer partial support for the trends we expected to uncover from our exploratory analysis. Our first trend we expected was the significant impact of collective predictors on lidar use. As expected, those with higher portion of lidar users in their social network were more likely to adopt lidar. This result is supported by existing technology adoption literature [e.g. @loRoleSocialNorms2013; @poussinFactorsInfluenceFlood2014; @viglioneInsightsSociohydrologyModelling2014]. However, the amount of communication and expertise of alters in our respondent's social network did not have a statistically significant impact on lidar adoption. This result is surprising and contrary to what we thought would increase adoption. We predicted that, due to social learning through communication and perceived expertise of peers, individuals would imitate their peers. Perhaps, our analysis did not capture the nuanced effect of communication with specific types of alters though and therefore had a null impact. As a result, the measure of lidar proportion was more representative of the influence that we were interested in studying. 
 
 We consider these findings illustrative of flood risk managers desire to learn from peers. This supports the themes that we encountered during our interviews prior to the survey. One interview we conducted, with a floodplain manager from Idaho at a regional conference,  mentioned "I feel like we should do a lot more networking in the state of Idaho, but oftentimes I have to reach out to people in like Washington for help or like at the national level for help. And so that's why coming to these conferences is really helpful for me because I meet peers outside of just our immediate, that have similar programs." This is an intriguing point that highlights a regional difference, where flood risk managers gain insightful information by networking outside of their state. It also highlights a potential gap in education in Idaho. This point was supported in our other interviews in Idaho; "we're all in the same kind of communities, which is helpful sometimes, but it also is a little bit of a silo thing... we are all stuck in the same point of view." 
