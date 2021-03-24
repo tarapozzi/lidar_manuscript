@@ -791,59 +791,222 @@ network.variables <- c("Email", "no_alters","comm_1","lidar_1","expertise_1_1","
                 "comm_8","lidar_8","expertise_8_1")
 
 network.subset <- survey.responses[network.variables] %>%
-                  drop_na(no_alters) 
+                  drop_na(no_alters) %>%
+                  mutate_at(vars('lidar_1', 'lidar_2','lidar_3', 'lidar_4', 'lidar_5','lidar_6', 'lidar_7', 'lidar_8'), as.factor)
 
-lidar.variables <- c("Email", "lidar_1","lidar_2","lidar_3",
-                     "lidar_4","lidar_5","lidar_6","lidar_7",
-                     "lidar_8")
+### expertise and comm calculations
 
-lidar.subset <- survey.responses[lidar.variables] 
+# alter uses lidar, calc their expertise and communication
+alter.1.subset <- network.subset %>%
+  subset(.,c(lidar_1)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_1|comm_1|expertise_1_1"))
 
-lidar.subset$no_lidar_alters <-  rowSums(lidar.subset == 1, na.rm=TRUE) # this adds allthe lidar users in the network (rep by 1)
+alter.1.subset$lidar_expert_1 <- alter.1.subset$expertise_1_1
+alter.1.subset$lidar_comm_1 <- alter.1.subset$comm_1
 
-# merge number of alters that use lidar with original dataset
+# alter doesn't use lidar, calculate their expertise and communication
+alter.1.subset.no <- network.subset %>%
+  subset(.,!c(lidar_1)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_1|comm_1|expertise_1_1"))
 
-survey.responses <- join(survey.responses, lidar.subset[, c("Email","no_lidar_alters")], by= "Email", type="left")
+alter.1.subset.no$lidar_expert_1_no <- alter.1.subset.no$expertise_1_1
+alter.1.subset.no$lidar_comm_1_no <- alter.1.subset.no$comm_1
+
+# combine new data columns into a new data frame 
+full.alter.1 <- join(alter.1.subset.no, alter.1.subset, by="Email", type="full") %>%
+                dplyr::select(matches("Email|lidar_1|lidar_comm_1|lidar_comm_1_no|lidar_expert_1|lidar_expert_1_no"))
+                
+### now repeat this for alllllll the alters
+# alter 2
+alter.2.subset <- network.subset %>%
+  subset(.,c(lidar_2)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_2|comm_2|expertise_2_1"))
+
+alter.2.subset$lidar_expert_2 <- alter.2.subset$expertise_2_1
+alter.2.subset$lidar_comm_2 <- alter.2.subset$comm_2
+
+# alter doesn't use lidar, calculate their expertise and communication
+alter.2.subset.no <- network.subset %>%
+  subset(.,!c(lidar_2)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_2|comm_2|expertise_2_1"))
+
+alter.2.subset.no$lidar_expert_2_no <- alter.2.subset.no$expertise_2_1
+alter.2.subset.no$lidar_comm_2_no <- alter.2.subset.no$comm_2
+
+# combine new data columns into a new data frame 
+full.alter.2 <- join(alter.2.subset.no, alter.2.subset, by="Email", type="full") %>%
+                dplyr::select(matches("Email|lidar_2|lidar_comm_2|lidar_comm_2_no|lidar_expert_2|lidar_expert_2_no"))
+
+# alter 3
+alter.3.subset <- network.subset %>%
+  subset(.,c(lidar_3)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_3|comm_3|expertise_3_1"))
+
+alter.3.subset$lidar_expert_3 <- alter.3.subset$expertise_3_1
+alter.3.subset$lidar_comm_3 <- alter.3.subset$comm_3
+
+# alter doesn't use lidar, calculate their expertise and communication
+alter.3.subset.no <- network.subset %>%
+  subset(.,!c(lidar_3)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_3|comm_3|expertise_3_1"))
+
+alter.3.subset.no$lidar_expert_3_no <- alter.3.subset.no$expertise_3_1
+alter.3.subset.no$lidar_comm_3_no <- alter.3.subset.no$comm_3
+
+# combine new data columns into a new data frame 
+full.alter.3 <- join(alter.3.subset.no, alter.3.subset, by="Email", type="full") %>%
+                dplyr::select(matches("Email|lidar_3|lidar_comm_3|lidar_comm_3_no|lidar_expert_3|lidar_expert_3_no"))
+
+# alter 4
+alter.4.subset <- network.subset %>%
+  subset(.,c(lidar_4)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_4|comm_4|expertise_4_1"))
+
+alter.4.subset$lidar_expert_4 <- alter.4.subset$expertise_4_1
+alter.4.subset$lidar_comm_4 <- alter.4.subset$comm_4
+
+# alter doesn't use lidar, calculate their expertise and communication
+alter.4.subset.no <- network.subset %>%
+  subset(.,!c(lidar_4)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_4|comm_4|expertise_4_1"))
+
+alter.4.subset.no$lidar_expert_4_no <- alter.4.subset.no$expertise_4_1
+alter.4.subset.no$lidar_comm_4_no <- alter.4.subset.no$comm_4
+
+# combine new data columns into a new data frame 
+full.alter.4 <- join(alter.4.subset.no, alter.4.subset, by="Email", type="full") %>%
+                dplyr::select(matches("Email|lidar_4|lidar_comm_4|lidar_comm_4_no|lidar_expert_4|lidar_expert_4_no"))
+
+# alter 5
+alter.5.subset <- network.subset %>%
+  subset(.,c(lidar_5)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_5|comm_5|expertise_5_1"))
+
+alter.5.subset$lidar_expert_5 <- alter.5.subset$expertise_5_1
+alter.5.subset$lidar_comm_5 <- alter.5.subset$comm_5
+
+# alter doesn't use lidar, calculate their expertise and communication
+alter.5.subset.no <- network.subset %>%
+  subset(.,!c(lidar_5)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_5|comm_5|expertise_5_1"))
+
+alter.5.subset.no$lidar_expert_5_no <- alter.5.subset.no$expertise_5_1
+alter.5.subset.no$lidar_comm_5_no <- alter.5.subset.no$comm_5
+
+# combine new data columns into a new data frame 
+full.alter.5 <- join(alter.5.subset.no, alter.5.subset, by="Email", type="full") %>%
+                dplyr::select(matches("Email|lidar_5|lidar_comm_5|lidar_comm_5_no|lidar_expert_5|lidar_expert_5_no"))
+
+# alter 6
+alter.6.subset <- network.subset %>%
+  subset(.,c(lidar_6)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_6|comm_6|expertise_6_1"))
+
+alter.6.subset$lidar_expert_6 <- alter.6.subset$expertise_6_1
+alter.6.subset$lidar_comm_6 <- alter.6.subset$comm_6
+
+# alter doesn't use lidar, calculate their expertise and communication
+alter.6.subset.no <- network.subset %>%
+  subset(.,!c(lidar_6)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_6|comm_6|expertise_6_1"))
+
+alter.6.subset.no$lidar_expert_6_no <- alter.6.subset.no$expertise_6_1
+alter.6.subset.no$lidar_comm_6_no <- alter.6.subset.no$comm_6
+
+# combine new data columns into a new data frame 
+full.alter.6 <- join(alter.6.subset.no, alter.6.subset, by="Email", type="full") %>%
+                dplyr::select(matches("Email|lidar_6|lidar_comm_6|lidar_comm_6_no|lidar_expert_6|lidar_expert_6_no"))
+
+# alter 7
+alter.7.subset <- network.subset %>%
+  subset(.,c(lidar_7)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_7|comm_7|expertise_7_1"))
+
+alter.7.subset$lidar_expert_7 <- alter.7.subset$expertise_7_1
+alter.7.subset$lidar_comm_7 <- alter.7.subset$comm_7
+
+# alter doesn't use lidar, calculate their expertise and communication
+alter.7.subset.no <- network.subset %>%
+  subset(.,!c(lidar_7)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_7|comm_7|expertise_7_1"))
+
+alter.7.subset.no$lidar_expert_7_no <- alter.7.subset.no$expertise_7_1
+alter.7.subset.no$lidar_comm_7_no <- alter.7.subset.no$comm_7
+
+# combine new data columns into a new data frame 
+full.alter.7 <- join(alter.7.subset.no, alter.7.subset, by="Email", type="full") %>%
+                dplyr::select(matches("Email|lidar_7|lidar_comm_7|lidar_comm_7_no|lidar_expert_7|lidar_expert_7_no"))
+
+# alter 8
+alter.8.subset <- network.subset %>%
+  subset(.,c(lidar_8)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_8|comm_8|expertise_8_1"))
+
+alter.8.subset$lidar_expert_8 <- alter.8.subset$expertise_8_1
+alter.8.subset$lidar_comm_8 <- alter.8.subset$comm_8
+
+# alter doesn't use lidar, calculate their expertise and communication
+alter.8.subset.no <- network.subset %>%
+  subset(.,!c(lidar_8)=="1") %>% # keep only lidar users
+  dplyr::select(matches("Email|lidar_8|comm_8|expertise_8_1"))
+
+alter.8.subset.no$lidar_expert_8_no <- alter.8.subset.no$expertise_8_1
+alter.8.subset.no$lidar_comm_8_no <- alter.8.subset.no$comm_8
+
+# combine new data columns into a new data frame 
+full.alter.8 <- join(alter.8.subset.no, alter.8.subset, by="Email", type="full") %>%
+                dplyr::select(matches("Email|lidar_8|lidar_comm_8|lidar_comm_8_no|lidar_expert_8|lidar_expert_8_no"))
 
 
-# now calculate the proportion of lidar users for each respondent 
 
-survey.responses$prop_lidar_network <- survey.responses$no_lidar_alters/survey.responses$no_alters # calculates the proportion of lidar users in the network
+## now bring all the seperate alter data frames into the main one
 
-
-# let's look at average amount of communication respondent has with network 
-
-comm.variables <- c("Email", "comm_1","comm_2","comm_3",
-                    "comm_4","comm_5","comm_6","comm_7",
-                    "comm_8")
-
-comm.subset <- survey.responses[comm.variables] 
-
-comm.subset$comm_total <-  rowSums(comm.subset[,2:9], na.rm=TRUE)
-comm.subset$comm_ave <- round(rowMeans(comm.subset[,2:9], na.rm=TRUE), digits=0)
+network.lidar.nolidar.subset <- list(full.alter.1, full.alter.2, full.alter.3, full.alter.4, full.alter.5, full.alter.6, full.alter.7, full.alter.8 ) %>%
+  reduce(full_join, by = "Email")
 
 
-survey.responses <- join(survey.responses, comm.subset[, c("Email", "comm_total", "comm_ave")], by= "Email", type="left")
+## let's calculate total expertise of alters that use lidar for each respondent
+expert.cols <- c("lidar_expert_1", "lidar_expert_2", "lidar_expert_3", "lidar_expert_4", "lidar_expert_5", "lidar_expert_6", "lidar_expert_7", "lidar_expert_8")
+
+network.lidar.nolidar.subset$total.alter.lidar.expertise <- rowSums(network.lidar.nolidar.subset[,expert.cols], na.rm = TRUE) 
+  
+## now calculate total expertise of alter that don't use lidar for each respondent
+expert.no.cols <- c("lidar_expert_1_no", "lidar_expert_2_no", "lidar_expert_3_no", "lidar_expert_4_no", "lidar_expert_5_no", "lidar_expert_6_no", "lidar_expert_7_no", "lidar_expert_8_no")
+
+network.lidar.nolidar.subset$total.alter.nolidar.expertise <- rowSums(network.lidar.nolidar.subset[,expert.no.cols], na.rm = TRUE) 
+
+## now subtract lidar expertise - no lidar expertise to get the final "net" expertise value for our model
+
+network.lidar.nolidar.subset$net_expertise <- (network.lidar.nolidar.subset$total.alter.lidar.expertise - network.lidar.nolidar.subset$total.alter.nolidar.expertise)
 
 
-# now let's calculate total expertise in a responsdent's network
-expertise.variables <- c("Email", "expertise_1_1","expertise_2_1","expertise_3_1",
-                         "expertise_7_1","expertise_6_1","expertise_5_1","expertise_4_1",
-                         "expertise_8_1")
+##### okay now let's do the same calculation for communication
 
-expertise.subset <- survey.responses[expertise.variables]
+## total comm for alters that use lidar for each respondent
+comm.cols <- c("lidar_comm_1", "lidar_comm_2", "lidar_comm_3", "lidar_comm_4", "lidar_comm_5", "lidar_comm_6", "lidar_comm_7", "lidar_comm_8")
+
+network.lidar.nolidar.subset$total.alter.lidar.comm<- rowSums(network.lidar.nolidar.subset[,comm.cols], na.rm = TRUE) 
+
+## total comm for alters that do not use lidar for each respondent
+comm.no.cols <- c("lidar_comm_1_no", "lidar_comm_2_no", "lidar_comm_3_no", "lidar_comm_4_no", "lidar_comm_5_no", "lidar_comm_6_no", "lidar_comm_7_no", "lidar_comm_8_no")
+
+network.lidar.nolidar.subset$total.alter.nolidar.comm<- rowSums(network.lidar.nolidar.subset[,comm.no.cols], na.rm = TRUE) 
 
 
-expertise.subset$expert_total <-  rowSums(expertise.subset[,2:9], na.rm=TRUE) 
-expertise.subset$expert_ave <- round(rowMeans(expertise.subset[,2:9], na.rm=TRUE), digits=0)
+## now subtract lidar comm - no lidar comm to get the final "net" comm value for our model
 
-survey.responses <- join(survey.responses, expertise.subset[, c("Email", "expert_total", "expert_ave")], by= "Email", type="left")
+network.lidar.nolidar.subset$net_comm <- (network.lidar.nolidar.subset$total.alter.lidar.comm - network.lidar.nolidar.subset$total.alter.nolidar.comm)
+
+
+## now rejoin this information with survey.responses
+
+survey.responses <- join(survey.responses, network.lidar.nolidar.subset[, c("Email", "net_expertise", "net_comm")], by= "Email", type="left")
 
 ```
 
 ```{r, model specific data, include=FALSE}
 # Dataset for the model
-model.variables <- c("lidaruse", "experience_1", "future_1", "incr_sev_flood",  "soep_1", "science_trust","location","prop_lidar_network", "comm_total", "expert_total")
+model.variables <- c("lidaruse", "experience_1", "future_1", "incr_sev_flood",  "soep_1", "science_trust","location","prop_lidar_network", "net_comm", "net_expertise")
 
 model.data <- survey.responses[model.variables]
 
@@ -1044,78 +1207,14 @@ The collective predictors of lidar use varied slightly among the states. Respond
 
 Our GLR model allowed us to explore the effect of a multitude of predictors on lidar use in Idaho, Oregon, and Washington. We had item-nonresponse in the survey, in particular for the network section, and we dropped incomplete responses to conduct our statistical modeling. Of the 208 usable responses we received, 50 of them did not fill out the network section. Since our model considers both individual and collective predictors, and needs equal size data lengths for each predictor in order to run the model, we dropped almost 25% of our data responses, which may result in effect size underestimation [@langkampTechniquesHandlingMissing2010]. 
 
-```{r, full model, include=FALSE, eval=FALSE}
-#add number of alters?
-full.mod <- stan_glmer(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + comm_total + expert_total + (1|location), data=model.data.na.omit, family= binomial(link = "logit")) # this eliminates if there are responses with a certain amount of Na's # also experience_4 had zero yes's so 
-summary(full.mod)                                                           
-plot(full.mod)
-plot(full.mod, "areas", prob = 0.95, prob_outer = 1)
-median(bayes_R2(full.mod)) # best r2 value
-pp_check(full.mod) # this checks the posterior predictive ability. looks good
-
-# informed priors model with cauchy distribution, based on full mod prior summary
-full.mod.priors2.5 <- stan_glmer(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + comm_total + expert_total + (1|location),
-                           prior = cauchy(0, 2.5),
-                           prior_intercept = cauchy(0,10), 
-                           data=model.data.na.omit, family= binomial(link = "logit")) 
-
-summary(full.mod.priors)
-plot(full.mod.priors)
-plot(full.mod.priors, "areas", prob = 0.95, prob_outer = 1)
-r2.final.model <- median(bayes_R2(full.mod.priors))
-pp_check(full.mod.priors) 
-
-# informed priors model with cauchy distribution, based on full mod prior summary
-full.mod.priors <- stan_glmer(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + comm_total + expert_total + (1|location),
-                           prior = cauchy(0, .5), # I initially tried 2.5, but I got this message:  Rejecting initial value: Log probability evaluates to log(0), i.e. negative infinity.
-                           prior_intercept = cauchy(0,10), 
-                           data=model.data.na.omit, family= binomial(link = "logit")) 
-
-summary(full.mod.priors)
-plot(full.mod.priors)
-plot(full.mod.priors, "areas", prob = 0.95, prob_outer = 1)
-r2.final.model <- median(bayes_R2(full.mod.priors))
-pp_check(full.mod.priors) 
-
-# informed priors model with cauchy distribution, this is based on the gelman et al. 2008 paper
-full.mod.priors2 <- stan_glmer(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + comm_total + expert_total + (1|location),
-                           prior = cauchy(location=c(0,0,0,0,0,0,0,0), 
-                                          scale=c(3.7,6.4,1.1,8.4,3.3,7.0,.3,.1)),
-                           prior_intercept = cauchy(0,10), 
-                           data=model.data.na.omit, family= binomial(link = "logit")) 
-
-summary(full.mod.priors2)
-plot(full.mod.priors2)
-plot(full.mod.priors2, "areas", prob = 0.95, prob_outer = 1)
-median(bayes_R2(full.mod.priors2))
-pp_check(full.mod.priors2) 
-
-# no varying effects
-full.mod.no.vary <- stan_glm(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + comm_total + expert_total,
-                           prior = cauchy(0, .5), # I initially tried 2.5, but I got this message:  Rejecting initial value: Log probability evaluates to log(0), i.e. negative infinity.
-                           prior_intercept = cauchy(0,10), 
-                           data=model.data.na.omit, family= binomial(link = "logit")) 
-
-summary(full.mod.no.vary)
-plot(full.mod.no.vary)
-plot(full.mod.no.vary, "areas", prob = 0.95, prob_outer = 1)
-r2.final.model <- median(bayes_R2(full.mod.no.vary))
-pp_check(full.mod.no.vary)
-# null model
-
-null.mod <- stan_glm(lidaruse ~ 1, data=model.data.na.omit, family=binomial(link=logit))
-
-## Model comparison
-
-loo_compare(loo(full.mod), loo(full.mod.priors), loo(full.mod.priors2.5), loo(full.mod.priors2), loo(full.mod.no.vary))
-# Based on the LOOIC comparison, full mod no vary with cauchy is the most accurate.
-```
-
 ```{r, final model, include=FALSE}
 # informed priors model with cauchy distribution, based on full mod prior summary
-full.mod.priors <- stan_glm(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + comm_total + expert_total + location,
-                           prior = cauchy(0, .5), # I initially tried 2.5, but I got this message:  Rejecting initial value: Log probability evaluates to log(0), i.e. negative infinity.
+full.mod.priors <- stan_glm(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + net_comm + net_expertise + location,
+                           prior = cauchy(0, 2.5), # based on gillman recommendation
                            prior_intercept = cauchy(0,10), 
+                           data=model.data.na.omit, family= binomial(link = "logit")) 
+
+full.mod.nopriors <- stan_glm(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + net_comm + net_expertise + location,
                            data=model.data.na.omit, family= binomial(link = "logit")) 
 
 summary(full.mod.priors)
@@ -1126,6 +1225,7 @@ pp_check(full.mod.priors)
 mae(full.mod.priors, model.data.na.omit)
 rmse(full.mod.priors, model.data.na.omit)
 
+loo_compare(loo(full.mod.priors), loo(full.mod.nopriors)) # full model with prior specification is better
 ```
 
 Table \@ref(tab:model-summary-table) displays the results from our GLR model that considers the effect of individual and collective predictors on lidar use.   
@@ -1184,8 +1284,8 @@ preds <- add_fitted_draws(newdata=data.frame(prop_lidar_network=proplidar.sim,
                                               future_1=0,
                                               experience_1=0,
                                               science_trust=3,
-                                              comm_total=0,
-                                              expert_total=0, 
+                                              net_comm=0,
+                                              net_expertise=0, 
                                               location=location.sim),
                           draws = 200,
                           full.mod.priors)
@@ -1243,7 +1343,7 @@ ppc
 #*look up bayesplot 
 ```
 
-Furthermore, we examined the out-of-sample predictive performance of our model. The Loo Information Criterion was 157.1 with standard error of 15.3. The predictive power of the model was assessed by using a Posterior Predictive Checking from the bayesplot package in R. 
+Furthermore, we examined the out-of-sample predictive performance of our model. The Loo Information Criterion was 161.4 with standard error of 17.5. The predictive power of the model was assessed by using a Posterior Predictive Checking from the bayesplot package in R. 
 
 ```{r, LOOCV, include=FALSE, eval=FALSE}
 
@@ -1256,8 +1356,8 @@ colnames(Result_G) <- c("MedianG", "LowerBound1_G", "LowerBound2_G", "UpperBound
 # create for loop function
 for(i in 1:length(model.data.na.omit$lidaruse)){ # for all the data points
  sub_dat <- model.data.na.omit[-i,] #remove each one at a time
- m_sub <-  stan_glm(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + comm_total + expert_total + location,
-                           prior = cauchy(0, .5), # I initially tried 2.5, but I got this message:  Rejecting initial value: Log probability evaluates to log(0), i.e. negative infinity.
+ m_sub <-  stan_glm(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + net_comm + net_expert + location,
+                           prior = cauchy(0, 2.5), # I initially tried 2.5, but I got this message:  Rejecting initial value: Log probability evaluates to log(0), i.e. negative infinity.
                            prior_intercept = cauchy(0,10), 
                            data=model.data.na.omit, family= binomial(link = "logit"), control = list(adapt_delta = 0.99))
   post=posterior_predict(m_sub, model.data.na.omit[i,], draws=4000)
@@ -1273,7 +1373,7 @@ for(i in 1:length(model.data.na.omit$lidaruse)){ # for all the data points
 write.csv(Result_G, "C:/Users/tarapozzi/Documents/lidar_manuscript/data")
 ```
 
-The Mean Absolute Error of our model was 1.31 and Root Mean Square Error was 1.50; therefore, our model had minimal variance in individual errors in our sample. Lastly, the Bayesian R-squared value for our model was 0.39, which represents a moderate effect size in social science data [@fergusonEffectSizePrimer2009]. 
+The Mean Absolute Error of our model was 1.45 and Root Mean Square Error was 1.75 therefore, our model had minimal variance in individual errors in our sample. Lastly, the Bayesian R-squared value for our model was 0.43, which represents a moderate effect size in social science data [@fergusonEffectSizePrimer2009]. 
 
 
 # DISCUSSION 
@@ -1300,6 +1400,127 @@ Our study could improve causual inference by conduction a longitudinal study to 
 
 
 # CONCLUSION
+
+
+```{r, univariate-plots}
+a <- hist(model.data.na.omit$experience_1)
+b <- hist(model.data.na.omit$future_1)
+c <- hist(model.data.na.omit$soep_1)
+d <- hist(model.data.na.omit$incr_sev_flood)
+e <- hist(model.data.na.omit$science_trust)
+f <- hist(model.data.na.omit$prop_lidar_network)
+g <- hist(model.data.na.omit$net_comm)
+h <- hist(model.data.na.omit$net_expertise)
+
+```
+
+
+```{r, bivariate-plots, echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Relationship between lidar use and each predictor by region." }
+prop.lidar.plot <- ggplot(model.data.na.omit, aes(x = prop_lidar_network, y = lidaruse, colour = location)) +
+  #geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Proportion of Lidar Users in Respondents flood risk management Network', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(0, 0.25, .50, .75, 1), labels=c("0%", "25", "50%", "75%", "100%")) +
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+expertise.plot <- ggplot(model.data.na.omit, aes(x = net_expertise, y = lidaruse, colour = location)) +
+  #geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Total Perceived Expertise in Respondents flood risk management Network', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  #scale_x_discrete(limits=c(0, 0.25, .50, .75, 1), labels=c("0%", "25", "50%", "75%", "100%")) +
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+comm.plot <- ggplot(model.data.na.omit, aes(x = net_comm, y = lidaruse, colour = location)) +
+ # geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Total Communication with Alters in Respondents flood risk management Network', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  #scale_x_discrete(limits=c(0, 0.25, .50, .75, 1), labels=c("0%", "25", "50%", "75%", "100%")) +
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+knowledge.plot <- ggplot(model.data.na.omit, aes(x = incr_sev_flood, y = lidaruse, colour = location)) +
+  #geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Change in Flood Severity', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(1,2,3), labels=c("Decrease", "Stay the Same", "Increase")) +
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+future1.plot <- ggplot(model.data.na.omit, aes(x = future_1, y = lidaruse, colour = location)) +
+ # geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Future Risk of Flood Damage', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(0, .25, .5, .75, 1), labels=c("0%", "25%", "50%", "75%", "100%")) +
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+soep1.plot <- ggplot(model.data.na.omit, aes(x = soep_1, y = lidaruse, colour = location)) +
+  #geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Future Risk of Flood Damage', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(0, 5, 8), labels=c("Risk Averse", "Risk Neutral", "Risk Prone")) +
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+experience.plot <- ggplot(model.data.na.omit, aes(x = experience_1, y = lidaruse, colour = location)) +
+  #geom_jitter(width=0.2, height=0.2)+
+  geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
+  labs(x = 'Experienced flood damage in your community', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+  scale_x_discrete(limits=c(0, 1), labels=c("No", "Yes")) + 
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+science.plot <- ggplot(model.data.na.omit, aes(x = science_trust, y = lidaruse, colour = location)) +
+  #geom_jitter(width=0.2, height=0.2)+
+  stat_smooth(method="glm", se=FALSE, method.args = list(family=binomial)) +
+  labs(x = 'Trust in Usefulness of Scientific Products', y = 'Lidar Use') +
+  scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
+ scale_x_discrete(limits=c(1, 5), labels=c("Strongly distrust", "Strongly trust")) +
+  theme_classic() +
+  theme(
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.position = 'none'
+  )
+
+ggpubr::ggarrange(prop.lidar.plot, experience.plot, future1.plot, knowledge.plot, soep1.plot, science.plot, comm.plot, expertise.plot, ncol = 4, nrow = 2)
 
 
 # Literature Cited
