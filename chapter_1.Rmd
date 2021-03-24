@@ -4,8 +4,8 @@ author:
 - name: Tara Pozzi
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
-  bookdown::word_document2: default
   bookdown::pdf_document2: default
+  bookdown::word_document2: default
 thanks: '.....'
 affiliation: Boise State University
 runhead: XXXX
@@ -56,7 +56,7 @@ library(knitr) #for global options
 library(formatR) 
 ```
 
-```{r, global options, include=FALSE}
+```{r, global options, include=FALSE, eval=FALSE}
 # Setup options for code decoration
 opts_chunk$set(tidy = TRUE, tidy.opts = list(blank = FALSE, width.cutoff = 60),
 highlight = TRUE)
@@ -1008,7 +1008,7 @@ survey.responses <- join(survey.responses, network.lidar.nolidar.subset[, c("Ema
 # Dataset for the model
 model.variables <- c("lidaruse", "experience_1", "future_1", "incr_sev_flood",  "soep_1", "science_trust","location","prop_lidar_network", "net_comm", "net_expertise")
 
-model.data <- survey.responses[model.variables]
+model.data <- survey.responses[,model.variables]
 
 str(model.data)
 
@@ -1252,7 +1252,7 @@ library(bayesplot)
 
 color_scheme_set("teal")
 
-areas.plot <- mcmc_areas(full.mod.priors, pars = c("incr_sev_flood", "experience_1", "soep_1", "future_1", "science_trust", "prop_lidar_network", "comm_total", "expert_total"), 
+areas.plot <- mcmc_areas(full.mod.priors, pars = c("incr_sev_flood", "experience_1", "soep_1", "future_1", "science_trust", "prop_lidar_network", "net_comm", "net_expertise"), 
                          prob=0.8,#80% intervals
                          prob_outer=0.99, #99%
                          point_est= "mean"
@@ -1261,11 +1261,7 @@ areas.plot <- mcmc_areas(full.mod.priors, pars = c("incr_sev_flood", "experience
   labs(x = "Posterior Predictive Distribution", y = "Predictors") +
   theme( axis.text=element_text(size=12), axis.title=element_text(size=14),plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14))
 
-ci.plot <- mcmc_intervals(full.mod.priors, pars = c("incr_sev_flood", "experience_1", "soep_1", "future_1", "science_trust", "prop_lidar_network", "comm_total", "expert_total")) +
-  labs(x = "Parameter Estimate Confidence Interval") +
-  theme( axis.text=element_text(size=12), axis.title=element_text(size=14),plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14))
-
-ggpubr::ggarrange(areas.plot, ci.plot)
+areas.plot
 
 ```
 
@@ -1285,9 +1281,9 @@ preds <- add_fitted_draws(newdata=data.frame(prop_lidar_network=proplidar.sim,
                                               experience_1=0,
                                               science_trust=3,
                                               net_comm=0,
-                                              net_expertise=0, 
+                                              net_expertise=0, #min expertise 
                                               location=location.sim),
-                          draws = 200,
+                          draws = 1000,
                           full.mod.priors)
 
 model_plot <- ggplot(preds, aes(x = prop_lidar_network, group=location, col=location)) +
@@ -1402,7 +1398,7 @@ Our study could improve causual inference by conduction a longitudinal study to 
 # CONCLUSION
 
 
-```{r, univariate-plots}
+```{r, univariate-plots, echo=FALSE}
 a <- hist(model.data.na.omit$experience_1)
 b <- hist(model.data.na.omit$future_1)
 c <- hist(model.data.na.omit$soep_1)
@@ -1484,7 +1480,7 @@ future1.plot <- ggplot(model.data.na.omit, aes(x = future_1, y = lidaruse, colou
 soep1.plot <- ggplot(model.data.na.omit, aes(x = soep_1, y = lidaruse, colour = location)) +
   #geom_jitter(width=0.2, height=0.2)+
   geom_smooth(se = FALSE, method = 'lm', label=TRUE) +
-  labs(x = 'Future Risk of Flood Damage', y = 'Lidar Use') +
+  labs(x = 'Risk-taking Attitude', y = 'Lidar Use') +
   scale_y_discrete(limits=c(0,1), labels=c("No", "Yes")) +
   scale_x_discrete(limits=c(0, 5, 8), labels=c("Risk Averse", "Risk Neutral", "Risk Prone")) +
   theme_classic() +
@@ -1521,6 +1517,6 @@ science.plot <- ggplot(model.data.na.omit, aes(x = science_trust, y = lidaruse, 
   )
 
 ggpubr::ggarrange(prop.lidar.plot, experience.plot, future1.plot, knowledge.plot, soep1.plot, science.plot, comm.plot, expertise.plot, ncol = 4, nrow = 2)
-
+```
 
 # Literature Cited
