@@ -1077,7 +1077,7 @@ tidy.exp$exp <- as.character(tidy.exp$exp)
 tidy.exp$category <- as.character(tidy.exp$category)
 str(tidy.exp)
 
-ggplot(tidy.exp, aes(fill=category, y=count, x=exp)) +
+exp.barchart <- ggplot(tidy.exp, aes(fill=category, y=count, x=exp)) +
   geom_bar(position="fill", stat="identity", width=0.3) + 
   #geom_text(aes(label=..count..),stat="count",position=position_fill(vjust=0.5)) +
   scale_x_discrete(limits=c("1", "5", "2", "3", "4"),
@@ -1095,6 +1095,7 @@ ggplot(tidy.exp, aes(fill=category, y=count, x=exp)) +
   theme(text = element_text(size=20),
         axis.text.x = element_text(hjust=1))
 
+exp.barchart
 ```
 
 Despite the majority of flood risk managers experiencing floods in the past, only 28% - 48% of respondents reported that they expect flood damage in their communities in the future.
@@ -1114,7 +1115,7 @@ tidy.future$future <- as.character(tidy.future$future)
 tidy.future$category <- as.character(tidy.future$category)
 str(tidy.future)
 
-ggplot(tidy.future, aes(fill=category, y=count, x=future)) +
+future.barchart <- ggplot(tidy.future, aes(fill=category, y=count, x=future)) +
   geom_bar(position="fill", stat="identity", width=0.3) + 
   scale_x_discrete(limits=c("1", "5", "2", "3", "4"),
                    labels=c( "damage to property in your community?","disruption to your electric, water, \n phone, and other basic services?","deaths and injury to people in your community?", "damage to your home?","deaths or injuries to you or members \n of your immediate family?"))+
@@ -1130,6 +1131,7 @@ ggplot(tidy.future, aes(fill=category, y=count, x=future)) +
   theme(text = element_text(size=20),
         axis.text.x = element_text(hjust=1))
 
+future.barchart
 ```
 
 In addition, between 38.% - 57.4% of respondent's reported they believe there will be an increase in flood severity. This results illuminate a discrepancy between experienced flooding and perceived flooding risk. This discrepancy could indicate that despite knowledge of increased flood risk, manager's feel as if their communities are adapting or have adapted to handle an increase in flood severity. 
@@ -1235,7 +1237,7 @@ Our GLR model allowed us to explore the effect of a multitude of predictors on l
 ```{r, final model, include=FALSE}
 # informed priors model with cauchy distribution, based on full mod prior summary
 full.mod.priors <- stan_glm(lidaruse ~ incr_sev_flood + experience_1 + soep_1 + future_1 + science_trust + prop_lidar_network + net_comm + net_expertise + location,
-                           prior = cauchy(0, 2.5), # based on gillman recommendation
+                           prior = cauchy(0, 2.5), # based on gelman recommendation
                            prior_intercept = cauchy(0,10), 
                            data=model.data, family= binomial(link = "logit")) 
 
@@ -1277,12 +1279,14 @@ library(bayesplot)
 
 color_scheme_set("teal")
 
-areas.plot <- mcmc_areas(full.mod.priors, pars = c("incr_sev_flood", "experience_1", "soep_1", "future_1", "science_trust", "prop_lidar_network", "net_comm", "net_expertise"), 
+areas.plot <- mcmc_areas(full.mod.priors, pars = c("incr_sev_flood", "experience_1", "future_1", "science_trust", "soep_1", "prop_lidar_network", "net_comm", "net_expertise"), 
                          prob=0.8,#80% intervals
                          prob_outer=0.99, #99%
                          point_est= "mean"
                          ) +
-  scale_y_discrete(expand = c(0, 0)) +
+  scale_y_discrete(expand = c(0, 0),
+                   limits= c("incr_sev_flood", "experience_1", "soep_1", "future_1", "science_trust", "prop_lidar_network", "net_comm", "net_expertise"), 
+                   labels = c("Increase in Flood Severity", "Direct Experience", "Future Direct Experience", "Trust in Scientific Products", "Risk-taking Attitude", "Proportion of Lidar's Users in Network", "Net Communication in Network", "Net Expertise in Network")) +
   labs(x = "Posterior Predictive Distribution", y = "Predictors") +
   theme( axis.text=element_text(size=12), axis.title=element_text(size=14),plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14))
 
@@ -1292,12 +1296,10 @@ areas.plot
 
 Figure \@ref(fig:posterior-distribution) displays the Posterior Predictive Distribution for each predictor and the intercept. We considered predictors that had parameter estimates whose 90% credible interval did not overlap with zero to be important. These results suggest that the proportion of lidar users in a respondent's flood risk management network had a non-zero effect on lidar use.
 
-```{r, model-plot, echo=FALSE, include=TRUE, fig.cap= "The effect of lidar proportion in respondent's network on lidar adoption, while holding all other variables at their minimum." }
+```{r, proplidar-plot, echo=FALSE, include=TRUE, fig.cap= "The effect of lidar proportion in respondent's network on lidar adoption, while holding all other variables at their minimum." }
 ### let's try simulating continuous variable
 
-proplidar.sim <- seq(0,1, length.out=180)
-
-location.sim <- as.factor(rep(c("Idaho", "Oregon", "Washington"), times=60))
+proplidar.sim <- seq(0,1, length.out=149)
 
 preds <- add_fitted_draws(newdata=data.frame(prop_lidar_network=proplidar.sim,
                                               soep_1=5,
@@ -1308,46 +1310,93 @@ preds <- add_fitted_draws(newdata=data.frame(prop_lidar_network=proplidar.sim,
                                               net_comm=0,
                                               net_expertise=0, #min expertise 
                                               location="Idaho"),
-                          draws = 500,
+                          draws = 4000,
                           full.mod.priors)
 
-preds2 <- add_fitted_draws(newdata=data.frame(prop_lidar_network=proplidar.sim,
+proplidar.plot <- ggplot(preds, aes(x = prop_lidar_network)) +
+  stat_lineribbon(aes(y = .value), .width = c(.95, .5)) +
+  scale_fill_brewer(palette = "Greys") +
+  ylim(0,1) +
+  labs(x = "Proportion of Lidar User's in Respondent's Network", y = "Probability of Lidar Adoption") + theme_classic() + 
+  scale_colour_discrete(name = "Location") +
+  theme( axis.text=element_text(size=12), axis.title=element_text(size=14), plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14), legend.position = "none")
+
+proplidar.plot
+```
+
+```{r, comm-plot, echo=FALSE, include=TRUE, fig.cap= "The effect of lidar proportion in respondent's network on lidar adoption, while holding all other variables at their minimum." }
+### let's try simulating continuous variable
+
+comm.sim <- seq(-6,6,length.out=149)
+
+preds.comm <- add_fitted_draws(newdata=data.frame(net_comm=comm.sim,
                                               soep_1=5,
                                               incr_sev_flood=2, 
                                               future_1=0,
                                               experience_1=0,
                                               science_trust=3,
-                                              net_comm=0,
+                                              prop_lidar_network=0,
                                               net_expertise=0, #min expertise 
                                               location="Idaho"),
                           draws = 4000,
                           full.mod.priors)
-model_plot <- ggplot(preds, aes(x = prop_lidar_network)) +
-  stat_lineribbon(aes(y = .value), .width = c(.95, .5)) +
-  scale_fill_brewer(palette = "Greys") +
-  labs(x = "Proportion of Lidar User's in Respondent's Network", y = "Probability of Lidar Adoption") + theme_classic() + 
-  scale_colour_discrete(name = "Location") +
-  theme( axis.text=element_text(size=12), axis.title=element_text(size=14), plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14))
 
-model_plot2 <- ggplot(preds2, aes(x = prop_lidar_network)) +
+comm.plot <- ggplot(preds.comm, aes(x = net_comm)) +
   stat_lineribbon(aes(y = .value), .width = c(.95, .5)) +
   scale_fill_brewer(palette = "Greys") +
-  labs(x = "Proportion of Lidar User's in Respondent's Network", y = "Probability of Lidar Adoption") + theme_classic() + 
+  ylim(0,1) +
+  scale_x_discrete(limits= c(-6, 0, 6), 
+                   labels= c("All communication with \nnon-lidar users", "Equal communication with \nlidar and non-lidar users", "All communication with \nlidar users")) +
+  labs(x = "Net Frequency of Communication in Respondent's Social Network", y = "Probability of Lidar Adoption") + 
+  theme_classic() + 
   scale_colour_discrete(name = "Location") +
-  theme( axis.text=element_text(size=12), axis.title=element_text(size=14), plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14))
-model_plot
-model_plot2
+  theme( axis.text=element_text(size=12), axis.title=element_text(size=14), plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14), legend.position = "none")
+
+comm.plot
+```
+
+```{r, exp-plot, echo=FALSE, include=TRUE, fig.cap= "The effect of lidar proportion in respondent's network on lidar adoption, while holding all other variables at their minimum." }
+### let's try simulating continuous variable
+
+exp.sim <- seq(-10,10,length.out=149)
+
+preds.exp <- add_fitted_draws(newdata=data.frame(net_expertise=exp.sim,
+                                              soep_1=5,
+                                              incr_sev_flood=2, 
+                                              future_1=0,
+                                              experience_1=0,
+                                              science_trust=3,
+                                              prop_lidar_network=0,
+                                              net_comm=0, #min expertise 
+                                              location="Idaho"),
+                          draws = 4000,
+                          full.mod.priors)
+
+exp.plot <- ggplot(preds.exp, aes(x = net_expertise)) +
+  stat_lineribbon(aes(y = .value), .width = c(.95, .5)) +
+  scale_fill_brewer(palette = "Greys") +
+  ylim(0,1) +
+  scale_x_discrete(limits= c(-10, 0, 10), 
+                   labels= c("High expertise of \nnon-lidar users", "Equal expertise of \nlidar and non-lidar users", "High expertise of \nlidar users")) +
+  labs(x = "Net Expertise in Respondent's Social Network", y = "Probability of Lidar Adoption") + 
+  theme_classic() + 
+  theme( axis.text=element_text(size=12), axis.title=element_text(size=14), plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14), legend.position = "none")
+
+exp.plot
+```
+
+```{r, collective-predictors-plots, include=FALSE}
+coll.plots <- ggpubr::ggarrange(proplidar.plot, comm.plot, exp.plot, ncol=3, nrow=1)
 
 ```
+
 
 Figure \@ref(fig:model-plot) displays the effect, when holding all other variables at their minimum, of the proportion of lidar user's in a respondent's network on lidar use by region. When every alter in a respondent's network used lidar, there was over 87% probability of the respondent adopting lidar. This drastically decreases as the proportion of lidar user in respondent's network decreases, with less than 15% of respondents using lidar.  
 
 ```{r, future-exp plot, echo=FALSE, include=FALSE}
 ### let's try simulating continuous variable
 
-future.sim <- rep(c(1:5), each=180)
-
-location.sim <- as.factor(rep(c("Idaho", "Oregon", "Washington"), times=60))
+future.sim <- rep(c(1:5), each=149)
 
 preds.future <- add_fitted_draws(newdata=data.frame(future_1=future.sim,
                                               soep_1=5,
@@ -1355,18 +1404,20 @@ preds.future <- add_fitted_draws(newdata=data.frame(future_1=future.sim,
                                               prop_lidar_network=0,
                                               experience_1=0,
                                               science_trust=3,
-                                              comm_total=0,
-                                              expert_total=0, 
-                                              location=location.sim),
+                                              net_comm=0,
+                                              net_expertise=0, 
+                                              location="Idaho"),
                           draws = 1000,
                           full.mod.priors)
 
-ggplot(preds.future, aes(as.factor(future_1), .value)) + 
+future.plot <- ggplot(preds.future, aes(as.factor(future_1), .value)) + 
   geom_boxplot() + 
-  labs(x = "Probabiility of Future Flood Experirence", y = "Probability of Lidar Adoption") +
-  theme_bw() 
-  
+  labs(x = "Future Risk Perception of Community Flood Damage within 30 Years", y = "Probability of Lidar Adoption") + 
+  scale_x_discrete(limits=c(1,2,3,4,5), labels=c("0%", "25%", "50%", "75%", "100%")) +
+  theme_classic() + 
+  theme( axis.text=element_text(size=12), axis.title=element_text(size=14), plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14))
 
+future.plot
 ```
 
 ```{r, ppc check, echo=FALSE, fig.cap="Displays a histogram, using the PPC function, that represents the number of individuals that do not use lidar (0) in the left column and use lidar (1) in the right column. The y histogram represents the actual data and the yrep represents the data generated from the posterior predictive distribution. Overall, the yrep is representative of the y, meaning our model has an accurate predictive ability."}
