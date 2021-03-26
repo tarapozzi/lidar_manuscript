@@ -1399,7 +1399,7 @@ Figure \@ref(fig:model-plot) displays the effect, when holding all other variabl
 ```{r, future-exp plot, echo=FALSE, include=FALSE}
 ### let's try simulating continuous variable
 
-future.sim <- rep(c(1:5), each=149)
+future.sim <- rep(c(1:5), n=149)
 
 preds.future <- add_fitted_draws(newdata=data.frame(future_1=future.sim,
                                               soep_1=5,
@@ -1413,22 +1413,42 @@ preds.future <- add_fitted_draws(newdata=data.frame(future_1=future.sim,
                           draws = 1000,
                           full.mod.priors)
 
-preds.future.limits <- confint(preds.future$future_1)
+# calculate uncertainity intervals
+library(dplyr)
+plotdata <-  preds.future %>%
+  group_by(future_1) %>% 
+  median_qi(.value) # this calculates the uncertainty interval around the median value just like the stat_lineribbon function does in the previous plots. Default is 95%
 
+plotdata.5 <-  preds.future %>%
+  group_by(future_1) %>% 
+  median_qi(.value, .width=0.5) %>%
+  dplyr::rename(
+    .lower.5 = .lower,
+    .upper.5 = .upper,
+    .width.5 = .width
+  ) 
 
-future.plot <- ggplot(preds.future, aes(as.factor(future_1), .value), y=.value) + 
-  geom_point(stat="summary", fun.y="mean") +
-  geom_errorbar(stat="summary", fun.data="mean_se", fun.args = list(mult = 1.96), width=0) +
-  ylim(0,1) 
-    
-    
+plotdata.bothqi <- join(plotdata, plotdata.5, by = "future_1", type = "full")
+
+future.plot <- ggplot(plotdata.bothqi, aes(x = as.factor(future_1),  y = .value, group = 1)) +
+  #stat_lineribbon(aes(y = mean), .width = c(.95, .5), show.legend=FALSE) +
+  geom_errorbar(aes(ymin = .lower, #95% uncertai
+                    ymax = .upper), 
+                width = 0, 
+                size = 1.2, 
+                color="lightgrey") +
+  geom_errorbar(aes(ymin = .lower.5, #50% uncertainty
+                    ymax = .upper.5), 
+                width =0, 
+                size = 2.2, 
+                color = "darkgrey") +
+  geom_point(size = 4, color="darkred", shape = 21, fill="white") +
+  ylim(0,1.3) +
   scale_x_discrete(limits=c(1,2,3,4,5), labels=c("0%", "25%", "50%", "75%", "100%")) +
   labs(x = "Risk Perception", y = "Proportion of Lidar Adoption") + 
-  theme_classic() + 
   theme( axis.text=element_text(size=12), axis.title=element_text(size=12), plot.title = element_text(size=12), strip.text = element_text(size=12), legend.position = "none") +
-  theme_classic
+  theme_classic()
   
-  ggpredict()
 
 future.plot
 ```
@@ -1448,17 +1468,45 @@ preds.science <- add_fitted_draws(newdata=data.frame(science_trust=science.sim,
                                               net_comm=0,
                                               net_expertise=0, 
                                               location="Idaho"),
-                          draws = 1000,
+                          draws = 4000,
                           full.mod.priors)
 
-science.plot <- ggplot(preds.science, aes(as.factor(science_trust), .value)) + 
-  stat_lineribbon(aes(y = .value), .width = c(.95, .5), show.legend=FALSE) +
-  scale_fill_brewer(palette = "Greys") +
+# calculate uncertainity intervals
+library(dplyr)
+plotdata.sc <-  preds.science %>%
+  group_by(science_trust) %>% 
+  median_qi(.value) # this calculates the uncertainty interval around the median value just like the stat_lineribbon function does in the previous plots. Default is 95%
+
+plotdata.sc.5 <-  preds.science %>%
+  group_by(science_trust) %>% 
+  median_qi(.value, .width=0.5) %>%
+  dplyr::rename(
+    .lower.5 = .lower,
+    .upper.5 = .upper,
+    .width.5 = .width
+  ) 
+
+plotdata.sc.bothqi <- join(plotdata.sc, plotdata.sc.5, by = "science_trust", type = "full")
+
+science.plot <- ggplot(plotdata.sc.bothqi, aes(x = as.factor(science_trust),  y = .value, group = 1)) +
+  #stat_lineribbon(aes(y = mean), .width = c(.95, .5), show.legend=FALSE) +
+  geom_errorbar(aes(ymin = .lower, #95% uncertai
+                    ymax = .upper), 
+                width = 0, 
+                size = 1.2, 
+                color="lightgrey") +
+  geom_errorbar(aes(ymin = .lower.5, #50% uncertainty
+                    ymax = .upper.5), 
+                width =0, 
+                size = 2.2, 
+                color = "darkgrey") +
+  geom_point(size = 4, color="darkred", shape = 21, fill="white") +
   ylim(0,1) +
   labs(x = "Trust", y = "Probability of Lidar Adoption") + 
   scale_x_discrete(limits=c(1,2,3), labels=c("Strongly distrust", "Neither trust nor distrust", "Strongly trust"), expand = c(0,.1)) +
   theme( axis.text=element_text(size=12), axis.title=element_text(size=12), plot.title = element_text(size=12), strip.text = element_text(size=12), legend.position = "none") +
   theme_classic()
+  
 science.plot
 ```
 
