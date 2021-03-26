@@ -4,8 +4,8 @@ author:
 - name: Tara Pozzi
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
-  bookdown::pdf_document2: default
   bookdown::word_document2: default
+  bookdown::pdf_document2: default
 thanks: '.....'
 affiliation: Boise State University
 runhead: XXXX
@@ -1061,7 +1061,7 @@ wa.lidaruse <- round((35/54)*100, digits=1)
 
 Table \@ref(tab:survey-variable-table) summarizes survey respondent's responses to individual and collective predictors of interest. These results highlight that over 70% of flood risk managers, in all three states, had direct experience with flood damage in their communities. Figure \@ref(exp-barchart) describes, in finer detail, the types of experiences flood risk managers have had with flooding. 
 
-```{r, exp-barchart, echo=FALSE}
+```{r, exp-barchart, include=FALSE}
 
 # Local floodplain information-- direct experience
 count(survey.responses, "experience_1")
@@ -1078,7 +1078,7 @@ tidy.exp$category <- as.character(tidy.exp$category)
 str(tidy.exp)
 
 exp.barchart <- ggplot(tidy.exp, aes(fill=category, y=count, x=exp)) +
-  geom_bar(position="fill", stat="identity", width=0.3) + 
+  geom_bar(position="fill", stat="identity", width=0.5) + 
   #geom_text(aes(label=..count..),stat="count",position=position_fill(vjust=0.5)) +
   scale_x_discrete(limits=c("1", "5", "2", "3", "4"),
                    labels=c( "damage to property in your community?","disruption to your electric, water, \n phone, and other basic services?","deaths and injury to people in your community?", "damage to your home?","deaths or injuries to you or members \n of your immediate family?"))+
@@ -1090,17 +1090,17 @@ exp.barchart <- ggplot(tidy.exp, aes(fill=category, y=count, x=exp)) +
   coord_flip() +
   labs(fill="")+
   xlab("")+
-  ylab("Percentage of Responses")+
+  ylab("Proportion of Responses")+
   ggtitle("Have you ever experienced a flood that caused...") +
-  theme(text = element_text(size=20),
-        axis.text.x = element_text(hjust=1))
+  theme(axis.text=element_text(size=14), axis.title=element_text(size=14),plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14)) +
+  theme_classic()
 
 exp.barchart
 ```
 
 Despite the majority of flood risk managers experiencing floods in the past, only 28% - 48% of respondents reported that they expect flood damage in their communities in the future.
 
-```{r, future-barchart, echo=FALSE}
+```{r, future-barchart, include=FALSE}
 ## future experience
 count(survey.responses, "future_1") 
 count(survey.responses, "future_2")
@@ -1118,18 +1118,18 @@ str(tidy.future)
 future.barchart <- ggplot(tidy.future, aes(fill=category, y=count, x=future)) +
   geom_bar(position="fill", stat="identity", width=0.3) + 
   scale_x_discrete(limits=c("1", "5", "2", "3", "4"),
-                   labels=c( "damage to property in your community?","disruption to your electric, water, \n phone, and other basic services?","deaths and injury to people in your community?", "damage to your home?","deaths or injuries to you or members \n of your immediate family?"))+
+                   labels=c( "damage to property in your community?","disruption to your electric, water, \nphone, and other basic services?","deaths and injury to people in your community?", "damage to your home?","deaths or injuries to you or members \n of your immediate family?"))+
   scale_fill_manual(guide=guide_legend(reverse=TRUE),
-                    values=c("gray75", "bisque2", "chocolate", "brown", "darkred"), 
+                    values=c("gray75", "bisque2", "chocolate2", "brown3", "darkred"), 
                     limits=c("1", "2", "3", "4", "5"),
                     labels=c("0%", "25%", "50%", "75%", "100%"))+
   coord_flip() +
   labs(fill="")+
   xlab("")+
-  ylab("Percentage of Responses")+
-  ggtitle("Thinking about your community in the next 30 years, how likely is it that a flood will cause...")
-  theme(text = element_text(size=20),
-        axis.text.x = element_text(hjust=1))
+  ylab("Proportion of Responses")+
+  ggtitle("Thinking about your community in the next 30 years, \nhow likely is it that a flood will cause...") +
+  theme(axis.text=element_text(size=14), axis.title=element_text(size=14), plot.title =  element_text(size=14), strip.text = element_text(size=14)) +
+ theme_classic()
 
 future.barchart
 ```
@@ -1189,30 +1189,30 @@ wa.science.trust <- 90.7
 #4-somewhat trust, 5-completely trust
 
 #Proportion of lidar users in flood risk management network
-idaho <- join(idaho, survey.responses[, c("Email", "prop_lidar_network", "comm_ave", "expert_ave")], by= "Email", type="left")
+idaho <- join(idaho, survey.responses[, c("Email", "prop_lidar_network", "net_comm", "net_expertise")], by= "Email", type="left")
 #id.prop.lidar <- (round(summarise(idaho, avg=mean(prop_lidar_network, na.rm=TRUE)), digits=2))*100
 id.prop.lidar <- 35.0
-oregon <- join(oregon, survey.responses[, c("Email", "prop_lidar_network", "comm_ave", "expert_ave")], by= "Email", type="left")
+oregon <- join(oregon, survey.responses[, c("Email", "prop_lidar_network", "net_comm", "net_expertise")], by= "Email", type="left")
 #or.prop.lidar <- (round(summarise(oregon, avg=mean(prop_lidar_network, na.rm=TRUE)), digits=2))*100
 or.prop.lidar <- 40.0
-washington <- join(washington, survey.responses[, c("Email", "prop_lidar_network", "comm_ave", "expert_ave")], by= "Email", type="left")
+washington <- join(washington, survey.responses[, c("Email", "prop_lidar_network", "net_comm", "net_expertise")], by= "Email", type="left")
 #wa.prop.lidar <- (round(summarise(washington, avg=mean(prop_lidar_network, na.rm=TRUE)), digits=2))*100
 wa.prop.lidar <- 42.0
 #Total communication in flood risk management network
-#id.comm.network <- (round(summarise(idaho, avg=mean(comm_ave, na.rm=TRUE)), digits=1))
-id.comm.network <- 3
-#or.comm.network <- (round(summarise(oregon, avg=mean(comm_ave, na.rm=TRUE)), digits=1))
-or.comm.network <- 3
-#wa.comm.network <- (round(summarise(washington, avg=mean(comm_ave, na.rm=TRUE)), digits=1))
-wa.comm.network <- 3
+#id.comm.network <- (round(summarise(idaho, avg=mean(net_comm, na.rm=TRUE)), digits=1))
+id.comm.network <- -0.6
+#or.comm.network <- (round(summarise(oregon, avg=mean(net_comm, na.rm=TRUE)), digits=1))
+or.comm.network <- -0.04
+#wa.comm.network <- (round(summarise(washington, avg=mean(net_comm, na.rm=TRUE)), digits=1))
+wa.comm.network <- -0.02
 
 #Perceived expertise in flood risk management network
-#id.expert.network <- (round(summarise(idaho, avg=mean(expert_ave, na.rm=TRUE)), digits=1))
-id.expert.network <- 6.6
-#or.expert.network <- (round(summarise(oregon, avg=mean(expert_ave, na.rm=TRUE)), digits=1))
-or.expert.network <- 7.3
-#wa.expert.network <- (round(summarise(washington, avg=mean(expert_ave, na.rm=TRUE)), digits=1))
-wa.expert.network <- 6.7
+#id.expert.network <- (round(summarise(idaho, avg=mean(net_expertise, na.rm=TRUE)), digits=1))
+id.expert.network <- 0.7
+#or.expert.network <- (round(summarise(oregon, avg=mean(net_expertise, na.rm=TRUE)), digits=1))
+or.expert.network <- 0.2
+#wa.expert.network <- (round(summarise(washington, avg=mean(net_expertise, na.rm=TRUE)), digits=1))
+wa.expert.network <- 1
 
 #Use of lidar for flood risk management
 #id.lidaruse <- (table(idaho$lidaruse == 1)/length(idaho$lidaruse))*100
@@ -1224,7 +1224,7 @@ wa.lidaruse <- 64.8
 
 survey.variable.stats <- matrix(c(id.experience, or.experience, wa.experience, id.future, or.future, wa.future, id.incr.sev.flood, or.incr.sev.flood, wa.incr.sev.flood, id.soep, or.soep, wa.soep, id.science.trust, or.science.trust, wa.science.trust, id.prop.lidar, or.prop.lidar, wa.prop.lidar, id.comm.network, or.comm.network, wa.comm.network, id.expert.network, or.expert.network, wa.expert.network, id.lidaruse, or.lidaruse, wa.lidaruse), ncol=3, byrow=TRUE)
 colnames(survey.variable.stats) <- c("Idaho", "Oregon", "Washington")
-rownames(survey.variable.stats) <- c( "Direct experience with flood damage in community (%)", "Direct experience with future flood damage in the community (%)","Perceived Increase in Flood Severity (%)", "Average risk-taking attitude (0 to 10 with 10 being risk-loving)", "Trust in accuracy of flood risk management scientific products (%)", "Proportion of lidar users in flood risk management network (%)", "Average amount of communication with flood risk management network* ", "Perceived expertise in flood risk management network (0 to 10 with 10 being of highest expertise)", "Use lidar for flood risk management (%)" )
+rownames(survey.variable.stats) <- c( "Direct experience with flood damage in community (%)", "Direct experience with future flood damage in the community (%)","Perceived Increase in Flood Severity (%)", "Average risk-taking attitude (0 to 10 with 10 being risk-loving)", "Trust in accuracy of flood risk management scientific products (%)", "Proportion of lidar users in flood risk management network (%)", "Net average communication in respondent's network* ", "Net average expertise in respondent's network (0 to 10 with 10 being of highest expertise)", "Use lidar for flood risk management (%)" )
 knitr::kable(survey.variable.stats, caption="Descriptive statistics of survey question responses by State.")
 ```
 
@@ -1259,17 +1259,17 @@ Table \@ref(tab:model-summary-table) displays the results from our GLR model tha
 
 ```{r, model-summary-table, echo=FALSE, fig.cap="\\label{summary_stats}"}
 #these are based on summary(full.mod) which returned a slightly better result that fullmod.priors
-summary.stats <- matrix(c(-2.6, 1.3, -4.9, -0.4,
-                          0.3, 0.4, -0.3, 1.2,
-                          0.4, 0.6, -0.4, 1.4,
-                          0.2, 0.3, -0.2, 0.7, 
-                          0.1, 0.1, -0.1, 0.2, 
-                          -0.1, 0.2, -0.5, 0.3,
-                          4.3, 0.8, 3.0, 5.7, 
-                          0.0, 0.0, 0.0, 0.1, 
-                          0.0, 0.0, 0.0, 0.0), ncol=4, byrow=TRUE) #this is the plogis values for mean and SD ### UPDATE THESE NUMBERS
+summary.stats <- matrix(c(-0.9, 1.7, -3.7, 1.9,
+                          0.4, 0.7, -0.6, 1.5,
+                          1.2, 0.8, -0.2, 2.6,
+                          0.2, 0.4, -0.3, 0.9, 
+                          0.1, 0.1, -0.1, 0.3, 
+                          -0.2, 0.3, -0.8, 0.3,
+                          1.4, 1.1, -.4, 3.3, 
+                          0.4, 0.1, 0.2, 0.7, 
+                          0.1, 0.1, 0.0, 0.2), ncol=4, byrow=TRUE) #this is the plogis values for mean and SD ### UPDATE THESE NUMBERS
 colnames(summary.stats) <- c( "Mean (log odds)", "S.D.", "5%", "95%")
-rownames(summary.stats) <- c("Intercept", "Direct Experience with Flood Damage in Community", "Future Experience with Flood Damage in Community", "Increase in Flood Severity", "Risk Attitude", "Trust in Accuracy of flood risk management Scientific Products", "Proportion of Lidar Users in Respondent's flood risk management Network", "Level Communication with Respondent and their flood risk management Network", "Total Expertise in Respondent's flood risk management Network")
+rownames(summary.stats) <- c("Intercept", "Direct Experience", "Risk Perception", "Knowledge", "Risk-Taking Attitude", "Trust", "Peer Influence", "Network Strength", "Network Expertise")
 knitr::kable(summary.stats, caption="Estimation results from the model")
 ```
 
@@ -1277,18 +1277,19 @@ knitr::kable(summary.stats, caption="Estimation results from the model")
 
 library(bayesplot)
 
-color_scheme_set("teal")
+color_scheme_set("red")
 
-areas.plot <- mcmc_areas(full.mod.priors, pars = c("incr_sev_flood", "experience_1", "future_1", "science_trust", "soep_1", "prop_lidar_network", "net_comm", "net_expertise"), 
+areas.plot <- mcmc_areas(full.mod.priors, pars = c("prop_lidar_network", "net_comm", "net_expertise", "future_1", "experience_1", "incr_sev_flood", "science_trust","soep_1"), 
                          prob=0.8,#80% intervals
                          prob_outer=0.99, #99%
                          point_est= "mean"
                          ) +
   scale_y_discrete(expand = c(0, 0),
-                   limits= c("incr_sev_flood", "experience_1", "soep_1", "future_1", "science_trust", "prop_lidar_network", "net_comm", "net_expertise"), 
-                   labels = c("Increase in Flood Severity", "Direct Experience", "Future Direct Experience", "Trust in Scientific Products", "Risk-taking Attitude", "Proportion of Lidar's Users in Network", "Net Communication in Network", "Net Expertise in Network")) +
-  labs(x = "Posterior Predictive Distribution", y = "Predictors") +
-  theme( axis.text=element_text(size=12), axis.title=element_text(size=14),plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14))
+                   limits= c("prop_lidar_network", "net_comm", "net_expertise", "future_1", "experience_1", "incr_sev_flood", "science_trust","soep_1"), 
+                   labels = c("Peer influence", "Network strength", "Network expertise", "Risk perception", "Direct experience", "Knowledge", "Trust", "Risk-taking attitude")) +
+  labs(x = "Posterior Predictive Distribution") +
+  theme(axis.text=element_text(size=12), axis.title=element_text(size=14),plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14), family="sans") +
+  theme_classic()
 
 areas.plot
 
@@ -1314,12 +1315,12 @@ preds <- add_fitted_draws(newdata=data.frame(prop_lidar_network=proplidar.sim,
                           full.mod.priors)
 
 proplidar.plot <- ggplot(preds, aes(x = prop_lidar_network)) +
-  stat_lineribbon(aes(y = .value), .width = c(.95, .5)) +
+  stat_lineribbon(aes(y = .value), .width = c(.95, .5), show.legend=FALSE) +
   scale_fill_brewer(palette = "Greys") +
   ylim(0,1) +
-  labs(x = "Proportion of Lidar User's in Respondent's Network", y = "Probability of Lidar Adoption") + theme_classic() + 
-  scale_colour_discrete(name = "Location") +
-  theme( axis.text=element_text(size=12), axis.title=element_text(size=14), plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14), legend.position = "none")
+  labs(x = "Proportion of respondent's social \nnetwork using lidar", y ="Proportion of Lidar Adoption") +
+  theme( axis.text=element_text(size=12), axis.title=element_text(size=12), plot.title = element_text(size=12), strip.text = element_text(size=12), legend.position = "none") +
+  theme_classic()
 
 proplidar.plot
 ```
@@ -1342,15 +1343,16 @@ preds.comm <- add_fitted_draws(newdata=data.frame(net_comm=comm.sim,
                           full.mod.priors)
 
 comm.plot <- ggplot(preds.comm, aes(x = net_comm)) +
-  stat_lineribbon(aes(y = .value), .width = c(.95, .5)) +
+  stat_lineribbon(aes(y = .value), .width = c(.95, .5), show.legend=FALSE) +
   scale_fill_brewer(palette = "Greys") +
   ylim(0,1) +
-  scale_x_discrete(limits= c(-6, 0, 6), 
-                   labels= c("All communication with \nnon-lidar users", "Equal communication with \nlidar and non-lidar users", "All communication with \nlidar users")) +
-  labs(x = "Net Frequency of Communication in Respondent's Social Network", y = "Probability of Lidar Adoption") + 
+  scale_x_discrete(limits= c(-5, 0, 5), 
+                   labels= c("Communicate \nvery little with \nlidar users", "Communicate equally \nlidar/nnon-lidar \nusers ", "Communicate \nmostly with \nlidar users")) +
+  labs(x = NULL, y = NULL) + 
   theme_classic() + 
   scale_colour_discrete(name = "Location") +
-  theme( axis.text=element_text(size=12), axis.title=element_text(size=14), plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14), legend.position = "none")
+  theme(axis.text=element_text(size=12), axis.title=element_text(size=12),  plot.title = element_text(size=12), strip.text = element_text(size=12), legend.position = "none") +
+  theme_classic()
 
 comm.plot
 ```
@@ -1373,14 +1375,15 @@ preds.exp <- add_fitted_draws(newdata=data.frame(net_expertise=exp.sim,
                           full.mod.priors)
 
 exp.plot <- ggplot(preds.exp, aes(x = net_expertise)) +
-  stat_lineribbon(aes(y = .value), .width = c(.95, .5)) +
+  stat_lineribbon(aes(y = .value), .width = c(.95, .5), show.legend=FALSE) +
   scale_fill_brewer(palette = "Greys") +
   ylim(0,1) +
-  scale_x_discrete(limits= c(-10, 0, 10), 
-                   labels= c("High expertise of \nnon-lidar users", "Equal expertise of \nlidar and non-lidar users", "High expertise of \nlidar users")) +
-  labs(x = "Net Expertise in Respondent's Social Network", y = "Probability of Lidar Adoption") + 
+  scale_x_discrete(limits= c(-10, 0, 9), 
+                   labels= c("Less expertise \namong lidar \nusers", "Equal expertise \nlidar/non-lidar \nusers ", "More expertise \namong lidar \nusers")) +
+  labs(x = NULL, y = NULL) + 
   theme_classic() + 
-  theme( axis.text=element_text(size=12), axis.title=element_text(size=14), plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14), legend.position = "none")
+  theme( axis.text=element_text(size=12), axis.title=element_text(size=12), plot.title = element_text(size=12), strip.text = element_text(size=12), legend.position = "none") +
+  theme_classic()
 
 exp.plot
 ```
@@ -1410,14 +1413,53 @@ preds.future <- add_fitted_draws(newdata=data.frame(future_1=future.sim,
                           draws = 1000,
                           full.mod.priors)
 
-future.plot <- ggplot(preds.future, aes(as.factor(future_1), .value)) + 
-  geom_boxplot() + 
-  labs(x = "Future Risk Perception of Community Flood Damage within 30 Years", y = "Probability of Lidar Adoption") + 
+preds.future.limits <- confint(preds.future$future_1)
+
+
+future.plot <- ggplot(preds.future, aes(as.factor(future_1), .value), y=.value) + 
+  geom_point(stat="summary", fun.y="mean") +
+  geom_errorbar(stat="summary", fun.data="mean_se", fun.args = list(mult = 1.96), width=0) +
+  ylim(0,1) 
+    
+    
   scale_x_discrete(limits=c(1,2,3,4,5), labels=c("0%", "25%", "50%", "75%", "100%")) +
+  labs(x = "Risk Perception", y = "Proportion of Lidar Adoption") + 
   theme_classic() + 
-  theme( axis.text=element_text(size=12), axis.title=element_text(size=14), plot.title = element_text(hjust = 0.5), strip.text = element_text(size=14))
+  theme( axis.text=element_text(size=12), axis.title=element_text(size=12), plot.title = element_text(size=12), strip.text = element_text(size=12), legend.position = "none") +
+  theme_classic
+  
+  ggpredict()
 
 future.plot
+```
+
+
+```{r, science plot, echo=FALSE, include=FALSE}
+### let's try simulating continuous variable
+
+science.sim <- rep(c(1:5), each=149)
+
+preds.science <- add_fitted_draws(newdata=data.frame(science_trust=science.sim,
+                                              soep_1=5,
+                                              incr_sev_flood=2, 
+                                              prop_lidar_network=0,
+                                              experience_1=0,
+                                              future_1=1,
+                                              net_comm=0,
+                                              net_expertise=0, 
+                                              location="Idaho"),
+                          draws = 1000,
+                          full.mod.priors)
+
+science.plot <- ggplot(preds.science, aes(as.factor(science_trust), .value)) + 
+  stat_lineribbon(aes(y = .value), .width = c(.95, .5), show.legend=FALSE) +
+  scale_fill_brewer(palette = "Greys") +
+  ylim(0,1) +
+  labs(x = "Trust", y = "Probability of Lidar Adoption") + 
+  scale_x_discrete(limits=c(1,2,3), labels=c("Strongly distrust", "Neither trust nor distrust", "Strongly trust"), expand = c(0,.1)) +
+  theme( axis.text=element_text(size=12), axis.title=element_text(size=12), plot.title = element_text(size=12), strip.text = element_text(size=12), legend.position = "none") +
+  theme_classic()
+science.plot
 ```
 
 ```{r, ppc check, echo=FALSE, fig.cap="Displays a histogram, using the PPC function, that represents the number of individuals that do not use lidar (0) in the left column and use lidar (1) in the right column. The y histogram represents the actual data and the yrep represents the data generated from the posterior predictive distribution. Overall, the yrep is representative of the y, meaning our model has an accurate predictive ability."}
