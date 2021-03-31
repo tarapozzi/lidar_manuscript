@@ -4,8 +4,8 @@ author:
  name: Tara Pozzi
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
-  bookdown::pdf_document2: default
   bookdown::word_document2: default
+  bookdown::pdf_document2: default
 thanks: '.....'
 affiliation: Boise State University
 runhead: XXXX
@@ -232,7 +232,7 @@ Several studies have implemented social network analysis to examine the the infl
 
 Our study uses an ego network analysis, which is helpful for understanding the variation of behavior of individuals through identification of local social structures unique to the individual of interest (e.g. flood risk manager) [@hannemanChapterEgoNetworks2005]. We used an open ego network and calculated the predictors peer influence, network strength, and network expertise from data collected in the survey questions in Figure \@ref(fig:egonet). Peer influence was calculated as the proportion of the network's ego alters that used lidar. Network strength was calculated as the net average communication with lidar users minus average communication with non-lidar users in an ego's network. Network expertise was calculated as the net average expertise with lidar users minus average expertise with non-lidar users in an ego's network. 
 
-![(#fig:egonet) "Two Ego Network Analysis Structures. Center represents the ego and the lines represent the ties between the ego and their alters[@borgattiNetworkAnalysisSocial2009]."](C:/Users/tarapozzi/Documents/lidar_manuscript/images/egonet.jpg)
+![(fig:egonet)"Two Ego Network Analysis Structures. Center represents the ego and the lines represent the ties between the ego and their alters."](C:/Users/tarapozzi/Documents/lidar_manuscript/images/egonet.jpg)
 
 ```{r, survey data upload, include=FALSE}
 
@@ -364,7 +364,7 @@ ak.rr <- round((6/d)*100, digits=1)
 
 We delivered the survey online using Qualtrics to 1,257 email addresses in our sample frame between May and July 2020. The survey took an average of 10 to 15 minutes to complete. We used Dillman et al. (2014) guidelines for web and mobile survey implementation. We initially set an introductory email that stated what was being asked of respondents, why they were selected, and information about the intent, purpose, and outcomes of the survey [@dillmanInternetPhoneMail2014]. We sent three to five follow-up email correspondence messages over the course of four weeks to help increase our response rate. In addition, we stated the survey was anonymous and participant's information would be kept confidential. Table \@ref(tab:data-collection) summarizes the potential respondents, number of survey responses, and response rate for each state. 
 
-```{r, data-collection, include=FALSE, fig.cap="\\label{survey data collection}"}
+```{r, data-collection, echo=FALSE, fig.cap="\\label{survey data collection}"}
 survey.data <- matrix(c(a, 96, id.rr, b, 58, or.rr, c, 54, wa.rr, d, 6, ak.rr), ncol=3, byrow=TRUE)
 colnames(survey.data) <- c("Potential Respondents", "Number of Responses", "Response Rate")
 rownames(survey.data) <- c("Idaho", "Oregon", "Washington", "Alaska")
