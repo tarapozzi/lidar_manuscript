@@ -73,7 +73,7 @@ dpi = 300)
 opts_chunk$set(fig.pos = "H")
 
 ```
-
+latest
 Abstract
 ========================
 Flood risk and damage are expected to increase in the Western U.S. due to climate change. Light Detection and Ranging (lidar) is a remote sensing technology that provides high-resolution topographic data and can therefore produce higher accuracy floodplain maps, an important tool that communities use to assess their flood risk spatially. While availability of lidar data varies across the U.S., uptake also varies even when lidar is available. For example, we found that only 50% of flood risk managers in Idaho are using the technology.  Previous research investigated important factors in the role of technology adoption in reducing long-term environmental risk. However the current literature infrequently examined  the social processes that impact an individual’s choices about how to manage risk. We used a mixed-methods approach to examine the adoption of lidar by flood managers for risk mitigation, as a function of individual (e.g. risk perception, direct experience) and collective predictors (e.g. peer influence, network communication). We conducted 8 semi-structured interviews with flood risk managers in Idaho and gathered 150 survey responses from flood risk managers in Idaho, Oregon, and Washington. We found that flood managers who share information with other flood managers using lidar are also more likely to use lidar themselves. Furthermore, the more frequently these flood managers communicate, the more likely a manager is to use lidar. This work provides a foundation for how to incorporate collective factors in mitigation behavior  and reveals potential for increased lidar uptake through collaboration in the flood risk manager community. 
