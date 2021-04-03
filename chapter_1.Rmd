@@ -18,7 +18,7 @@ colorlinks: yes
 ---
 
 ```{r setup, include=FALSE}
-library(citr) # doesn't work in this version of r...
+#library(citr) # doesn't work in this version of r...
 library(tidyr)
 library(ggplot2)
 library(ggplotgui) # doesn't work in this version of r 
@@ -47,7 +47,7 @@ library(dplyr)
 library(purrr)
 library(forcats)
 library(modelr)
-library(ggdist)
+#library(ggdist)
 library(tidybayes)
 library(cowplot)
 library(rstan)
@@ -126,24 +126,24 @@ Behavioral adaptations display the variation of culture as a result of the evolu
 In a similar vein, the cultural theory of risk is the transmission of risk information among a network of individuals through social learning [@douglasRiskCultureEssay1983]. Previous flood risk management research has suggested the use of cultural theory of risk to contextualize the relationship of risk perception as a function of cultural adherence and social learning [@birkholzRethinkingRelationshipFlood2014]. This theory has been employed in a couple empirical flood risk management studies so far and provides an intriguing underpinning of risk perception research [@shenFloodRiskPerception2009]. Cultural evolutionary theory is similar to cultural theory of risk, however it more broadly offers a way to understand the complex dynamics of cultural change through interactions between individuals and populations, such as is needed for flood risk management (Brooks et al., 2018).
 
 ## *Predictor Literature Review*
-In order to select relevant individual and collective predictors of flood risk mitigation behavior *a priori*, we conducted a literature review of previous work that looked at the effect of the constructs outlined in Table 1 on flood risk mitigation behavior.  
+In order to select relevant individual and collective predictors of flood risk mitigation behavior *a priori*, we conducted a literature review of previous work that looked at the effect of the constructs outlined in Table 1 on flood risk mitigation.  
 
 |          |     Construct    |     Definition    |     Effect   on Behavior*    |     Supporting   Literature**    |
 |:---|:---|:---|:---|:---|
-|     Individual                                                    |     Risk perception    |     Subjective construct that   reflects an individual’s perceived vulnerability and consequence of a hazard risk.    |     +/-    |     Bubeck et al. 2012;   Kellens et al., 2012;   Lo, 2013;    Birkholz et al. 2014;   Poussin et al., 2014;   van Valkengoed & Steg, 2019    |
-|  |     Experience (direct or indirect)    |     Direct experience is represented   by an individual witnessing a hazard. Indirect experience is an individual who   gathered information (e.g. social media, newspaper) from others who had   direct experience.    |     +    |     Bubeck et al. 2012;   Kellens et al., 2012;   Poussin et al., 2014;   Valkengoed & Steg, 2019    |
-|  |     Knowledge    |     Knowledge is an individual’s   awareness of climate change and climate-related hazards.     |     +    |     Bubeck et al. 2012;   Kellens et al., 2012;   Valkengoed & Steg, 2019    |
-|  |     Coping Appraisal    |     The effectiveness of a risk   mitigation behavior on managing a hazard.    |     +/N.S.    |     Bubeck et al. 2012;   Poussin et al., 2014    |
-|  |     Trust    |     Trust represents an individual’s   belief in others (e.g. science, government) to effectively help in risk   mitigation of a hazard.    |     +/-    |     Kellens et al., 2012;   Viglione et al. 2014;   Roberts & Wernstedt, 2018;    Valkengoed & Steg, 2019    |
-|  |     Risk-taking attitude    |     Risk-taking attitude represents   an individual’s place on a spectrum of risk-loving to risk-averting.     |     +/-    |     Viglione et al. 2014;   Roberts & Wernstedt, 2018;   Poussin et al., 2014    |
-|  |     Age    |     Age is an individual’s total   years of life.    |     +    |     Bubeck et al. 2012;   Poussin et al., 2014    |
-|  |     Gender    |     Gender is an individual’s   self-described gender affiliation.    |     N.S.    |     Bubeck et al. 2012    |
-|  |     Education    |     Education represents the amount   of formal education an individual experienced.    |     N.S.    |     Bubeck et al. 2012;   Poussin et al., 2014    |
-|     Collective    |     Peer influence    |     Peer influence reflects the   impact of an individual’s social network on an individual’s ideas, beliefs,   and practices.    |     +    |     Lo, 2013;   Viglione et al. 2014;   Poussin et al., 2014;   Birkholz et al. 2014;   Roberts & Wernstedt, 2018;   Bojovic & Giupponi, 2020    |
-|  |     Network Strength    |     Strength is represented by the   amount of communication an individual has with their network ties.    |     +    |     Lo, 2013;   Haer et al., 2016;   Bojovic & Giupponi, 2020    |
-|  |     Network Expertise    |     Expertise is represented by how   an individual perceives the expert skills or knowledge of their network ties   in their particular field of work.    |     +/N.S.    |     Bracken et al., 2016    |
+|     Individual                                                    |     Risk perception    |     Subjective construct that   reflects an individual’s perceived vulnerability to and consequence of a hazard.    |     +/-    |     Bubeck et al. 2012;   Kellens et al., 2012;   Lo, 2013;    Birkholz et al. 2014;   Poussin et al., 2014;   van Valkengoed & Steg, 2019    |
+|  |     Experience (direct or indirect)    |     Represented   by an individual witnessing a hazard and/or an individual who   gathered information (e.g. social media, newspaper) from others who had   direct experience.    |     +    |     Bubeck et al. 2012;   Kellens et al., 2012;   Poussin et al., 2014;   Valkengoed & Steg, 2019    |
+|  |     Knowledge    |     An individual’s   awareness of climate change and climate-related hazards.     |     +    |     Bubeck et al. 2012;   Kellens et al., 2012;   Valkengoed & Steg, 2019    |
+|  |     Coping Appraisal    |     Total response efficacy and self-efficacy considering costs of adopting response.    |     +/N.S.    |     Bubeck et al. 2012;   Poussin et al., 2014    |
+|  |     Trust    |     Risk judgement by an individual regarding the ability for others (e.g. science, government) to effectively cope with a hazard    |     +/-    |     Kellens et al., 2012;   Viglione et al. 2014;    Valkengoed & Steg, 2019    |
+|  |     Risk-taking attitude    |     An individual’s general propensity to engage in risky behaviors.      |     +/-    |     Viglione et al. 2014;   Roberts & Wernstedt, 2018;   Poussin et al., 2014    |
+|  |     Age    |     An individual’s total   years of life.    |     +    |     Bubeck et al. 2012;   Poussin et al., 2014    |
+|  |     Gender    |     An individual’s   self-described gender affiliation.    |     N.S.    |     Bubeck et al. 2012    |
+|  |     Education    |     Amount   of formal education an individual experienced.    |     N.S.    |     Bubeck et al. 2012;   Poussin et al., 2014    |
+|     Collective    |     Peer influence    |     Impact of an individual’s social network on an individual’s ideas, beliefs,   and practices.    |     +    |     Lo, 2013;   Viglione et al. 2014;   Poussin et al., 2014;   Birkholz et al. 2014;   Roberts & Wernstedt, 2018;   Bojovic & Giupponi, 2020    |
+|  |     Network Strength    |  Amount of communication an individual has with their network ties.    |     +    |     Lo, 2013;   Haer et al., 2016;   Bojovic & Giupponi, 2020    |
+|  |     Network Expertise    |     Individual perception of expert skills or knowledge of their network ties in their particular field of work.    |     +/N.S.    |     Bracken et al., 2016; Roberts & Wernstedt, 2018    |
 
-Table: Individual and collective constructs, with the motivation, effect, and supporting literature for each construct, that potentially influence risk mitigating behavior for flood risk management.
+Table: Individual and collective constructs studied in flood risk management research. Definition of each individual and collective construct included in the analysis. The listed effect on behavior indicates the direction of the association between the listed construct and our outcome variable, risk mitigation. Supporting literature includes a non-exhaustive list of articles discussing the importance and effect of each construct on risk mitigation.  
 
 # Methods
 
@@ -793,7 +793,7 @@ survey.responses <- survey.responses %>%
                  'experience_4', 'experience_5', 'future_1', 'future_2', 'future_3', 'future_4', 'future_5', 
                  'currentmap', 'flood_zone', 'prepared', 'incr_no_flood', 'incr_sev_flood', 'barrier_1', 'barrier_2', 
                  'barrier_3', 'barrier_4', 'barrier_5', 'barrier_6', 'soep_1', 'age', 'gender', 
-                 'gov_trust', 'gov_involve', 'education', 'science_trust', 'toolslid', 'toolslid1', 'usefulid', 'no_alters',
+                 'gov_trust', 'gov_involve', 'education', 'science_trust', 'toolslid', 'toolslid1', 'usefulid', 
                  'alter_names_1_TEXT', 'alter_names_2_TEXT', 'alter_names_3_TEXT', 'alter_names_4_TEXT', 'alter_names_5_TEXT', 'alter_names_6_TEXT',
                  'alter_names_7_TEXT', 'alter_names_9_TEXT', 'comm_1', 'lidar_1', 'expertise_1_1', 'comm_2', 'lidar_2', 'expertise_2_1', 'comm_3', 'lidar_3', 'expertise_3_1',
                 'comm_4', 'lidar_4', 'expertise_4_1','comm_5', 'lidar_5', 'expertise_5_1', 'comm_6', 'lidar_6', 'expertise_6_1', 'comm_7', 'lidar_7','expertise_7_1',
@@ -804,7 +804,7 @@ survey.responses <- survey.responses %>%
 ### Network Proxies
 
 # proportion of alters that use lidar
-network.variables <- c("Email", "no_alters","comm_1","lidar_1","expertise_1_1","comm_2","lidar_2","expertise_2_1","comm_3","lidar_3","expertise_3_1",
+network.variables <- c("Email", "comm_1","lidar_1","expertise_1_1","comm_2","lidar_2","expertise_2_1","comm_3","lidar_3","expertise_3_1",
                 "comm_4","lidar_4","expertise_4_1","comm_5","lidar_5","expertise_5_1","comm_6","lidar_6","expertise_6_1","comm_7","lidar_7","expertise_7_1",
                 "comm_8","lidar_8","expertise_8_1")
 
